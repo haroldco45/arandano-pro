@@ -1,0 +1,15 @@
+{
+  "name": "Arándano Pro — Guía del arandanero",
+  "short_name": "Arándano Pro",
+  "description": "Alertas de helada y calor, guía de cultivo, calculadoras, bitácora y lista BPA para el cultivador de arándanos.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#151a3f",
+  "theme_color": "#151a3f",
+  "lang": "es",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

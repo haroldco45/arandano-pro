@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arándano Pro — Guía del arandanero</title>
+<meta name="description" content="App para el cultivador de arándanos: alertas de helada y calor con el clima real de su finca, guía de cultivo en Colombia, calculadoras, bitácora y lista BPA. Español / English.">
+<meta name="theme-color" content="#151a3f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arándano Pro — Guía del arandanero">
+<meta property="og:description" content="Alertas de helada y calor con el clima real, guía de cultivo en Colombia, calculadoras de siembra, cosecha y plata, bitácora y lista BPA.">
+<meta property="og:image" content="https://arandano-pro.netlify.app/og-image.jpg">
+<meta property="og:url" content="https://arandano-pro.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Arándano Pro — Guía del arandanero">
+<meta name="twitter:description" content="Alertas de helada y calor, guía de cultivo, calculadoras, bitácora y lista BPA para el arandanero.">
+<meta name="twitter:image" content="https://arandano-pro.netlify.app/og-image.jpg">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#151a3f;--night2:#222a63;--berry:#3c48b0;--bloom:#8fa2ff;--frost:#dfe6ff;
+  --leaf:#2f7d4f;--leaf2:#e3f2e8;--amber:#c97c0e;--amber2:#fff1da;--red:#b8322a;--red2:#fde5e2;
+  --bg:#f5f4ef;--card:#ffffff;--ink:#1a1d2e;--mute:#5d6175;--line:#e3e2dc;
+  --r:18px;--shadow:0 10px 30px -14px rgba(21,26,63,.35);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1029;--card:#181c3d;--ink:#eef0ff;--mute:#a7abc8;--line:#2a2f5a;
+    --leaf2:#16301f;--amber2:#33260f;--red2:#3a1614;--frost:#232a5c;
+  }
+}
+:root[data-theme="dark"]{--bg:#0e1029;--card:#181c3d;--ink:#eef0ff;--mute:#a7abc8;--line:#2a2f5a;--leaf2:#16301f;--amber2:#33260f;--red2:#3a1614;--frost:#232a5c}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.12;margin:0 0 .4em;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,5vw,2.3rem)}
+h3{font-size:1.2rem}
+p{margin:.3em 0 .9em}
+a{color:var(--berry)}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;background:rgba(21,26,63,.92);backdrop-filter:blur(10px);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:10px;min-height:58px}
+.brand{font-family:Fraunces,serif;font-weight:800;font-size:1.15rem;line-height:1.1}
+.brand small{display:block;font-family:Manrope;font-weight:500;font-size:.72rem;color:var(--bloom);letter-spacing:.04em}
+.top .sp{flex:1}
+.pill{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:.8rem;cursor:pointer}
+.pill:active{transform:scale(.96)}
+.pill.on{background:#fff;color:var(--night)}
+
+/* hero */
+.hero{position:relative;min-height:440px;color:#fff;overflow:hidden;background:var(--night)}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;animation:kb 14s ease-in-out infinite alternate}
+.slides img.on{opacity:1}
+@keyframes kb{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.16) translate(-2%,-2%)}}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,26,63,.25) 0%,rgba(21,26,63,.55) 45%,rgba(21,26,63,.96) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-top:110px;padding-bottom:28px}
+.kicker{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--bloom)}
+.hero h1{font-size:clamp(2.3rem,9vw,4.2rem);margin:.15em 0 .2em}
+.hero p{max-width:560px;color:#e3e6ff}
+.cap{position:absolute;right:12px;bottom:10px;z-index:3;font-size:.7rem;color:#cfd4ff;opacity:.85}
+.ticker{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin-top:16px;padding-bottom:4px}
+.ticker::-webkit-scrollbar{display:none}
+.tk{flex:0 0 auto;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:10px 14px;min-width:120px}
+.tk b{display:block;font-family:Fraunces,serif;font-size:1.5rem;line-height:1.1}
+.tk span{font-size:.75rem;color:#cfd4ff}
+
+/* sections */
+.view{display:none;animation:fade .45s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section{padding:28px 0 8px}
+.sub{color:var(--mute);margin-top:-.2em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+.grid{display:grid;gap:16px}
+@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.photo{border-radius:var(--r);overflow:hidden;position:relative;background:var(--night)}
+.photo img{width:100%;height:220px;object-fit:cover;transition:transform 6s ease}
+.photo:hover img{transform:scale(1.08)}
+.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(10,12,35,.85));color:#fff;font-size:.78rem}
+figure{margin:0}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-weight:700;font-size:.85rem;cursor:pointer}
+.chip.on{background:var(--berry);border-color:var(--berry);color:#fff}
+
+/* weather */
+.days{display:grid;grid-template-columns:repeat(7,minmax(98px,1fr));gap:8px;overflow-x:auto;padding-bottom:6px}
+.day{border-radius:14px;padding:10px;background:var(--frost);text-align:center;font-size:.8rem;border:2px solid transparent}
+.day b{font-family:Fraunces,serif;font-size:1.05rem;display:block;white-space:nowrap}
+.day.r{border-color:var(--amber);background:var(--amber2)}
+.day.d{border-color:var(--red);background:var(--red2)}
+.alert{border-left:6px solid var(--leaf);background:var(--leaf2);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:.93rem}
+.alert.r{border-color:var(--amber);background:var(--amber2)}
+.alert.d{border-color:var(--red);background:var(--red2)}
+.alert b{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.row>*{flex:1 1 140px}
+label{display:block;font-size:.78rem;font-weight:800;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+input,select,textarea{width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--berry)}
+.btn{background:var(--berry);color:#fff;border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--berry);border:1.5px solid var(--berry)}
+.btn.sm{padding:8px 12px;font-size:.85rem}
+.btn:active{transform:scale(.97)}
+.big{font-family:Fraunces,serif;font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;line-height:1.05}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+.kv div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.kv span{display:block;font-size:.74rem;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.kv b{font-family:Fraunces,serif;font-size:1.25rem}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem}
+.tbl th,.tbl td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mute)}
+.scroll{overflow-x:auto}
+
+/* thermometer */
+.thermo{position:relative;height:56px;margin:18px 4px 30px;border-radius:12px;background:linear-gradient(90deg,#2a3aa8 0%,#6d86ff 45%,#c9d3ff 75%,#ffe9c8 100%)}
+.tmark{position:absolute;top:-8px;bottom:-8px;width:3px;background:var(--ink)}
+.tmark span{position:absolute;top:100%;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.72rem;font-weight:800;margin-top:4px}
+.tmark i{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-style:normal;font-size:.72rem;font-weight:800;margin-bottom:2px}
+
+/* tabs inner */
+.seg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:6px 0 16px;padding-bottom:2px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:0 0 auto;border:0;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-weight:800;font-size:.85rem;cursor:pointer}
+.seg button.on{background:var(--night);color:#fff;border-color:var(--night)}
+
+/* bars */
+.bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--berry),var(--bloom));border-radius:99px;transition:width .8s ease}
+svg text{font-family:Manrope,sans-serif}
+
+/* checklist */
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.chk .box{flex:0 0 24px;height:24px;border-radius:7px;border:2px solid var(--berry);display:grid;place-items:center;margin-top:2px;transition:background .2s}
+.chk.on .box{background:var(--berry)}
+.chk.on .box:after{content:"";width:10px;height:6px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.chk.on .t{color:var(--mute);text-decoration:line-through}
+
+/* log */
+.log{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.log .d{flex:0 0 58px;text-align:center;background:var(--frost);border-radius:12px;padding:6px 4px;font-size:.72rem;font-weight:700}
+.log .d b{display:block;font-family:Fraunces,serif;font-size:1.3rem}
+.log .x{margin-left:auto;background:none;border:0;color:var(--mute);cursor:pointer;font-weight:800}
+
+/* crops */
+.crop{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start}
+.crop img{width:110px;height:130px;object-fit:cover;border-radius:14px}
+.tag{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:99px;background:var(--frost);margin:2px 4px 2px 0}
+.tag.g{background:var(--leaf2);color:var(--leaf)}
+.tag.a{background:var(--amber2);color:var(--amber)}
+
+/* nav */
+nav.bot{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -8px 24px -18px rgba(0,0,0,.4)}
+nav.bot .wrap{display:flex;justify-content:space-between;padding:0 6px}
+nav.bot button{flex:1;border:0;background:none;padding:12px 2px 13px;font-weight:800;font-size:.78rem;color:var(--mute);cursor:pointer;position:relative}
+nav.bot button.on{color:var(--berry)}
+nav.bot button.on:before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 4px 4px;background:var(--berry)}
+
+.install{display:none;position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:45;background:var(--night);color:#fff;border-radius:16px;padding:14px;box-shadow:var(--shadow);align-items:center;gap:10px}
+.install.show{display:flex}
+.install p{margin:0;flex:1;font-size:.9rem}
+footer{padding:30px 0 20px;color:var(--mute);font-size:.82rem;text-align:center}
+footer b{color:var(--ink)}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:#58d68d;margin-right:6px;animation:pl 1.6s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(88,214,141,.7)}100%{box-shadow:0 0 0 12px rgba(88,214,141,0)}}
+.muted{color:var(--mute);font-size:.85rem}
+.note{font-size:.8rem;color:var(--mute);border-top:1px dashed var(--line);padding-top:8px;margin-top:10px}
+.toast{position:fixed;left:50%;top:70px;transform:translate(-50%,-20px);opacity:0;background:var(--night);color:#fff;padding:10px 16px;border-radius:12px;z-index:60;transition:.3s;font-weight:700;font-size:.9rem;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Arándano Pro<small id="fincaLbl"></small></div>
+    <div class="sp"></div>
+    <button class="pill" id="btnRefresh" data-t="refresh"></button>
+    <button class="pill" id="btnEs">ES</button>
+    <button class="pill" id="btnEn">EN</button>
+  </div>
+</header>
+
+<main>
+  <!-- HOY -->
+  <div class="view on" id="v-hoy">
+    <div class="hero">
+      <div class="slides" id="slides"></div>
+      <div class="wrap">
+        <div class="kicker" id="heroDate"></div>
+        <h1 id="heroTitle"></h1>
+        <p id="heroText"></p>
+        <div class="ticker" id="ticker"></div>
+      </div>
+      <div class="cap" id="heroCap"></div>
+    </div>
+    <div class="wrap">
+      <section>
+        <h2 data-t="todayTitle"></h2>
+        <p class="sub" data-t="todaySub"></p>
+        <div class="card">
+          <div class="row">
+            <div><label data-t="lblPlace"></label><select id="place"></select></div>
+            <div style="flex:0 0 auto"><button class="btn ghost" id="btnGeo" data-t="useGps"></button></div>
+          </div>
+          <label style="margin-top:14px" data-t="lblStages"></label>
+          <div class="chips" id="stages"></div>
+          <div id="wxStatus" class="muted" style="margin-top:10px"></div>
+        </div>
+        <div id="wxOut"></div>
+      </section>
+      <section>
+        <div class="grid g2">
+          <div class="card reveal">
+            <div class="kicker" style="color:var(--berry)" data-t="tipKicker"></div>
+            <h3 id="tipTitle"></h3>
+            <p id="tipText"></p>
+            <button class="btn sm ghost" id="btnTip" data-t="nextTip"></button>
+          </div>
+          <div class="card reveal">
+            <div class="kicker" style="color:var(--berry)" data-t="farmKicker"></div>
+            <div id="farmSummary"></div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2 data-t="manualTitle"></h2>
+        <p class="sub" data-t="manualSub"></p>
+        <div class="card">
+          <div class="row">
+            <div><label data-t="lblMin"></label><input type="number" step="0.1" id="mMin" placeholder="2"></div>
+            <div><label data-t="lblMax"></label><input type="number" step="0.1" id="mMax" placeholder="22"></div>
+            <div><label data-t="lblRain"></label><input type="number" step="0.1" id="mRain" placeholder="0"></div>
+          </div>
+          <div id="manualOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- CULTIVO -->
+  <div class="view" id="v-cultivo">
+    <div class="wrap">
+      <section>
+        <div class="kicker" style="color:var(--berry)" data-t="cropKicker"></div>
+        <h2 data-t="cropTitle"></h2>
+        <p class="sub" data-t="cropSub"></p>
+        <div class="seg" id="segCrop"></div>
+        <div id="cropOut"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- CALCULAR -->
+  <div class="view" id="v-calc">
+    <div class="wrap">
+      <section>
+        <div class="kicker" style="color:var(--berry)" data-t="calcKicker"></div>
+        <h2 data-t="calcTitle"></h2>
+        <p class="sub" data-t="calcSub"></p>
+        <div class="seg" id="segCalc"></div>
+        <div id="calcOut"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- FINCA -->
+  <div class="view" id="v-finca">
+    <div class="wrap">
+      <section>
+        <div class="kicker" style="color:var(--berry)" data-t="finKicker"></div>
+        <h2 data-t="finTitle"></h2>
+        <p class="sub" data-t="finSub"></p>
+        <div class="seg" id="segFin"></div>
+        <div id="finOut"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- MERCADO -->
+  <div class="view" id="v-mercado">
+    <div class="wrap">
+      <section>
+        <div class="kicker" style="color:var(--berry)" data-t="mktKicker"></div>
+        <h2 data-t="mktTitle"></h2>
+        <p class="sub" data-t="mktSub"></p>
+        <div class="seg" id="segMkt"></div>
+        <div id="mktOut"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <p data-t="sourcesFoot"></p>
+    <p><b>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</b><br><a href="https://vibraspositivashm.com" target="_blank" rel="noopener">vibraspositivashm.com</a></p>
+  </footer>
+</main>
+
+<div class="install" id="install"><p data-t="installMsg"></p><button class="btn sm" id="btnInstall" data-t="install"></button><button class="pill" id="btnNoInstall">×</button></div>
+<div class="toast" id="toast"></div>
+
+<nav class="bot"><div class="wrap">
+  <button data-v="hoy" class="on" data-t="navHoy"></button>
+  <button data-v="cultivo" data-t="navCultivo"></button>
+  <button data-v="calc" data-t="navCalc"></button>
+  <button data-v="finca" data-t="navFinca"></button>
+  <button data-v="mercado" data-t="navMercado"></button>
+</div></nav>
+
+<script>
+/* ============ storage helpers ============ */
+const S={get(k,d){try{const v=localStorage.getItem('ap_'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('ap_'+k,JSON.stringify(v))}catch(e){}}};
+let L=S.get('lang','es');
+const t=(es,en)=>L==='en'?en:es;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const nf=(n,d=0)=>isFinite(n)?Number(n).toLocaleString(L==='en'?'en-US':'es-CO',{maximumFractionDigits:d,minimumFractionDigits:0}):'—';
+const money=n=>isFinite(n)?'$'+nf(Math.round(n)):'—';
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2200)}
+const bogota=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'America/Bogota'}));
+const todayISO=()=>{const d=bogota();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+
+/* ============ UI strings ============ */
+const UI={
+ refresh:['Actualizar','Refresh'],
+ navHoy:['Hoy','Today'],navCultivo:['Cultivo','Growing'],navCalc:['Calcular','Calculate'],navFinca:['Mi finca','My farm'],navMercado:['Mercado','Market'],
+ todayTitle:['El clima de hoy en tu finca','Today’s weather on your farm'],
+ todaySub:['Pronóstico real de 7 días comparado con las temperaturas críticas del arándano. Se actualiza cada vez que entras.','Real 7‑day forecast checked against blueberry critical temperatures. Updates every time you open the app.'],
+ lblPlace:['Ubicación de la finca','Farm location'],useGps:['Usar mi ubicación','Use my location'],
+ lblStages:['¿En qué etapa están tus plantas? (puedes marcar varias)','What stage are your plants in? (pick several)'],
+ tipKicker:['Dato del día','Tip of the day'],nextTip:['Otro dato','Another tip'],farmKicker:['Tu finca en números','Your farm in numbers'],
+ manualTitle:['¿Sin señal? Revisa a mano','No signal? Check by hand'],
+ manualSub:['Escribe la mínima y máxima que anuncian (o que mide tu termómetro) y te digo el riesgo.','Type the forecast (or your thermometer’s) low and high and get the risk.'],
+ lblMin:['Mínima esta noche °C','Tonight’s low °C'],lblMax:['Máxima mañana °C','Tomorrow’s high °C'],lblRain:['Lluvia mm','Rain mm'],
+ cropKicker:['Guía de cultivo','Growing guide'],cropTitle:['Todo el manejo del arándano','Complete blueberry management'],
+ cropSub:['Lo práctico de una finca de Soatá (Boyacá), el manual técnico de INIA y la guía de CIREN, juntos en un solo lugar.','Hands‑on practice from a farm in Soatá (Boyacá), the INIA technical manual and the CIREN guide, in one place.'],
+ calcKicker:['Herramientas','Tools'],calcTitle:['Saca las cuentas de tu cultivo','Run the numbers on your crop'],
+ calcSub:['Todo se calcula en tu celular. Cambia los números por los de tu finca.','Everything runs on your phone. Swap in your own farm numbers.'],
+ finKicker:['Mi finca','My farm'],finTitle:['Registro y buenas prácticas','Records and good practices'],
+ finSub:['Lleva la bitácora de labores y cosechas, y la lista de chequeo BPA. Todo queda guardado en este celular.','Keep the work and harvest log plus the GAP checklist. Everything is saved on this phone.'],
+ mktKicker:['Mercado y otros cultivos','Market and other crops'],mktTitle:['El negocio del arándano','The blueberry business'],
+ mktSub:['Colombia hoy, el mundo, y los otros 9 cultivos que trae la guía.','Colombia today, the world, and the other 9 crops in the guide.'],
+ installMsg:['Instala Arándano Pro en tu celular y úsalo en la finca sin internet.','Install Arándano Pro and use it on the farm offline.'],install:['Instalar','Install'],
+ sourcesFoot:['Fuentes: INIA‑INDAP (2017) Manual de manejo agronómico del arándano, Boletín INIA 371; CIREN (2020) Guía productiva para el cultivo de especies hortofrutícolas en la región del Maule; López, Guevara y Bogoya (2021) Producción del cultivo de arándanos bajo BPA en famiempresa de Soatá, Boyacá (UNAD); Asocolblue, Portal Frutícola y Forbes Colombia (2026). Clima: Open‑Meteo.','Sources: INIA‑INDAP (2017) Blueberry agronomic management manual, INIA Bulletin 371; CIREN (2020) Production guide for horticultural species in Maule; López, Guevara & Bogoya (2021) Blueberry production under GAP in a family farm in Soatá, Boyacá (UNAD); Asocolblue, Portal Frutícola and Forbes Colombia (2026). Weather: Open‑Meteo.']
+};
+function applyUI(){
+  document.documentElement.lang=L;
+  $$('[data-t]').forEach(e=>{const v=UI[e.dataset.t];if(v)e.textContent=v[L==='en'?1:0]});
+  $('#btnEs').classList.toggle('on',L==='es');$('#btnEn').classList.toggle('on',L==='en');
+}
+
+/* ============ DATA ============ */
+// Critical frost temperatures by stage — CIREN 2020, Cuadro 2 (González et al., 2013)
+const STAGES=[
+ {id:'yema',es:'Yema hinchada',en:'Swollen bud',crit:-6},
+ {id:'boton',es:'Botón floral',en:'Flower bud',crit:-4},
+ {id:'flor',es:'Plena flor',en:'Full bloom',crit:-2.3},
+ {id:'cuaja',es:'Cuaja',en:'Fruit set',crit:-1.1},
+ {id:'fruto',es:'Fruto creciendo',en:'Fruit growing',crit:null},
+ {id:'cosecha',es:'Cosecha',en:'Harvest',crit:null}
+];
+const PLACES=[
+ ['Soatá (Boyacá)',6.33,-72.68],['Firavitoba (Boyacá)',5.67,-72.99],['Paipa (Boyacá)',5.78,-73.12],['Sogamoso (Boyacá)',5.71,-72.93],['Villa de Leyva (Boyacá)',5.63,-73.52],
+ ['Sibaté (Cundinamarca)',4.49,-74.26],['Guasca (Cundinamarca)',4.87,-73.88],['Tocancipá (Cundinamarca)',4.97,-73.91],['Villapinzón (Cundinamarca)',5.22,-73.6],['Subachoque (Cundinamarca)',4.93,-74.17],['Chía (Cundinamarca)',4.86,-74.06],
+ ['La Unión (Antioquia)',5.97,-75.36],['Santa Rosa de Osos (Antioquia)',6.65,-75.46],['Popayán (Cauca)',2.44,-76.61],['Pasto (Nariño)',1.21,-77.28]
+];
+const TIPS=[
+ ['El pistilo engaña','The pistil fools you','Una helada en plena flor muchas veces no deja daño visible, pero el pistilo se congela y la flor ya no se fecunda. Si hubo helada, revisa las flores por dentro a los dos o tres días.','A frost at full bloom often leaves no visible damage, but the pistil freezes and the flower can’t be fertilised. After a frost, check flowers inside two or three days later.'],
+ ['Raíz de superficie','Shallow roots','El 80% de las raíces del arándano está en los primeros 50 cm, son finas y sin pelos radicales. No aguantan suelo compacto ni encharcado: por eso se siembra en camellón o en bolsa con sustrato.','80% of blueberry roots sit in the top 50 cm; they are fine and lack root hairs. They can’t handle compacted or waterlogged soil, hence raised beds or bags with substrate.'],
+ ['El pH manda','pH rules','El arándano quiere suelo ácido: óptimo pH 4,5 a 5,0. El agua del reservorio de la finca de Soatá tiene pH 5,5 a 6. Mide el pH cada año; si sube, el azufre elemental lo baja según el análisis.','Blueberries want acid soil: optimum pH 4.5–5.0. The Soatá farm’s reservoir water runs pH 5.5–6. Test pH every year; if it climbs, elemental sulphur brings it down per your soil test.'],
+ ['Calor es enemigo','Heat is the enemy','Por encima de 28 °C la planta se deshidrata, baja la fotosíntesis y el fruto queda pequeño y blando en poscosecha. En días calientes riega temprano y usa bloqueador solar foliar.','Above 28 °C the plant dehydrates, photosynthesis drops and fruit stays small and soft after harvest. On hot days irrigate early and use foliar sunscreen (kaolin‑type).'],
+ ['Golpe de sol','Sunburn','El daño por sol aparece cuando la piel del fruto llega a 46–49 °C. Con radiación mayor a 27 MJ/m² en el día, la malla o el plástico protegen la fruta.','Sun damage shows when berry skin reaches 46–49 °C. When daily radiation passes 27 MJ/m², shade net or plastic cover protects the fruit.'],
+ ['Lluvia en cosecha','Rain at harvest','Más de 5 mm de lluvia en cosecha baja la calidad y trae pudriciones. El macrotúnel hace de paraguas y deja cosechar con lluvia. En Colombia, casi la mitad de la fruta no daba estándar de exportación sin cubierta (Asocolblue).','More than 5 mm of rain at harvest hurts quality and brings rot. A plastic high tunnel acts as an umbrella. In Colombia nearly half the fruit missed export standard without cover (Asocolblue).'],
+ ['La chiza','White grubs','En la finca de Soatá la chiza (Ancognatha scarabaeoides) causó el 30% de las pérdidas por plantas muertas. Monitoreo semanal y revisar raíces al trasplantar.','On the Soatá farm white grubs (Ancognatha scarabaeoides) caused 30% of losses from dead plants. Scout weekly and inspect roots at transplant.'],
+ ['Cosecha que enamora','A harvest pickers like','Si pagas por kilo, el huerto tiene que ser atractivo para cosechar: variedades productivas y fáciles de coger. Cosecha 1 o 2 veces por semana en jarras, separando por color y madurez.','If you pay per kilo, the field must be attractive to pick: productive, easy‑picking varieties. Harvest once or twice a week into cups, sorting by colour and ripeness.'],
+ ['Cadena de frío','Cold chain','La fruta se daña muy rápido después de cosechada. Si no tienes cuarto frío, el intermediario que recoge en la finca ayuda a no romper la cadena de frío.','Fruit spoils fast after picking. With no cold room, a buyer who collects at the farm helps keep the cold chain.'],
+ ['Únete y gana más','Team up, earn more','En la guía de CIREN la exportadora pagó cerca de 26% más por kilo que el intermediario. Asociándose con otros productores se puede vender por volumen.','In the CIREN guide exporters paid about 26% more per kilo than middlemen. Teaming up with other growers lets you sell by volume.'],
+ ['Poda después de cosechar','Prune after harvest','La poda se hace después de la cosecha para sacar brotes nuevos y controlar el tamaño. En producción se quitan las ramas que ya no dan.','Prune after harvest to push new shoots and control size. In production, remove unproductive canes.'],
+ ['Envases con triple lavado','Triple‑rinse containers','Los envases de agroquímicos se lavan tres veces, se perforan para que no se reusen y se devuelven al proveedor.','Agrochemical containers are triple‑rinsed, punctured so they can’t be reused, and returned to the supplier.'],
+ ['Fertirriego con cuidado','Fertigate gently','En bolsa con sustrato sin tierra el arándano necesita poco fertilizante y es sensible al exceso. Fertiliza según el análisis y lejos de la corona.','In soil‑free substrate bags blueberries need little fertiliser and are sensitive to excess. Feed per your analysis and away from the crown.'],
+ ['Azul parejo o nada','Evenly blue or nothing','El arándano no mejora el sabor después de cosechado. El fruto rojo se pone azul en la caja, pero queda sin sabor. Cosecha solo el azul parejo (INIA).','Blueberries don’t gain flavour after picking. Red fruit turns blue in the box but stays bland. Pick only evenly blue fruit (INIA).'],
+ ['Dos horas que valen oro','Two golden hours','Fruta enfriada a 1,5 °C en 2 horas se pudrió menos que la enfriada en 48 horas. Guárdala a 0–1 °C con 90–95% de humedad y dura al menos 14 días (INIA).','Fruit cooled to 1.5 °C within 2 hours rotted less than fruit cooled over 48 hours. Store at 0–1 °C and 90–95% humidity for at least 14 days (INIA).'],
+ ['Abejas desde 12 °C','Bees from 12 °C','Las abejas polinizan bien por encima de 12 °C. Entre 4 y 8 colmenas por hectárea; una parte al 10% de flor y el resto en plena flor. Mejoran mucho el calibre (INIA).','Bees pollinate well above 12 °C. 4–8 hives per hectare; some at 10% bloom, the rest at full bloom. They greatly improve berry size (INIA).'],
+ ['Potasio con medida','Potassium in moderation','Mucho potasio en suelos que ya lo tienen, más riego disparejo, hace que la fruta se parta con la lluvia. Ajusta el K al análisis de suelo (INIA).','Too much potassium on K‑rich soils plus uneven watering makes fruit crack in rain. Match K to your soil test (INIA).'],
+ ['Las malezas cobran caro','Weeds cost a lot','Desyerbar cada 3 semanas subió la cosecha 56,6% en ensayos de INIA. Lo que descuides después de cosechar lo pagas en la cosecha siguiente.','Weeding every 3 weeks lifted yield 56.6% in INIA trials. Neglect after harvest costs you next season.'],
+ ['Pájaros','Birds','La malla antipájaros protege la cosecha y además ayuda a mantener el ambiente de las plantas.','Bird netting protects the crop and also helps keep a steady plant environment.']
+];
+
+/* ============ HERO ============ */
+const HERO=[
+ ['img/racimo.jpg',['Racimo maduro de arándano alto','Ripe highbush cluster']],
+ ['img/arbusto.jpg',['Arbusto de arándano alto','Highbush blueberry']],
+ ['img/huerto-otono.jpg',['Huerto adulto con mulch sobre la hilera','Mature orchard with row mulch']],
+ ['img/cosecha-hileras.jpg',['Cosecha en la finca J.ME Arándanos, Soatá (Boyacá)','Harvest at J.ME Arándanos, Soatá (Boyacá)']],
+ ['img/bayas.jpg',['Fruta lista para empacar','Fruit ready to pack']],
+ ['img/cultivo-cubierto.jpg',['Plantas en bolsa bajo cubierta, Soatá','Bagged plants under cover, Soatá']],
+ ['img/mano-cosecha.jpg',['Cosecha a mano','Hand picking']]
+];
+let heroI=0;
+function buildHero(){
+  $('#slides').innerHTML=HERO.map((h,i)=>`<img src="${h[0]}" alt="" class="${i===0?'on':''}">`).join('');
+  setCap();
+}
+function setCap(){$('#heroCap').textContent=HERO[heroI][1][L==='en'?1:0]}
+setInterval(()=>{const im=$$('#slides img');if(!im.length)return;im[heroI].classList.remove('on');heroI=(heroI+1)%im.length;im[heroI].classList.add('on');setCap()},5200);
+
+function renderHero(){
+  const d=bogota();
+  $('#heroDate').textContent=d.toLocaleDateString(L==='en'?'en-US':'es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString(L==='en'?'en-US':'es-CO',{hour:'2-digit',minute:'2-digit'})+' (Bogotá)';
+  const f=S.get('finca','');
+  $('#heroTitle').textContent=f?t('Buen día, '+f,'Good day, '+f):t('Arándano Pro','Arándano Pro');
+  $('#heroText').textContent=t('La guía del arandanero: alertas de helada y calor con el clima real de tu finca, el manejo completo del cultivo, calculadoras y tu bitácora de cosecha.','The blueberry grower’s guide: frost and heat alerts from your farm’s real weather, full crop management, calculators and your harvest log.');
+  $('#fincaLbl').textContent=f||t('Guía del arandanero','Blueberry grower’s guide');
+  const tk=[['-2,3 °C',t('daña la flor abierta','kills open bloom')],['28 °C',t('empieza el estrés por calor','heat stress begins')],['4,5–5,0',t('pH ideal del suelo','ideal soil pH')],['80%',t('de raíces en 50 cm','of roots in top 50 cm')],['~1.000 ha',t('sembradas en Colombia','planted in Colombia')],['95%',t('se consume en el país','eaten at home')]];
+  $('#ticker').innerHTML=tk.map(x=>`<div class="tk"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+}
+
+/* ============ WEATHER ============ */
+let selStages=S.get('stages',['flor','fruto','cosecha']);
+function renderStages(){
+  $('#stages').innerHTML=STAGES.map(s=>`<button class="chip ${selStages.includes(s.id)?'on':''}" data-s="${s.id}">${s[L]}${s.crit!==null?' · '+String(s.crit).replace('.',L==='en'?'.':',')+' °C':''}</button>`).join('');
+  $$('#stages .chip').forEach(b=>b.onclick=()=>{const id=b.dataset.s;selStages=selStages.includes(id)?selStages.filter(x=>x!==id):[...selStages,id];S.set('stages',selStages);renderStages();renderWx()});
+}
+function renderPlaces(){
+  const cur=S.get('place',0);const g=S.get('gps',null);
+  $('#place').innerHTML=(g?`<option value="gps">${t('Mi ubicación','My location')} (${g.lat.toFixed(2)}, ${g.lon.toFixed(2)})</option>`:'')+PLACES.map((p,i)=>`<option value="${i}">${p[0]}</option>`).join('');
+  $('#place').value=String(cur);
+}
+function coords(){const v=S.get('place',0);if(v==='gps'){const g=S.get('gps',null);if(g)return{lat:g.lat,lon:g.lon,name:t('Mi ubicación','My location')}}const p=PLACES[+v]||PLACES[0];return{lat:p[1],lon:p[2],name:p[0]}}
+async function loadWx(force){
+  const c=coords();
+  $('#wxStatus').innerHTML=`<span class="pulse"></span>${t('Buscando el pronóstico de','Fetching forecast for')} ${c.name}…`;
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,shortwave_radiation_sum,et0_fao_evapotranspiration&current=temperature_2m,relative_humidity_2m&timezone=America%2FBogota&forecast_days=7`;
+  try{
+    const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();
+    j._at=Date.now();j._name=c.name;S.set('wx',j);renderWx();
+  }catch(e){
+    const old=S.get('wx',null);renderWx();
+    $('#wxStatus').textContent=old?t('Sin internet: mostrando el último pronóstico guardado.','Offline: showing the last saved forecast.'):t('No se pudo traer el pronóstico. Usa la revisión a mano de abajo.','Could not load the forecast. Use the manual check below.');
+  }
+}
+function evalDay(mn,mx,rain,rad){
+  const out=[];let lvl=0;
+  STAGES.filter(s=>selStages.includes(s.id)&&s.crit!==null).forEach(s=>{
+    if(mn<=s.crit){out.push(['d',t(`Helada con daño probable en ${s.es.toLowerCase()}`,`Likely frost damage at ${s.en.toLowerCase()}`),t(`La mínima (${nf(mn,1)} °C) llega a la temperatura crítica de ${nf(s.crit,1)} °C.`,`The low (${nf(mn,1)} °C) reaches the ${nf(s.crit,1)} °C critical temperature.`)]);lvl=2}
+    else if(mn<=s.crit+2){out.push(['r',t(`Riesgo de helada en ${s.es.toLowerCase()}`,`Frost risk at ${s.en.toLowerCase()}`),t(`La mínima del aire (${nf(mn,1)} °C) queda a menos de 2 °C de la crítica (${nf(s.crit,1)} °C). En noches despejadas la planta se enfría más que el aire.`,`Air low (${nf(mn,1)} °C) is within 2 °C of critical (${nf(s.crit,1)} °C). On clear nights plants get colder than the air.`)]);lvl=Math.max(lvl,1)}
+  });
+  if(selStages.includes('flor')&&mn<=0&&!out.length){out.push(['r',t('Bajo cero en floración','Below zero in bloom'),t('La guía marca las heladas en floración (bajo 0 °C) como riesgo principal.','The guide flags bloom frosts (below 0 °C) as a main risk.')]);lvl=Math.max(lvl,1)}
+  if(mx>=30){out.push(['d',t('Calor extremo','Extreme heat'),t(`Máxima de ${nf(mx,1)} °C: pasa el límite de crecimiento (29–30 °C). Riego temprano, bloqueador solar y sombra.`,`High of ${nf(mx,1)} °C passes the growth limit (29–30 °C). Irrigate early, sunscreen and shade.`)]);lvl=2}
+  else if(mx>=28){out.push(['r',t('Calor: la planta se deshidrata','Heat: plant dehydrates'),t(`Máxima de ${nf(mx,1)} °C. Sobre 28 °C baja la fotosíntesis y el calibre del fruto.`,`High of ${nf(mx,1)} °C. Above 28 °C photosynthesis and berry size drop.`)]);lvl=Math.max(lvl,1)}
+  if(selStages.includes('cosecha')&&rain>5){out.push(['r',t('Lluvia en cosecha','Rain at harvest'),t(`${nf(rain,1)} mm anunciados (más de 5 mm). Adelanta la cosecha o cosecha bajo cubierta.`,`${nf(rain,1)} mm forecast (over 5 mm). Pick earlier or under cover.`)]);lvl=Math.max(lvl,1)}
+  if(rad!=null&&rad>=27){out.push(['r',t('Radiación alta','High radiation'),t(`${nf(rad,1)} MJ/m²: riesgo de golpe de sol en la fruta (desde 27 MJ/m²).`,`${nf(rad,1)} MJ/m²: sunburn risk on fruit (from 27 MJ/m²).`)]);lvl=Math.max(lvl,1)}
+  return{out,lvl};
+}
+function renderWx(){
+  const j=S.get('wx',null);
+  if(!j||!j.daily){$('#wxOut').innerHTML='';return}
+  const d=j.daily;const ago=Math.round((Date.now()-j._at)/60000);
+  $('#wxStatus').innerHTML=`<span class="pulse"></span>${j._name} · ${t('altura','elevation')} ${nf(j.elevation)} m · ${t('actualizado hace','updated')} ${ago<1?t('un momento','just now'):ago+' min'+(L==='en'?' ago':'')}`;
+  let days='',alerts='',gdd=0,worst=0;
+  d.time.forEach((day,i)=>{
+    const mn=d.temperature_2m_min[i],mx=d.temperature_2m_max[i],rn=d.precipitation_sum[i],rd=d.shortwave_radiation_sum?d.shortwave_radiation_sum[i]:null;
+    const e=evalDay(mn,mx,rn,rd);worst=Math.max(worst,e.lvl);
+    gdd+=Math.max(0,(mn+mx)/2-10);
+    const dt=new Date(day+'T12:00:00');
+    const nm=i===0?t('Hoy','Today'):dt.toLocaleDateString(L==='en'?'en-US':'es-CO',{weekday:'short',day:'numeric'});
+    days+=`<div class="day ${e.lvl===2?'d':e.lvl===1?'r':''}"><div>${nm}</div><b>${nf(mn,0)}° / ${nf(mx,0)}°</b><div>${nf(rn,1)} mm</div>${rd!=null?`<div class="muted">${nf(rd,0)} MJ</div>`:''}</div>`;
+    if(e.out.length) alerts+=`<div style="margin-top:6px;font-weight:800">${nm}</div>`+e.out.map(a=>`<div class="alert ${a[0]}"><b>${a[1]}</b>${a[2]}</div>`).join('');
+  });
+  const now=j.current?`<div class="kv"><div><span>${t('Ahora','Now')}</span><b>${nf(j.current.temperature_2m,1)} °C</b></div><div><span>${t('Humedad','Humidity')}</span><b>${nf(j.current.relative_humidity_2m)}%</b></div><div><span>${t('Días‑grado semana','Degree‑days week')}</span><b>${nf(gdd,0)}</b></div><div><span>${t('Días de yema a cosecha','Bud to harvest days')}</span><b>${gdd>0?'≈ '+nf(495/(gdd/7),0):'—'}</b></div>${d.et0_fao_evapotranspiration?`<div><span>${t('Agua que pide hoy (ET0)','Water demand today (ET0)')}</span><b>${nf(d.et0_fao_evapotranspiration[0],1)} mm</b></div>`:''}</div>`:'';
+  const head=worst===2?['d',t('Atención: hay días con daño probable','Warning: days with likely damage')]:worst===1?['r',t('Hay días para estar pendiente','Some days to watch')]:['',t('Semana tranquila para tus plantas','A calm week for your plants')];
+  $('#wxOut').innerHTML=`<div class="card reveal in"><div class="alert ${head[0]}"><b>${head[1]}</b>${t('Revisión con las etapas que marcaste.','Checked against the stages you picked.')}</div><div class="days">${days}</div>${now}${alerts||`<p class="muted" style="margin-top:10px">${t('Ningún día pasa los límites de helada, calor, lluvia en cosecha ni radiación.','No day crosses frost, heat, harvest‑rain or radiation limits.')}</p>`}<p class="note">${t('Días‑grado: suma de (temperatura media − 10 °C). La guía pide 490 a 500 días‑grado entre yema hinchada y cosecha; con el ritmo de esta semana se estima cuántos días tardaría. Pronóstico de Open‑Meteo para la cabecera o tu GPS: en la finca puede variar.','Degree‑days: sum of (mean temp − 10 °C). The guide needs 490–500 degree‑days from swollen bud to harvest; this week’s pace gives the estimate. Open‑Meteo forecast for the town or your GPS: your field may differ.')}</p></div>`;
+}
+function manualCheck(){
+  const mn=parseFloat($('#mMin').value),mx=parseFloat($('#mMax').value),rn=parseFloat($('#mRain').value)||0;
+  if(isNaN(mn)&&isNaN(mx)){$('#manualOut').innerHTML='';return}
+  const e=evalDay(isNaN(mn)?99:mn,isNaN(mx)?-99:mx,rn,null);
+  $('#manualOut').innerHTML=e.out.length?e.out.map(a=>`<div class="alert ${a[0]}"><b>${a[1]}</b>${a[2]}</div>`).join(''):`<div class="alert"><b>${t('Sin riesgo con esos datos','No risk with those numbers')}</b>${t('Para las etapas que marcaste arriba.','For the stages you picked above.')}</div>`;
+}
+
+/* ============ TIP ============ */
+let tipI=Math.floor((bogota()-new Date(bogota().getFullYear(),0,0))/864e5)%TIPS.length;
+function renderTip(){const x=TIPS[tipI];$('#tipTitle').textContent=t(x[0],x[1]);$('#tipText').textContent=t(x[2],x[3])}
+
+/* ============ CULTIVO ============ */
+const CROP_TABS=[['col',['En Colombia','In Colombia']],['var',['Variedades','Varieties']],['siembra',['Siembra','Planting']],['clima',['Clima','Climate']],['suelo',['Suelo y nutrición','Soil & nutrition']],['riego',['Riego y abejas','Water & bees']],['plagas',['Plagas y enfermedades','Pests & diseases']],['cosecha',['Cosecha y poscosecha','Harvest & post‑harvest']],['cambio',['Clima que cambia','Changing climate']]];
+let cropTab='col';
+// INIA 2017, cap. 1
+const VARS=[
+ {n:'Misty',ty:'SH',lo:150,hi:300,es:'Muy temprana, puede dar una segunda cosecha pequeña. Tiende a sobrecargarse: poda anual. Susceptible al plateado.',en:'Very early, can give a small second crop. Tends to overcrop: prune yearly. Susceptible to silver leaf.'},
+ {n:'O’Neal',ty:'SH',lo:200,hi:300,es:'Autofértil, pero da fruta más grande junto a otra variedad. Fruta grande y de excelente calidad; no aguanta viajes largos.',en:'Self‑fertile but bigger fruit next to another variety. Large, excellent fruit; poor for long shipping.'},
+ {n:'Jewel',ty:'SH',lo:250,hi:250,es:'Florece muy temprano y por mucho tiempo: necesita control de heladas y de Botrytis. La fruta se ablanda fácil en la planta.',en:'Very early, long bloom: needs frost and Botrytis control. Fruit softens easily on the bush.'},
+ {n:'Emerald',ty:'SH',lo:250,hi:250,es:'Fruta muy grande y firme. Aguanta suelos pesados y es resistente a Phytophthora. Necesita polinizante (O’Neal, Star). Cosechas cada 4–5 días.',en:'Very large, firm fruit. Tolerates heavy soils, resists Phytophthora. Needs a pollinizer (O’Neal, Star). Picks every 4–5 days.'},
+ {n:'Biloxi',ty:'SH',lo:400,hi:null,es:'La que usa la finca de Soatá. Temprana, florece muy temprano (cuidado con heladas). Fruta mediana, azul claro, muy firme y de excelente sabor. Planta erecta, muy vigorosa y productiva.',en:'The one used at the Soatá farm. Early, blooms very early (watch frosts). Medium, light blue, very firm, excellent flavour. Upright, very vigorous and productive.'},
+ {n:'Star',ty:'SH',lo:400,hi:null,es:'Temprana, fruta grande, dulce y fácil de cosechar (14–16 mm). Necesita polinización cruzada (O’Neal, Santa Fe, Emerald). Puede partirse.',en:'Early, large sweet easy‑picking fruit (14–16 mm). Needs cross‑pollination (O’Neal, Santa Fe, Emerald). Can crack.'},
+ {n:'Brightwell',ty:'OC',lo:350,hi:400,es:'Ojo de conejo. Florece con 500–550 horas. Cosecha de unos 35 días; se agrieta con humedad en madurez. Polinizantes: Alapaha, Austin, Powderblue.',en:'Rabbiteye. Blooms at 500–550 h. About 35‑day harvest; cracks with moisture at ripening. Pollinizers: Alapaha, Austin, Powderblue.'},
+ {n:'Legacy',ty:'SH',lo:500,hi:600,es:'Muy productiva: 18 a 20 t/ha al 4.º‑5.º año. Floración larga (hongos de flor) y se parte con lluvias fuertes. Se exporta a todos los mercados.',en:'Very productive: 18–20 t/ha by year 4–5. Long bloom (flower fungi) and cracks with heavy rain. Ships to all markets.'},
+ {n:'Jubilee',ty:'SH',lo:500,hi:700,es:'Media estación, fruta muy firme, cosecha concentrada en dos pasadas.',en:'Mid‑season, very firm fruit, harvest concentrated in two picks.'},
+ {n:'Reveille',ty:'SH',lo:600,hi:null,es:'Una de las frutas más firmes y crocantes; apta para cosecha mecánica.',en:'One of the firmest, crunchiest fruits; suits machine harvest.'},
+ {n:'Duke',ty:'NH',lo:700,hi:900,es:'Arándano alto del norte. Una de las mejores poscosechas. Poda intensa y despunte de yemas florales para evitar Botrytis.',en:'Northern highbush. One of the best post‑harvest lives. Heavy pruning and flower‑bud thinning to avoid Botrytis.'},
+ {n:'Brigitta',ty:'NH',lo:700,hi:900,es:'Hasta 20 t/ha, pero sufre con el calor (se ablanda) y es muy susceptible al plateado.',en:'Up to 20 t/ha but suffers in heat (softens) and is very susceptible to silver leaf.'},
+ {n:'Elliot',ty:'NH',lo:800,hi:1200,es:'Tardía, solo para zonas frías; se ablanda con calor.',en:'Late, cold zones only; softens in heat.'}
+];
+const SYM=[['rojo',['Hojas rojizas o amarillas','Red or yellow leaves']],['marchita',['Planta marchita aunque haya agua','Wilting despite water']],['ramas',['Ramas o puntas secas','Dead canes or tips']],['raiz',['Raíz negra o podrida','Black or rotten roots']],['agallas',['Bolas o tumores en el cuello','Galls at the crown']],['micelio',['Moho blanco bajo la corteza','White mould under bark']],['plateado',['Hojas color plateado','Silvery leaves']],['v',['Manchas en V en la hoja','V‑shaped leaf spots']],['gris',['Flor o fruta con moho gris','Grey mould on flowers or fruit']],['naranja',['Puntos naranja en la fruta','Orange dots on fruit']],['polvo',['Polvo naranja bajo la hoja','Orange powder under leaves']],['parte',['Fruta partida','Cracked fruit']]];
+const DIS=[
+ {es:'Pudrición radical',en:'Root rot',sci:'Phytophthora cinnamomi',s:['rojo','raiz','marchita'],d:['Bordes de hoja amarillos y quemados, follaje rojizo, poco vigor, fruta pequeña y ácida. Raíces que se ponen negras y la corteza se suelta.','Yellow scorched leaf edges, reddish foliage, low vigour, small sour fruit. Roots blacken and bark slips.'],m:['Que el agua nunca encharque el cuello: camellón o bolsa, buen drenaje, gotero lejos del cuello y plantas sanas. Si se evita el exceso de agua, los fungicidas sobran.','Never let water pool at the crown: raised bed or bag, good drainage, emitter away from the crown and healthy plants. Avoid excess water and fungicides are unnecessary.']},
+ {es:'Armilariosis',en:'Armillaria root rot',sci:'Armillaria mellea',s:['micelio','rojo'],d:['Decaimiento lento, cuello corchoso y bajo la corteza abanicos de moho blanco. Cordones negros en las raíces.','Slow decline, corky crown and white fan‑shaped mould under the bark. Black cords on roots.'],m:['No plantar recién tumbado un bosque sin sacar las raíces gruesas. Sacar las plantas enfermas; no tiene control. Trichoderma como apoyo.','Don’t plant right after clearing forest without removing thick roots. Remove sick plants; no cure. Trichoderma as support.']},
+ {es:'Verticilosis',en:'Verticillium wilt',sci:'Verticillium dahliae',s:['marchita','rojo'],d:['Marchitez y secado del borde de las hojas en época caliente, como si faltara agua. Al cortar el tallo se ven anillos oscuros.','Wilting and dried leaf edges in hot weather, like drought. Cut stems show dark rings.'],m:['Solo se previene: evitar heridas en raíces. A la planta enferma quitarle fruta y follaje para que no colapse; puede recuperarse.','Prevention only: avoid root wounds. Strip fruit and some foliage from sick plants so they don’t collapse; they can recover.']},
+ {es:'Agallas del cuello',en:'Crown gall',sci:'Agrobacterium tumefaciens',s:['agallas'],d:['Tumores esponjosos en el cuello y raíces, hasta del tamaño de una pelota de ping pong.','Spongy tumours at the crown and roots, up to ping‑pong ball size.'],m:['Revisar el cuello de cada planta del vivero y botar las que tengan agallas. Agua limpia. Agrobacterium radiobacter K84 solo sirve preventivo.','Check every nursery plant’s crown and discard galled ones. Clean water. Agrobacterium radiobacter K84 is preventive only.']},
+ {es:'Muerte regresiva',en:'Phomopsis dieback',sci:'Phomopsis vaccinii',s:['ramas'],d:['Las puntas mueren hacia abajo con color negro brillante y puntitos negros en la corteza.','Tips die back, shiny black, with tiny black dots on the bark.'],m:['Poda sanitaria y sacar las ramas del cultivo. Cúpricos a yema hinchada. Peor con lluvias y heridas por helada.','Sanitation pruning and remove canes from the field. Copper at swollen bud. Worse with rain and frost wounds.']},
+ {es:'Cancrosis del cuello',en:'Stem canker',sci:'Fusicoccum parvum',s:['ramas','marchita'],d:['Marchitez repentina de ramas; hojas café que quedan pegadas; al cortar, mancha en forma de abanico.','Sudden cane wilt; brown leaves that stay attached; fan‑shaped stain when cut.'],m:['Poda sanitaria a ras de suelo, quitando los primeros 10 cm desde el cuello. No dejar tocones.','Prune at ground level, removing the first 10 cm from the crown. Leave no stubs.']},
+ {es:'Tizón bacteriano',en:'Bacterial blight',sci:'Pseudomonas syringae',s:['ramas','v'],d:['Yemas y puntas necrosadas; en hojas, lesiones en forma de V. Muy ligado a heladas.','Necrotic buds and tips; V‑shaped leaf lesions. Strongly linked to frost.'],m:['Cobre cuando la yema está hinchando y después de cada helada. Podar y sacar tallos enfermos.','Copper at bud swell and after each frost. Prune out and remove sick stems.']},
+ {es:'Tizón de los tallos',en:'Stem blight',sci:'Pestalotia vaccinii',s:['ramas'],d:['Tallos nuevos con anillo café en la base y muerte de la rama. Común en vivero.','New stems with a brown ring at the base and cane death. Common in nurseries.'],m:['No recibir plantas con tallos anillados. Ventilar. No usar acículas de pino en sustratos ni camellones.','Reject plants with girdled stems. Ventilate. Don’t use pine needles in substrates or beds.']},
+ {es:'Plateado',en:'Silver leaf',sci:'Chondrostereum purpureum',s:['plateado'],d:['Hojas color plomo/plateado, madera oscura por dentro y fruta pequeña. La planta muere en 3–4 años sin manejo.','Lead‑grey silvery leaves, dark wood inside and small fruit. Plant dies in 3–4 years without care.'],m:['Podar temprano, nunca con lluvia, y pintar los cortes gruesos. Sacar las ramas enfermas desde la base. No hay control químico.','Prune early, never in rain, and paint thick cuts. Remove sick canes from the base. No chemical control.']},
+ {es:'Pudrición gris (Botrytis)',en:'Grey mould (Botrytis)',sci:'Botrytis cinerea',s:['gris'],d:['Flores y frutos con moho gris, fruta blanda que suelta jugo. Crece incluso a 0 °C en poscosecha.','Flowers and fruit with grey mould, soft leaking fruit. Grows even at 0 °C after harvest.'],m:['Evitar exceso de nitrógeno y de densidad, proteger del viento y heladas. Aplicaciones desde floración hasta caída de pétalos. Cosechar sin restos florales.','Avoid excess nitrogen and density, protect from wind and frost. Sprays from bloom to petal fall. Harvest without flower remains.']},
+ {es:'Antracnosis',en:'Anthracnose',sci:'Colletotrichum acutatum',s:['naranja'],d:['Puntos naranja en la piel de la fruta, sobre todo después de cosechada; la fruta se arruga y momifica.','Orange spots on the skin, mostly after harvest; fruit shrivels and mummifies.'],m:['Lo mismo que para Botrytis. No dejar fruta caída o pegada al final de la cosecha.','Same as Botrytis. Don’t leave dropped or hanging fruit at the end of harvest.']},
+ {es:'Roya de la hoja',en:'Leaf rust',sci:'',s:['polvo','rojo'],d:['Hongo que se riega por esporas y ataca hojas y tallos. Reportada como riesgo en Soatá.','Spore‑spread fungus attacking leaves and stems. Flagged as a risk in Soatá.'],m:['Monitoreo semanal y manejo preventivo.','Weekly scouting and preventive management.']},
+ {es:'Fruta partida',en:'Fruit cracking',sci:'',s:['parte'],d:['Frutos que se rajan después de lluvias o riegos disparejos.','Fruit splits after rain or uneven irrigation.'],m:['Exceso de potasio (más de 100–120 kg de K₂O/ha en suelos ricos en K) más riego disparejo. Ajustar K al análisis y regar parejo.','Excess potassium (over 100–120 kg K₂O/ha on K‑rich soils) plus uneven watering. Match K to the soil test and water evenly.']}
+];
+let symSel=[];
+function photo(src,cap){return `<figure class="photo reveal"><img src="${src}" alt="${cap}" loading="lazy"><figcaption>${cap}</figcaption></figure>`}
+function renderCrop(){
+  $('#segCrop').innerHTML=CROP_TABS.map(x=>`<button class="${cropTab===x[0]?'on':''}" data-k="${x[0]}">${x[1][L==='en'?1:0]}</button>`).join('');
+  $$('#segCrop button').forEach(b=>b.onclick=()=>{cropTab=b.dataset.k;renderCrop()});
+  let h='';
+  if(cropTab==='col'){
+    h=`<div class="grid g2">${photo('img/cultivo-cubierto.jpg',t('Cultivo en bolsas bajo plástico, finca J.ME Arándanos, Soatá (Boyacá)','Bagged crop under plastic, J.ME Arándanos, Soatá (Boyacá)'))}${photo('img/bolsas-sustrato.jpg',t('Bolsas de 50 litros con sustrato sin tierra','50‑litre bags with soil‑free substrate'))}</div>
+    <div class="card reveal"><h3>${t('Así se cultiva en Soatá, Boyacá','How it’s grown in Soatá, Boyacá')}</h3>
+    <p class="muted">${t('Caso real de la famiempresa J.ME Arándanos (UNAD, 2021). Vende en bandejas a supermercados.','Real case of the family business J.ME Arándanos (UNAD, 2021). Sells trays to supermarkets.')}</p>
+    <table class="tbl"><tr><th>${t('Labor','Task')}</th><th>${t('Cómo lo hacen','How they do it')}</th></tr>
+    <tr><td><b>${t('Sustrato','Substrate')}</b></td><td>${t('30% cascarilla de arroz, 30% cascarilla de coco y 40% turba fina. Sin tierra: menos plagas y enfermedades, buena mezcla de agua y aire.','30% rice hulls, 30% coconut husk and 40% fine peat. Soil‑free: fewer pests and diseases, good air‑water balance.')}</td></tr>
+    <tr><td><b>${t('Bolsa','Bag')}</b></td><td>${t('Polietileno negro de baja densidad, 50 cm de alto, 50 litros.','Black low‑density polyethylene, 50 cm tall, 50 litres.')}</td></tr>
+    <tr><td><b>${t('Variedad','Variety')}</b></td><td>${t('Biloxi, de buena adaptación a la región. Plántulas certificadas compradas a vivero registrado (Plantados Chía).','Biloxi, well adapted to the region. Certified plantlets from a registered nursery (Plantados Chía).')}</td></tr>
+    <tr><td><b>${t('Siembra','Planting')}</b></td><td>${t('Plántulas de 6 a 7 meses. Se revisa la raíz, se desinfecta y se abre la raíz pivotante. Distancia 1,50 m entre surcos y 70 cm entre plantas, a unos 5 cm de profundidad.','6–7 month plantlets. Roots inspected, disinfected and the taproot opened. 1.50 m between rows, 70 cm between plants, about 5 cm deep.')}</td></tr>
+    <tr><td><b>${t('Riego','Irrigation')}</b></td><td>${t('Por goteo, periódico según la necesidad. Agua de reservorio con pH 5,5 a 6.','Drip, as needed. Reservoir water at pH 5.5–6.')}</td></tr>
+    <tr><td><b>${t('Fertirriego','Fertigation')}</b></td><td>${t('Según el estudio de suelo y la etapa fenológica. En sustrato necesita poco y es sensible al exceso. Aplicar alrededor sin dañar la corona.','Per soil test and growth stage. In substrate it needs little and is sensitive to excess. Apply around the plant without harming the crown.')}</td></tr>
+    <tr><td><b>${t('Arvenses','Weeds')}</b></td><td>${t('Polisombra sintética con protección UV en el piso: no salen malezas, se usa menos herbicida y se conserva la temperatura del suelo.','UV‑stable ground cover: no weeds, less herbicide, steadier soil temperature.')}</td></tr>
+    <tr><td><b>${t('Protección','Protection')}</b></td><td>${t('Malla antipájaros, mallas antitrips, terrazas e invernadero como meta.','Bird netting, anti‑thrips netting, terraces and a greenhouse as the goal.')}</td></tr>
+    <tr><td><b>${t('Producción','Bearing')}</b></td><td>${t('Empieza a producir a los 2–3 años según el vigor; por lo general hasta 8 cosechas.','Starts bearing at 2–3 years depending on vigour; usually up to 8 harvests.')}</td></tr>
+    </table></div>
+    <div class="card reveal"><h3>${t('El arándano de montaña colombiano','Colombian mountain blueberries')}</h3>
+    <div class="kv"><div><span>${t('Altura','Altitude')}</span><b>2.200–2.900 m</b></div><div><span>${t('Cundinamarca y Boyacá','Cundinamarca & Boyacá')}</span><b>≈ 90%</b></div><div><span>${t('Horas frío de variedades usadas','Chill hours of varieties used')}</span><b>&lt; 350</b></div><div><span>${t('Densidad Sibaté / Firavitoba','Density Sibaté / Firavitoba')}</span><b>3.333 /ha</b></div></div>
+    <p style="margin-top:12px">${t('Sin invierno, la planta no acumula mucho frío; por eso se usan variedades de bajo requerimiento (Biloxi, Sharp Blue) y se puede cosechar a lo largo del año, en contratemporada con Chile y Perú. Hay siembras en Antioquia sobre 2.200 m, Cauca, Nariño y el Eje Cafetero.','With no winter there’s little chill, so low‑chill varieties (Biloxi, Sharp Blue) are used and harvest can run through the year, counter‑season to Chile and Peru. There are plantings in Antioquia above 2,200 m, Cauca, Nariño and the Coffee Region.')}</p>
+    <p class="note">${t('Fuentes: Asocolblue en Portal Frutícola (feb. 2026); Cabezas‑Gutiérrez y Peña‑Baracaldo, Revista U.D.C.A (2012); UNAD (2021).','Sources: Asocolblue in Portal Frutícola (Feb 2026); Cabezas‑Gutiérrez & Peña‑Baracaldo, Revista U.D.C.A (2012); UNAD (2021).')}</p></div>`;
+  }
+  if(cropTab==='var'){
+    const hf=S.get('hf',300);
+    const ty={SH:t('Alto del sur','Southern highbush'),NH:t('Alto del norte','Northern highbush'),OC:t('Ojo de conejo','Rabbiteye')};
+    h=`<div class="grid g2">${photo('img/duke.jpg',t('Racimo de arándano alto (INIA)','Highbush cluster (INIA)'))}${photo('img/racimo2.jpg',t('Fruta con buena pruina, la cera que muestra frescura','Fruit with good bloom, the wax that signals freshness'))}</div>
+    <div class="card reveal"><h3>${t('¿Qué variedad le sirve a tu zona?','Which variety suits your area?')}</h3>
+    <p class="muted">${t('Mueve la barra a las horas frío (horas bajo 7 °C al año) que tiene tu zona. En la tierra fría colombiana son pocas: se buscan variedades de menos de 350 horas.','Slide to your area’s chill hours (hours below 7 °C a year). Colombia’s highlands get few: growers look for varieties under 350 hours.')}</p>
+    <label>${t('Horas frío de mi zona','My chill hours')}: <b id="hfv">${hf}</b></label><input type="range" min="0" max="1200" step="50" value="${hf}" id="hf" style="padding:0">
+    <div id="varList" style="margin-top:12px"></div>
+    <p class="note">${t('Datos de requerimiento de frío: INIA (2017). INIA reporta para Biloxi un mínimo de 400 horas; en Colombia se siembra con éxito en Soatá (UNAD, 2021) y fue evaluada junto a Sharp Blue en Sibaté y Firavitoba (U.D.C.A, 2012). Muchas variedades nuevas son licenciadas y se paga regalía.','Chill data: INIA (2017). INIA lists Biloxi at 400 h minimum; in Colombia it is grown successfully in Soatá (UNAD, 2021) and was trialled with Sharp Blue in Sibaté and Firavitoba (U.D.C.A, 2012). Many new varieties are licensed and pay royalties.')}</p></div>
+    <div class="card reveal"><h3>${t('Antes de escoger, mira esto','Before choosing, check this')}</h3><ul>
+    <li>${t('Frío, rendimiento, época de flor y cosecha según tu zona. El potencial puede pasar de 30 t/ha según la genética y la densidad.','Chill, yield, bloom and harvest timing for your area. Potential can top 30 t/ha depending on genetics and density.')}</li>
+    <li>${t('Mano de obra disponible en poda y cosecha.','Labour available at pruning and harvest.')}</li>
+    <li>${t('Fácil de coger: piel firme, que se suelte sin fuerza, cicatriz pequeña y que conserve la pruina.','Easy picking: firm skin, detaches easily, small scar and keeps its bloom.')}</li>
+    <li>${t('Para fresco: color, azúcar y rendimiento. Para congelado: calibre y firmeza. Para viajar lejos: firmeza mayor a 200 N/mm² y hasta 55 días de poscosecha.','Fresh: colour, sugar and yield. Frozen: size and firmness. Long shipping: firmness above 200 N/mm² and up to 55 days post‑harvest.')}</li>
+    <li>${t('Variedades que necesitan polinizante: siembra la pareja compatible.','Varieties needing a pollinizer: plant the matching partner.')}</li></ul></div>`;
+    setTimeout(()=>{const draw=v=>{$('#hfv').textContent=v;$('#varList').innerHTML=VARS.map(x=>{const ok=x.lo<=v;return `<div class="log" style="align-items:flex-start"><div class="d" style="flex-basis:76px;background:${ok?'var(--leaf2)':'var(--amber2)'}"><b style="font-size:1rem">${x.lo}${x.hi&&x.hi!==x.lo?'–'+x.hi:'+'}</b>${t('horas','hours')}</div><div><b>${x.n}</b> <span class="tag">${ty[x.ty]}</span> <span class="tag ${ok?'g':'a'}">${ok?t('Se adapta','Suits'):t('Le falta frío','Needs more chill')}</span><div style="font-size:.9rem">${x[L]}</div></div></div>`}).join('')};
+      const r=$('#hf');if(r){r.oninput=()=>{S.set('hf',+r.value);draw(+r.value)};draw(hf)}},0);
+  }
+  if(cropTab==='siembra'){
+    h=`<div class="grid g2">${photo('img/mulch.jpg',t('Mulch orgánico sobre la hilera','Organic mulch on the row'))}${photo('img/huerto.jpg',t('Hileras a 3 m, orientadas con el viento','Rows 3 m apart, aligned with the wind'))}</div>
+    <div class="card reveal"><h3>${t('Paso a paso para establecer el huerto','Step by step to establish the field')}</h3><ol>
+    <li><b>${t('Mira el suelo por dentro.','Look inside the soil.')}</b> ${t('Abre calicatas de 1 × 1 × 1 m en varios sitios. Si un hueco de 60 cm lleno de agua sigue con agua a las 24 horas, el drenaje es malo. Tierra gris con manchas rojas a 50 cm = suelo que pasa encharcado.','Dig 1 × 1 × 1 m pits in several spots. If a 60 cm hole filled with water still holds water after 24 hours, drainage is poor. Grey soil with red mottles at 50 cm = soil that stays waterlogged.')}</li>
+    <li><b>${t('Rompe la capa dura.','Break the hardpan.')}</b> ${t('Subsolar en seco, 10 cm por debajo de la capa compactada, cada 4 o 5 años.','Subsoil when dry, 10 cm below the compacted layer, every 4–5 years.')}</li>
+    <li><b>${t('Prepara antes.','Prepare ahead.')}</b> ${t('Rotar con avena (corta enfermedades) o leguminosas (fijan nitrógeno) e incorporar compost, bokashi o guano compostado.','Rotate with oats (breaks disease cycles) or legumes (fix nitrogen) and work in compost, bokashi or composted manure.')}</li>
+    <li><b>${t('Si el pH está alto, azufre el año anterior.','If pH is high, sulphur the year before.')}</b> ${t('Luego se mantiene con fertilizantes ácidos (sulfato de amonio, fosfato monoamónico) o acidificando el agua.','Then hold it with acid fertilisers (ammonium sulphate, MAP) or by acidifying water.')}</li>
+    <li><b>${t('Camellones.','Raised beds.')}</b> ${t('De 30 a 50 cm de alto y 1 m de ancho, mejorados con aserrín grueso de pino, corteza, cascarilla de arroz o viruta (200 a 800 m³/ha) o compost. Rehacerlos cada 3 años.','30–50 cm high, 1 m wide, improved with coarse pine sawdust, bark, rice hulls or shavings (200–800 m³/ha) or compost. Rebuild every 3 years.')}</li>
+    <li><b>${t('Hileras.','Rows.')}</b> ${t('En la dirección del viento para ventilar, a 3 m y de no más de 100 m de largo para sacar rápido la cosecha.','Along the wind for airflow, 3 m apart and no longer than 100 m to move harvest fast.')}</li>
+    <li><b>${t('Riego listo antes de plantar.','Irrigation ready before planting.')}</b> ${t('Cinta con goteros cada 30 cm de 1,6 o 2,2 L/h, o goteros cada 50 a 100 cm. Doble línea en suelos livianos o con aserrín.','Drip tape with emitters every 30 cm at 1.6 or 2.2 L/h, or emitters every 50–100 cm. Double line on light or sawdust‑amended soils.')}</li>
+    <li><b>${t('Mulch.','Mulch.')}</b> ${t('Plástico o malla antimaleza de 1,40 m de ancho, con huecos de 40 × 40 × 40 cm; o paja o corteza.','Plastic or weed mat 1.40 m wide with 40 × 40 × 40 cm holes; or straw or bark.')}</li>
+    <li><b>${t('Plantar.','Plant.')}</b> ${t('Regar 2–3 días antes. Planta sana, de raíces blancas y no más de 2 años en vivero registrado (en Colombia, ante el ICA). Enterrarla 2–3 cm más honda que en la bolsa, gotero a 5 cm, apisonar suave con la mano y rebajar los brotes a un tercio.','Water 2–3 days before. Healthy plant, white roots, no older than 2 years from a registered nursery (in Colombia, ICA‑registered). Set 2–3 cm deeper than in the pot, emitter 5 cm away, firm gently by hand and cut shoots back by a third.')}</li></ol></div>
+    <div class="card reveal"><h3>${t('¿Qué color de plástico uso?','Which plastic colour?')}</h3><div class="scroll"><table class="tbl"><tr><th>Film</th><th>${t('Ventaja','Pro')}</th><th>${t('Cuidado','Con')}</th></tr>
+    <tr><td><b>${t('Negro opaco','Opaque black')}</b></td><td>${t('Frena malezas, buen rendimiento, cosecha precoz.','Stops weeds, good yields, early crop.')}</td><td>${t('Calienta poco de noche; en días calientes puede quemar la planta.','Little night warmth; can scorch on hot days.')}</td></tr>
+    <tr><td><b>${t('Gris humo','Smoke grey')}</b></td><td>${t('Calienta el suelo de día y protege la planta de noche. Más precocidad, no quema.','Warms soil by day, protects at night. Earlier, no scorching.')}</td><td>${t('Debe ser totalmente opaco para que no salgan malezas.','Must be fully opaque to block weeds.')}</td></tr>
+    <tr><td><b>${t('Blanco afuera / negro adentro','White out / black in')}</b></td><td>${t('Evita que el suelo se recaliente, controla malezas, no quema.','Keeps soil from overheating, controls weeds, no scorching.')}</td><td>${t('Atrasa el arranque de la planta.','Slows early growth.')}</td></tr></table></div></div>
+    <div class="card reveal"><div class="big">+56,6%</div><h3>${t('de cosecha solo por controlar malezas','more harvest just from weed control')}</h3><p>${t('En ensayos en Chillán, desyerbar a mano cada 3 semanas subió el rendimiento 56,6%. La malla antimaleza funciona muy bien, pero hay que limpiar a mano alrededor del cuello. Las malezas compiten desde la brotación hasta la caída de hojas, y lo que se descuide después de cosechar se paga en la cosecha siguiente.','In Chillán trials, hand‑weeding every 3 weeks raised yield 56.6%. Weed mat works very well, but hand‑clear around the crown. Weeds compete from budbreak to leaf fall, and neglect after harvest costs next season’s crop.')}</p><p class="note">INIA (2017), ${t('caps. 2, 3, 4 y 8','chapters 2, 3, 4 and 8')}.</p></div>`;
+  }
+  if(cropTab==='riego'){
+    h=`${photo('img/yema.jpg',t('Yema floral hinchada: aquí empieza la temporada','Swollen flower bud: the season starts here'))}
+    <div class="card reveal" style="margin-top:16px"><h3>${t('Riego que rinde','Irrigation that pays')}</h3><div class="kv"><div><span>${t('Más rendimiento con riego','Yield gain from irrigation')}</span><b>${t('hasta 43%','up to 43%')}</b></div><div><span>${t('Raíz que más absorbe','Main water‑uptake roots')}</span><b>25–30 cm</b></div><div><span>${t('Tensiómetro ideal','Ideal tensiometer')}</span><b>10 cb</b></div></div><ul style="margin-top:12px">
+    <li>${t('Regar el 100% de lo que pide la planta rinde más que el 50%; subir a 150% no suma nada.','Watering 100% of demand beats 50%; going to 150% adds nothing.')}</li>
+    <li>${t('El goteo es lo más usado; en suelo liviano o con aserrín, doble línea.','Drip is standard; on light or sawdust soils, double line.')}</li>
+    <li>${t('Si hay riesgo de helada conviene tener aspersión aparte para control de heladas.','Where frost is a risk, add a separate sprinkler line for frost control.')}</li>
+    <li>${t('Mide el caudal real de los goteros con una probeta: casi nunca es el del catálogo.','Measure real emitter flow with a cylinder: it rarely matches the catalogue.')}</li></ul>
+    <button class="btn sm" style="margin-top:6px" onclick="calcTab='agua';go('calc');renderCalc()">${t('Calcular cuánto regar hoy','Work out today’s watering')}</button></div>
+    <div class="card reveal"><h3>${t('Abejas para polinizar','Bees for pollination')}</h3><div class="kv"><div><span>${t('Colmenas por hectárea','Hives per hectare')}</span><b>4 – 8</b></div><div><span>${t('Trabajan bien desde','Work well from')}</span><b>12 °C</b></div><div><span>${t('Vuelo útil','Useful range')}</span><b>250 m</b></div><div><span>${t('Colmena fuerte a mediodía','Strong hive at noon')}</span><b>60 ${t('abejas/min','bees/min')}</b></div></div><ul style="margin-top:12px">
+    <li>${t('Entrar parte de las colmenas al 10% de flor y el resto en plena flor.','Bring part of the hives at 10% bloom and the rest at full bloom.')}</li>
+    <li>${t('La flor del arándano no les atrae mucho: controla malezas en flor para que no se distraigan.','Blueberry flowers aren’t very attractive: control flowering weeds so bees aren’t distracted.')}</li>
+    <li>${t('Buena colmena: reina joven, unos 8 marcos con abejas y 5 con cría. Al sol, sobre banquillos, con agua cerca y sin hormigas.','Good hive: young queen, about 8 frames of bees and 5 with brood. In the sun, on stands, with water nearby and no ants.')}</li>
+    <li>${t('La polinización mejora mucho el calibre de la fruta.','Pollination greatly improves berry size.')}</li></ul><p class="note">INIA (2017), ${t('caps. 9 y 10','chapters 9 and 10')}.</p></div>`;
+  }
+  if(cropTab==='clima'){
+    const marks=[[-6,t('Yema','Bud')],[-4,t('Botón','Fl. bud')],[-2.3,t('Flor','Bloom')],[-1.1,t('Cuaja','Set')],[10,t('Base','Base')],[15,t('Óptimo','Optimum')],[28,t('Estrés','Stress')]];
+    const pos=v=>((v+8)/(40))*100;
+    h=`<div class="card reveal"><h3>${t('El termómetro del arándano','The blueberry thermometer')}</h3>
+    <div class="thermo">${marks.map((m,i)=>`<div class="tmark" style="left:${pos(m[0])}%">${i%2?`<i>${nf(m[0],1)}°</i><span>${m[1]}</span>`:`<i>${m[1]}</i><span>${nf(m[0],1)}°</span>`}</div>`).join('')}</div>
+    <p class="muted">${t('La sensibilidad a la helada sube desde yema hinchada hasta cuaja, que es la etapa más delicada.','Frost sensitivity rises from swollen bud to fruit set, the most delicate stage.')}</p></div>
+    <div class="card reveal"><h3>${t('Requerimientos de clima','Climate requirements')}</h3><div class="scroll"><table class="tbl">
+    ${[[t('Sensibilidad a heladas','Frost sensitivity'),t('Resistencia media','Medium resistance')],[t('Etapa más sensible','Most sensitive stage'),t('Floración','Flowering')],[t('Daño por helada','Frost damage'),'-4,5 °C'],[t('Temperatura base de crecimiento','Base growth temp'),'10 °C'],[t('Temperatura óptima','Optimum temp'),t('Medias cerca de 15 °C','Means around 15 °C')],[t('Límite máximo','Upper limit'),'29–30 °C'],[t('Suma térmica yema hinchada a cosecha','Heat sum bud to harvest'),t('490–500 días‑grado','490–500 degree‑days')],[t('Horas frío (bajo 7 °C)','Chill hours (below 7 °C)'),t('400–1.000 (variedades del sur de Chile); en Colombia se usan de menos de 350','400–1,000 (southern Chile varieties); Colombia uses under 350')],[t('Fotoperiodo','Day length'),t('No limita','Not limiting')],[t('Estación de crecimiento','Growing season'),t('160 días','160 days')],[t('Fruta se quema a','Fruit burns at'),'46–49 °C '+t('en la piel','skin temp')],[t('Óptimo para raíces (INIA)','Root optimum (INIA)'),'18–22 °C'],[t('Óptimo para brotes, hojas y frutos (INIA)','Shoot, leaf & fruit optimum (INIA)'),'20–26 °C'],[t('Mucha radiación','Too much radiation'),t('Acorta la maduración y baja la calidad','Shortens ripening, lowers quality')],[t('Días nublados','Cloudy days'),t('Favorecen hongos en la fruta','Favour fruit fungi')]].map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join('')}
+    </table></div><p class="note">CIREN 2020, ${t('cuadros 1 y 2','tables 1 and 2')}.</p></div>`;
+  }
+  if(cropTab==='suelo'){
+    h=`<div class="grid g2">${photo('img/sustrato.jpg',t('Mezcla de sustrato, Soatá','Substrate mix, Soatá'))}${photo('img/motobomba.jpg',t('Motobomba del riego por goteo','Drip irrigation pump'))}</div>
+    <div class="card reveal"><h3>${t('Suelo ideal','Ideal soil')}</h3><table class="tbl">
+    ${[[t('Profundidad','Depth'),t('1 m óptimo; mínimo 70 cm más camellón','1 m optimum; 70 cm plus raised bed minimum')],['pH',t('4,5 a 5,0 óptimo (en Chile crecen bien hasta 5,8–6,0)','4.5–5.0 optimum (grows well up to 5.8–6.0 in Chile)')],[t('Salinidad','Salinity'),t('Menor a 1,5 dS/m','Below 1.5 dS/m')],[t('Textura','Texture'),t('Franco arenosa a franco limo arenosa','Sandy loam to silty sandy loam')],[t('Drenaje','Drainage'),t('Moderadamente bueno, sin nivel freático','Moderately good, no water table')],[t('Materia orgánica','Organic matter'),'3–5%'],[t('Piedras','Stones'),t('Menos de 15%','Under 15%')],[t('Pendiente','Slope'),t('Suave, 2 a 6%','Gentle, 2–6%')]].map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join('')}
+    </table><p class="note">${t('Haz análisis de macro y micronutrientes, conductividad, materia orgánica y pH. Si el pH está alto, el análisis dice cuánto azufre elemental aplicar. Verifica la acidez cada año.','Test macro and micronutrients, conductivity, organic matter and pH. If pH is high, the test tells how much elemental sulphur to apply. Check acidity yearly.')}</p></div>
+    <div class="card reveal"><h3>${t('Lo que debe decir tu análisis de suelo','What your soil test should show')}</h3><div class="scroll"><table class="tbl"><tr><th></th><th>${t('Franco arenoso','Sandy loam')}</th><th>${t('Franco limoso a arcilloso','Silt to clay loam')}</th></tr>
+    ${[[t('Materia orgánica %','Organic matter %'),'> 2','> 3'],['pH (agua 1:2,5)','5,0 – 6,0','4,8 – 5,8'],[t('Conductividad dS/m','Conductivity dS/m'),'< 1,5','< 1,5'],['CIC cmol(+)/kg','8 – 15','15 – 30'],[t('Fósforo Olsen mg/kg','Olsen P mg/kg'),'> 15','> 20'],[t('Potasio cmol(+)/kg','Potassium cmol(+)/kg'),'0,3 – 0,5','0,4 – 0,6'],[t('Calcio cmol(+)/kg','Calcium cmol(+)/kg'),'4 – 8','6 – 10'],[t('Magnesio cmol(+)/kg','Magnesium cmol(+)/kg'),'0,8 – 2','1 – 3'],[t('Sodio cmol(+)/kg','Sodium cmol(+)/kg'),'< 0,3','< 0,6'],[t('Azufre mg/kg','Sulphur mg/kg'),'> 8','> 10'],[t('Hierro mg/kg','Iron mg/kg'),'4 – 10','5 – 15'],[t('Zinc mg/kg','Zinc mg/kg'),'0,8 – 1,5','1 – 2'],[t('Boro mg/kg','Boron mg/kg'),'0,6 – 1,5','0,8 – 1,6']].map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td><td><b>${r[2]}</b></td></tr>`).join('')}</table></div>
+    <p class="note">${t('INIA (2017), cuadro 5.1. Muestra compuesta de 20 puntos del camellón a 0–30 cm, cerca de 1 kg. Análisis de suelo cada 2–3 años y foliar todos los años.','INIA (2017), table 5.1. Composite of 20 points from the bed at 0–30 cm, about 1 kg. Soil test every 2–3 years, leaf test yearly.')}</p></div>
+    <div class="card reveal"><h3>${t('Para qué sirve cada nutriente','What each nutrient does')}</h3><div class="scroll"><table class="tbl"><tr><th>${t('Nutriente','Nutrient')}</th><th>${t('Ayuda a','Helps')}</th><th>${t('Si te pasas','If overdone')}</th></tr>
+    ${[['N',t('Vigor, brotes, raíces, flores y crecimiento del fruto','Vigour, shoots, roots, flowers, fruit growth'),t('Sombra y fruta blanda, más plagas y Botrytis','Shade and soft fruit, more pests and Botrytis')],['P',t('Raíces, floración, defensas y reservas','Roots, bloom, defences, reserves'),t('Puede faltar zinc','Can induce zinc deficiency')],['K',t('Calibre, firmeza, sabor, uso del agua','Size, firmness, flavour, water use'),t('Falta Mg y Ca; fruta partida','Mg and Ca shortage; cracked fruit')],['Ca',t('Cuaja, calibre, firmeza y poscosecha','Set, size, firmness, shelf life'),t('Falta Mg, K, P, B, Zn, Mn','Mg, K, P, B, Zn, Mn shortage')],['Mg',t('Verde de las hojas, vigor y rendimiento','Leaf greenness, vigour, yield'),t('Falta Ca y K','Ca and K shortage')],['S',t('Brotes, color de hojas, baja el pH','Shoots, leaf colour, lowers pH'),t('Sube la salinidad','Raises salinity')],['B',t('Cuaja y calibre','Fruit set and size'),t('Quema las hojas como la sal','Burns leaves like salt')],['Zn',t('Enraizamiento, cuaja y vigor','Rooting, set and vigour'),t('Falta P, Cu y Fe','P, Cu and Fe shortage')]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></div>
+    <button class="btn sm" style="margin-top:10px" onclick="calcTab='fert';go('calc');renderCalc()">${t('Calcular la fertilización','Work out fertilisation')}</button></div>
+    <div class="card reveal"><h3>${t('Requerimientos nutricionales (análisis foliar)','Nutrient ranges (leaf analysis)')}</h3><p class="muted">${t('Compara tu análisis en Calcular › Análisis foliar.','Compare your lab result in Calculate › Leaf analysis.')}</p><div class="scroll"><table class="tbl"><tr><th>${t('Nutriente','Nutrient')}</th><th>${t('Deficiencia','Deficient')}</th><th>${t('Óptimo','Optimum')}</th><th>${t('Exceso','Excess')}</th></tr>
+    ${NUT.map(n=>`<tr><td><b>${t(n[0],n[1])}</b> ${n[2]}</td><td>${n[3]==null?'nd':'< '+nf(n[3],2)}</td><td>${nf(n[4],2)} – ${nf(n[5],2)}</td><td>${n[6]==null?'nd':'> '+nf(n[6],2)}</td></tr>`).join('')}</table></div><p class="note">Bustillo Álvarez (2020), ${t('citado en UNAD (2021)','cited in UNAD (2021)')}.</p></div>`;
+  }
+  if(cropTab==='plagas'){
+    h=`<div class="grid g2">
+    <div class="card reveal"><span class="tag a">${t('Plaga principal','Main pest')}</span><h3>${t('Chiza','White grub')} <i style="font-weight:500;font-size:.85rem">Ancognatha scarabaeoides</i></h3><div class="big">30%</div><p>${t('de las pérdidas por plantas muertas en la finca de Soatá. Vive en el suelo y se come las raíces.','of losses from dead plants on the Soatá farm. It lives in the soil and eats roots.')}</p></div>
+    <div class="card reveal"><span class="tag a">${t('Plaga','Pest')}</span><h3>${t('Cochinillas','Mealybugs')} <i style="font-weight:500;font-size:.85rem">Pseudococcus</i></h3><p>${t('Segunda plaga reportada en el cultivo.','Second pest reported in the crop.')}</p><span class="tag">${t('Enfermedad','Disease')}</span><h3 style="margin-top:8px">${t('Roya de la hoja','Leaf rust')}</h3><p>${t('Hongo que se riega por esporas y ataca hojas y tallos. En Soatá no se ha visto, pero hay que vigilar.','Fungus spread by spores that attacks leaves and stems. Not seen in Soatá yet, but watch for it.')}</p></div></div>
+    <div class="card reveal"><h3>${t('¿Cuándo hay que actuar con la chiza?','When to act on white grubs?')}</h3><p>${t('La chiza es el gusano blanco del suelo. INIA recomienda sacar 20 cubos de suelo de 20 × 20 × 30 cm sobre la hilera y contar las larvas: actuar con más de 10 larvas por m² en plantas en producción y con 1 por m² en plantas de 0 a 1 año. El control químico de larvas es poco eficaz; hay control biológico con hongos entomopatógenos.','White grubs live in the soil. INIA suggests taking 20 soil cubes of 20 × 20 × 30 cm on the row and counting larvae: act above 10 larvae/m² on bearing plants and 1/m² on 0–1 year plants. Chemical larva control works poorly; entomopathogenic fungi give biological control.')}</p><button class="btn sm" onclick="calcTab='chiza';go('calc');renderCalc()">${t('Hacer el conteo','Do the count')}</button></div>
+    <div class="card reveal"><h3>${t('¿Qué le pasa a mi planta?','What’s wrong with my plant?')}</h3><p class="muted">${t('Toca lo que ves y te muestro las causas posibles según INIA. Confirma siempre con tu agrónomo o el ICA.','Tap what you see for likely causes per INIA. Always confirm with your agronomist or ICA.')}</p>
+    <div class="chips" id="symChips"></div><div id="disList"></div></div>
+    ${photo('img/partidura.jpg',t('Fruta partida por exceso de potasio y lluvia','Fruit cracked by excess potassium and rain'))}
+    <div class="card reveal" style="margin-top:16px"><h3>${t('Manejo preventivo','Preventive management')}</h3><ul>
+    <li>${t('Monitoreo semanal de plagas y enfermedades.','Weekly pest and disease scouting.')}</li>
+    <li>${t('Revisar raíces al trasplantar y desinfectar plántulas.','Inspect roots at transplant and disinfect plantlets.')}</li>
+    <li>${t('Rotar los productos químicos para que no se vuelvan resistentes.','Rotate chemicals to avoid resistance.')}</li>
+    <li>${t('Verificar fecha de vencimiento, periodo de carencia y registro antes de aplicar.','Check expiry date, pre‑harvest interval and registration before spraying.')}</li>
+    <li>${t('Preparar las mezclas lejos del cultivo y del sitio de empaque.','Mix away from the crop and the packing area.')}</li>
+    <li>${t('Sacar los restos de poda y compostarlos para devolverlos como abono.','Remove prunings and compost them back as fertiliser.')}</li></ul></div>`;
+  }
+  if(cropTab==='cosecha'){
+    h=`<div class="grid g2">${photo('img/cosechadora.jpg',t('Cosecha a mano con elementos de protección, Soatá','Hand picking with protective gear, Soatá'))}${photo('img/mano-cosecha.jpg',t('Racimo listo para cosechar','Cluster ready to pick'))}</div>
+    <div class="card reveal"><h3>${t('Cosecha','Harvest')}</h3><ul>
+    <li>${t('100% a mano, la labor más cara del cultivo (60,6% del costo directo es mano de obra en la guía de CIREN).','100% by hand, the costliest task (labour is 60.6% of direct cost in the CIREN guide).')}</li>
+    <li>${t('1 o 2 veces por semana, en jarras plásticas, separando por color y madurez; los desechos en otra jarra.','Once or twice a week into plastic cups, sorting by colour and ripeness; culls in a separate cup.')}</li>
+    <li>${t('Variedades productivas y fáciles de coger hacen el huerto atractivo cuando se paga por kilo.','Productive, easy‑picking varieties make the field attractive when paying per kilo.')}</li></ul></div>
+    <div class="card reveal"><h3>${t('Reglas de oro de la cosecha (INIA)','Golden harvest rules (INIA)')}</h3><ul>
+    <li>${t('Cosecha cuando el fruto esté azul parejo: el arándano no mejora el sabor después de cogido. El rojo se pone azul, pero queda sin sabor.','Pick when evenly blue: flavour doesn’t improve after picking. Red fruit turns blue but stays bland.')}</li>
+    <li>${t('Fruto por fruto, sin apretar, directo al pocillo. Cada toque le quita la cera (pruina) que muestra que está fresco.','One by one, no squeezing, straight into the cup. Every touch removes the wax bloom that signals freshness.')}</li>
+    <li>${t('Temprano en la mañana. Nunca con rocío, lluvia o fruta mojada.','Early morning. Never with dew, rain or wet fruit.')}</li>
+    <li>${t('Sombra en el campo y sacar rápido al empaque. No sobrellenar las bandejas.','Field shade and move fast to packing. Don’t overfill trays.')}</li>
+    <li>${t('Manos limpias, uñas cortas, bandejas limpias y lejos del suelo. Cosechar por variedad y por lote.','Clean hands, short nails, clean trays off the ground. Pick by variety and block.')}</li></ul></div>
+    <div class="card reveal"><h3>${t('El frío manda','Cold rules')}</h3><div class="kv"><div><span>${t('Temperatura de guarda','Storage temp')}</span><b>0 – 1 °C</b></div><div><span>${t('Humedad relativa','Relative humidity')}</span><b>90 – 95%</b></div><div><span>${t('Duración mínima así','Shelf life like this')}</span><b>14 ${t('días','days')}</b></div><div><span>${t('Atmósfera modificada','Modified atmosphere')}</span><b>2–5% O₂ · 10–15% CO₂</b></div></div>
+    <p style="margin-top:12px">${t('Fruta enfriada a 1,5 °C en 2 horas tuvo menos pudrición que la enfriada en 48 horas. El aire forzado baja la fruta a 0–1 °C en menos de 1 hora. La Botrytis crece incluso a 0 °C, por eso el control empieza en la flor.','Fruit cooled to 1.5 °C in 2 hours rotted less than fruit cooled over 48 hours. Forced air takes fruit to 0–1 °C in under an hour. Botrytis grows even at 0 °C, so control starts at bloom.')}</p></div>
+    <div class="card reveal"><h3>${t('Poscosecha en Soatá','Post‑harvest in Soatá')}</h3><ol>
+    <li>${t('En el cuarto de manipulación se separa lo que no cumple en tamaño y color.','In the handling room, fruit off‑spec in size and colour is removed.')}</li>
+    <li>${t('Se empaca en bandejas biodegradables de 1, 2 o 3 kilos según el comprador.','Packed in biodegradable 1, 2 or 3 kg trays as the buyer requests.')}</li>
+    <li>${t('Se forra con termoencogible de 25 micras y se pasa a canastillas plásticas.','Wrapped in 25‑micron shrink film and placed in plastic crates.')}</li>
+    <li>${t('Etiqueta con fecha de cosecha, de empaque, vida útil y tabla nutricional.','Labelled with harvest date, pack date, shelf life and nutrition facts.')}</li>
+    <li>${t('Se entrega en camioneta a los supermercados o por empresa de remesas si es lejos.','Delivered by pickup to supermarkets or by courier if far away.')}</li></ol>
+    <p class="note">${t('Rechazo cercano al 5%, que se vende a trabajadores y para la familia.','About 5% rejected, sold to workers and for family use.')}</p></div>
+    <div class="card reveal"><h3>${t('Poda','Pruning')}</h3><p>${t('Después de la cosecha: estimula brotes nuevos y controla el crecimiento. En producción se quitan ramas improductivas (poda de formación).','After harvest: pushes new shoots and controls growth. In production, remove unproductive canes (training prune).')}</p></div>`;
+  }
+  if(cropTab==='cambio'){
+    h=`${photo('img/arbusto.jpg',t('El calor y la radiación afectan el calibre y la calidad','Heat and radiation affect size and quality'))}
+    <div class="grid g2" style="margin-top:16px">
+    <div class="card reveal"><h3>${t('Falta de frío','Lack of chill')}</h3><p>${t('Sin suficiente frío la floración se atrasa, es dispareja, hay mala brotación y poco cuajado. Existen compensadores de frío como la cianamida hidrogenada que estimulan la brotación.','Without enough chill bloom is late and uneven, budbreak is poor and fruit set low. Chill compensators like hydrogen cyanamide stimulate budbreak.')}</p></div>
+    <div class="card reveal"><h3>${t('Más calor y radiación','More heat and radiation')}</h3><p>${t('Adelantan la cosecha, bajan el calibre y causan golpe de sol. Los bloqueadores solares bajan la temperatura de hojas y frutos y mejoran el uso del agua.','They bring harvest forward, shrink berries and cause sunburn. Sunscreens cool leaves and fruit and improve water use.')}</p></div>
+    <div class="card reveal"><h3>${t('Lluvia en flor y cosecha','Rain at bloom and harvest')}</h3><p>${t('El macrotúnel de polietileno hace efecto paraguas: menos pudrición, se cosecha con lluvia y protege de viento, granizo y frío.','A polyethylene high tunnel acts as an umbrella: less rot, picking in the rain, and protection from wind, hail and cold.')}</p></div>
+    <div class="card reveal"><h3>${t('Mapa de aptitud al 2050','Suitability to 2050')}</h3><p>${t('En el Maule (Chile) el arándano pierde aptitud en el secano por calor y falta de frío, y mejora en precordillera por menos heladas tardías. La lección para Colombia: la altura y la cubierta son la protección.','In Maule (Chile) blueberries lose suitability in dry lowlands from heat and low chill, and gain in the foothills with fewer late frosts. The lesson for Colombia: altitude and cover are your protection.')}</p></div></div>`;
+  }
+  $('#cropOut').innerHTML=h;observe();
+  if(cropTab==='plagas')drawDis();
+}
+function drawDis(){
+  $('#symChips').innerHTML=SYM.map(s=>`<button class="chip ${symSel.includes(s[0])?'on':''}" data-s="${s[0]}">${t(s[1][0],s[1][1])}</button>`).join('');
+  $$('#symChips .chip').forEach(b=>b.onclick=()=>{const k=b.dataset.s;symSel=symSel.includes(k)?symSel.filter(x=>x!==k):[...symSel,k];drawDis()});
+  const list=DIS.map(d=>({d,sc:symSel.filter(s=>d.s.includes(s)).length})).filter(x=>!symSel.length||x.sc).sort((a,b)=>b.sc-a.sc);
+  $('#disList').innerHTML=list.map(({d,sc},i)=>`<details class="log" style="display:block" ${symSel.length&&i===0?'open':''}><summary style="cursor:pointer;font-weight:800">${d[L]}${d.sci?` <i style="font-weight:500;font-size:.85rem">${d.sci}</i>`:''}${sc?` <span class="tag a">${sc} ${t('coincide','match')}${sc>1?(L==='en'?'es':'n'):''}</span>`:''}</summary><p style="margin-top:8px"><b>${t('Cómo se ve','What it looks like')}:</b> ${t(d.d[0],d.d[1])}</p><p><b>${t('Qué hacer','What to do')}:</b> ${t(d.m[0],d.m[1])}</p></details>`).join('');
+}
+const NUT=[['Nitrógeno','Nitrogen','(N) %',1.7,1.7,2.1,2.3],['Fósforo','Phosphorus','(P) %',0.08,0.08,0.4,0.6],['Potasio','Potassium','(K) %',0.35,0.4,0.65,0.9],['Calcio','Calcium','(Ca) %',0.13,0.3,0.8,1],['Magnesio','Magnesium','(Mg) %',0.1,0.15,0.3,null],['Azufre','Sulphur','(S) %',null,0.12,0.2,null],['Boro','Boron','(B) ppm',18,30,70,200],['Cobre','Copper','(Cu) ppm',5,5,20,null],['Hierro','Iron','(Fe) ppm',60,60,200,400],['Manganeso','Manganese','(Mn) ppm',25,50,350,450],['Zinc','Zinc','(Zn) ppm',8,8,30,80]];
+
+/* ============ CALCULAR ============ */
+const CALC_TABS=[['dens',['Plantas y sustrato','Plants & substrate']],['agua',['Riego de hoy','Today’s watering']],['fert',['Fertilización','Fertilisation']],['poda',['Poda y carga','Pruning & crop load']],['chiza',['Conteo de chiza','Grub count']],['plata',['Plata del proyecto','Project money']],['nomina',['Pago de cosecha','Picking pay']],['venta',['¿A quién vendo?','Who to sell to']],['foliar',['Análisis foliar','Leaf analysis']]];
+let calcTab='dens';
+const C=S.get('calc',{});
+function cv(k,d){return C[k]!==undefined?C[k]:d}
+function inp(k,label,d,step='any'){return `<div><label>${label}</label><input type="number" step="${step}" data-c="${k}" value="${cv(k,d)}"></div>`}
+function bindCalc(fn){$$('#calcOut [data-c]').forEach(e=>e.oninput=()=>{C[e.dataset.c]=e.value===''?'':parseFloat(e.value);S.set('calc',C);fn()});fn()}
+function g(k,d){const v=cv(k,d);return v===''?NaN:+v}
+function renderCalc(){
+  $('#segCalc').innerHTML=CALC_TABS.map(x=>`<button class="${calcTab===x[0]?'on':''}" data-k="${x[0]}">${x[1][L==='en'?1:0]}</button>`).join('');
+  $$('#segCalc button').forEach(b=>b.onclick=()=>{calcTab=b.dataset.k;renderCalc()});
+  const o=$('#calcOut');
+  if(calcTab==='dens'){
+    o.innerHTML=`<div class="card"><h3>${t('¿Cuántas plantas caben?','How many plants fit?')}</h3>
+    <div class="chips"><button class="chip" data-p="1.5,0.7">${t('Soatá 1,5 × 0,7 m','Soatá 1.5 × 0.7 m')}</button><button class="chip" data-p="3,1">${t('Sibaté 3 × 1 m','Sibaté 3 × 1 m')}</button><button class="chip" data-p="2.5,1">${t('Maule 2,5 × 1 m','Maule 2.5 × 1 m')}</button></div>
+    <div class="row">${inp('area',t('Área (hectáreas)','Area (hectares)'),1)}${inp('ent',t('Entre surcos (m)','Between rows (m)'),1.5)}${inp('sob',t('Entre plantas (m)','Between plants (m)'),0.7)}</div>
+    <div id="dOut"></div></div>
+    <div class="card"><h3>${t('Sustrato para las bolsas','Substrate for the bags')}</h3><p class="muted">${t('Mezcla de Soatá: 30% cascarilla de arroz, 30% coco, 40% turba.','Soatá mix: 30% rice hulls, 30% coconut, 40% peat.')}</p>
+    <div class="row">${inp('litros',t('Litros por bolsa','Litres per bag'),50)}${inp('extra',t('% de reserva','% spare'),5)}</div><div id="sOut"></div></div>`;
+    $$('#calcOut [data-p]').forEach(b=>b.onclick=()=>{const[a,c]=b.dataset.p.split(',');C.ent=+a;C.sob=+c;S.set('calc',C);renderCalc()});
+    bindCalc(()=>{
+      const A=g('area',1),e=g('ent',1.5),s=g('sob',0.7),Li=g('litros',50),ex=g('extra',5);
+      const perHa=10000/(e*s),n=Math.round(perHa*A),nb=Math.ceil(n*(1+ex/100)),tot=nb*Li;
+      $('#dOut').innerHTML=`<div class="kv"><div><span>${t('Plantas por hectárea','Plants per hectare')}</span><b>${nf(perHa)}</b></div><div><span>${t('Plantas en tu área','Plants in your area')}</span><b>${nf(n)}</b></div><div><span>${t('Con reserva','With spare')}</span><b>${nf(nb)}</b></div><div><span>${t('Metros de surco','Row metres')}</span><b>${nf(A*10000/e)}</b></div></div>`;
+      $('#sOut').innerHTML=`<div class="kv"><div><span>${t('Sustrato total','Total substrate')}</span><b>${nf(tot/1000,1)} m³</b></div><div><span>${t('Cascarilla de arroz','Rice hulls')}</span><b>${nf(tot*.3/1000,1)} m³</b></div><div><span>${t('Cascarilla de coco','Coconut husk')}</span><b>${nf(tot*.3/1000,1)} m³</b></div><div><span>${t('Turba fina','Fine peat')}</span><b>${nf(tot*.4/1000,1)} m³</b></div></div><p class="note">${t('Para '+nf(nb)+' bolsas de '+nf(Li)+' litros. 1 m³ = 1.000 litros.','For '+nf(nb)+' bags of '+nf(Li)+' litres. 1 m³ = 1,000 litres.')}</p>`;
+    });
+  }
+  if(calcTab==='plata'){
+    o.innerHTML=`<div class="card"><h3>${t('Proyección a 12 años','12‑year projection')}</h3>
+    <p class="muted">${t('Usa la curva de producción de la guía de CIREN (empieza en el año 3 con 13%, año 4: 30%, año 5: 60%, año 6: 88% y desde el año 7: 100%) y la de costos. Viene cargado el ejemplo de la guía en pesos chilenos de 2020: cámbialo por tus números en pesos colombianos.','Uses the CIREN production curve (starts in yr 3 at 13%, yr 4: 30%, yr 5: 60%, yr 6: 88%, from yr 7: 100%) and its cost curve. Loaded with the guide’s example in 2020 Chilean pesos: replace with your own numbers in Colombian pesos.')}</p>
+    <div class="chips"><button class="chip" id="exCL">${t('Cargar ejemplo de la guía','Load guide example')}</button><button class="chip" id="exClr">${t('Borrar para poner mis datos','Clear for my numbers')}</button></div>
+    <div class="row">${inp('ha',t('Hectáreas','Hectares'),1)}${inp('kg',t('Kilos por ha en plena producción','Kg/ha at full production'),15000)}${inp('pr',t('Precio por kilo','Price per kilo'),1182)}</div>
+    <div class="row" style="margin-top:10px">${inp('inv',t('Inversión inicial por ha','Initial investment per ha'),10000000)}${inp('cost',t('Costo por ha al año en plena producción','Cost per ha/yr at full production'),6661008)}${inp('tasa',t('Tasa de descuento %','Discount rate %'),10)}</div>
+    <div id="pOut"></div></div>`;
+    $('#exCL').onclick=()=>{Object.assign(C,{ha:1,kg:15000,pr:1182,inv:10000000,cost:6661008,tasa:10});S.set('calc',C);renderCalc();toast(t('Ejemplo CIREN cargado','CIREN example loaded'))};
+    $('#exClr').onclick=()=>{Object.assign(C,{kg:'',pr:'',inv:'',cost:''});S.set('calc',C);renderCalc()};
+    bindCalc(calcMoney);
+  }
+  if(calcTab==='nomina'){
+    o.innerHTML=`<div class="card"><h3>${t('¿Cuánto pago por la cosecha?','What do I pay for picking?')}</h3><p class="muted">${t('En la guía de CIREN se paga por kilo cosechado. Pon tu tarifa y lo que piensas cosechar.','In the CIREN guide pickers are paid per kilo. Enter your rate and expected harvest.')}</p>
+    <div class="row">${inp('nkg',t('Kilos a cosechar','Kilos to pick'),500)}${inp('nt',t('Pago por kilo ($)','Pay per kilo ($)'),'')}${inp('nkp',t('Kilos por persona al día','Kilos per person per day'),'')}${inp('npr',t('Precio de venta por kilo ($)','Sale price per kilo ($)'),'')}</div><div id="nOut"></div></div>`;
+    bindCalc(()=>{
+      const k=g('nkg',500),r=g('nt',NaN),kp=g('nkp',NaN),pr=g('npr',NaN);
+      $('#nOut').innerHTML=`<div class="kv"><div><span>${t('Total a pagar','Total pay')}</span><b>${money(k*r)}</b></div><div><span>${t('Jornales necesarios','Picker‑days needed')}</span><b>${isFinite(k/kp)?nf(Math.ceil(k/kp)):'—'}</b></div><div><span>${t('Pago diario por persona','Daily pay per person')}</span><b>${money(kp*r)}</b></div><div><span>${t('% del precio que se va en cosecha','% of price spent on picking')}</span><b>${isFinite(r/pr)?nf(r/pr*100,1)+'%':'—'}</b></div></div><p class="note">${t('Referencia de la guía (Maule, 2020): pago de 350 pesos chilenos por kilo con precio de 950 a 1.200 por kilo, o sea cerca del 30 al 37% del precio.','Guide reference (Maule, 2020): 350 Chilean pesos per kilo against a 950–1,200 price, about 30–37% of the price.')}</p>`;
+    });
+  }
+  if(calcTab==='venta'){
+    o.innerHTML=`<div class="card"><h3>${t('Exportadora o intermediario','Exporter or middleman')}</h3><p class="muted">${t('En la guía, 40% vendía a exportadora a $1.200/kg y 60% a intermediario a $950/kg, porque el intermediario recoge en la finca y cuida la cadena de frío. Compara con tus números.','In the guide 40% sold to exporters at $1,200/kg and 60% to middlemen at $950/kg, since middlemen collect at the farm and keep the cold chain. Compare with your numbers.')}</p>
+    <div class="row">${inp('vkg',t('Kilos a vender','Kilos to sell'),1000)}${inp('vA',t('Precio exportadora / supermercado','Exporter / supermarket price'),1200)}${inp('vAc',t('Costo extra por kilo (flete, frío, empaque)','Extra cost per kilo (freight, cold, pack)'),0)}${inp('vArj',t('% de rechazo exigente','% strict rejection'),10)}</div>
+    <div class="row" style="margin-top:10px">${inp('vB',t('Precio intermediario','Middleman price'),950)}${inp('vBc',t('Costo extra por kilo','Extra cost per kilo'),0)}${inp('vBrj',t('% de rechazo','% rejection'),0)}</div><div id="vOut"></div></div>`;
+    bindCalc(()=>{
+      const k=g('vkg',1000),A=(g('vA',1200)-g('vAc',0))*k*(1-g('vArj',10)/100),B=(g('vB',950)-g('vBc',0))*k*(1-g('vBrj',0)/100);
+      const w=A>=B;
+      $('#vOut').innerHTML=`<div class="kv"><div><span>${t('Te queda con exportadora','Net with exporter')}</span><b>${money(A)}</b></div><div><span>${t('Te queda con intermediario','Net with middleman')}</span><b>${money(B)}</b></div></div><div class="alert ${w?'':'r'}" style="margin-top:12px"><b>${w?t('Gana la exportadora / supermercado','Exporter / supermarket wins'):t('Gana el intermediario','Middleman wins')}</b>${t('Diferencia: ','Difference: ')+money(Math.abs(A-B))}. ${t('Asociarse con otros productores para vender por volumen mejora el precio.','Teaming up with other growers to sell by volume improves price.')}</div>`;
+    });
+  }
+  if(calcTab==='agua'){
+    const wx=S.get('wx',null);const et=wx&&wx.daily&&wx.daily.et0_fao_evapotranspiration?wx.daily.et0_fao_evapotranspiration[0]:null;
+    if(et!=null&&C.et0auto!==false)C.et0=+et.toFixed(1);
+    o.innerHTML=`<div class="card"><h3>${t('¿Cuánto y cuánto tiempo riego hoy?','How much and how long to water today?')}</h3>
+    <p class="muted">${t('Fórmula de INIA: agua del cultivo = ET0 × Kc × Fc. ','INIA formula: crop water = ET0 × Kc × Fc. ')}${et!=null?t('La ET0 de hoy ya viene del pronóstico de tu finca ('+nf(et,1)+' mm).','Today’s ET0 comes from your farm forecast ('+nf(et,1)+' mm).'):t('Escribe la ET0 (mm/día) o abre la pestaña Hoy con internet para traerla sola.','Enter ET0 (mm/day) or open Today online to fetch it.')}</p>
+    <div class="row">${inp('et0',t('ET0 de hoy (mm)','Today’s ET0 (mm)'),3.5)}<div><label>${t('Etapa (Kc)','Stage (Kc)')}</label><select data-c="kc">${[[0.7,t('Brotación / crecimiento · 0,7','Budbreak / growth · 0.7')],[0.8,t('Floración · 0,8','Bloom · 0.8')],[0.9,t('Cuaja / fruto verde · 0,9','Set / green fruit · 0.9')],[1,t('Fruto maduro y cosecha · 1,0','Ripening & harvest · 1.0')]].map(k=>`<option value="${k[0]}" ${cv('kc',0.9)==k[0]?'selected':''}>${k[1]}</option>`).join('')}</select></div></div>
+    <div class="row" style="margin-top:10px">${inp('eh',t('Entre hileras (m)','Row spacing (m)'),3)}${inp('fol',t('Ancho del follaje (m)','Canopy width (m)'),1.2)}${inp('emi',t('Goteros por metro de hilera','Emitters per row metre'),4)}${inp('q',t('Caudal real del gotero (L/h)','Real emitter flow (L/h)'),2.1)}${inp('sp',t('Entre plantas (m)','Between plants (m)'),1)}</div>
+    <div id="aOut"></div></div>`;
+    $$('#calcOut select[data-c]').forEach(e=>e.onchange=()=>{C[e.dataset.c]=parseFloat(e.value);S.set('calc',C);aCalc()});
+    const et0in=$('#calcOut [data-c="et0"]');et0in.addEventListener('input',()=>{C.et0auto=false;S.set('calc',C)});
+    const aCalc=()=>{const E=g('et0',3.5),K=g('kc',0.9),Eh=g('eh',3),X=g('fol',1.2),n=g('emi',4),q=g('q',2.1),sp=g('sp',1);
+      const Pc=Math.min(1,X/Eh),Fc=Math.min(1,0.92*Pc+0.187),ETc=E*K*Fc,Lm=ETc*Eh,TR=Lm/(n*q),hh=Math.floor(TR),mm=Math.round((TR-hh)*60);
+      $('#aOut').innerHTML=`<div class="kv"><div><span>${t('Factor de cobertura (Fc)','Cover factor (Fc)')}</span><b>${nf(Fc,2)}</b></div><div><span>${t('Agua del cultivo (ETc)','Crop water (ETc)')}</span><b>${nf(ETc,2)} mm</b></div><div><span>${t('Litros por metro de hilera','Litres per row metre')}</span><b>${nf(Lm,1)} L</b></div><div><span>${t('Litros por planta','Litres per plant')}</span><b>${nf(Lm*sp,1)} L</b></div><div><span>${t('Tiempo de riego','Run time')}</span><b>${isFinite(TR)?hh+' h '+mm+' min':'—'}</b></div></div><p class="note">${t('Ejemplo de INIA: 11,52 L/m con 4 goteros de 2,1 L/h por metro = 1 h 22 min. Si llovió, réstale lo que cayó. Con tensiómetro, la guía aconseja mantener el suelo cerca de 10 cb.','INIA example: 11.52 L/m with 4 emitters of 2.1 L/h per metre = 1 h 22 min. If it rained, subtract the rainfall. With a tensiometer, keep soil near 10 cb.')}</p>`};
+    $$('#calcOut input[data-c]').forEach(e=>e.oninput=()=>{C[e.dataset.c]=e.value===''?'':parseFloat(e.value);S.set('calc',C);aCalc()});aCalc();
+  }
+  if(calcTab==='fert'){
+    const NUTF=[['N',4,5],['P',1.5,2.5],['K',5,7],['Ca',1.2,1.5],['Mg',0.6,0.8],['S',0.6,0.8],['B',0.02,0.03],['Zn',0.02,0.04]];
+    o.innerHTML=`<div class="card"><h3>${t('¿Cuánto nutriente necesita mi huerto al año?','How much nutrient does my field need per year?')}</h3>
+    <p class="muted">${t('Fórmula de INIA para huertos en plena producción: dosis (kg/ha) = rendimiento esperado (t/ha) × factor. Marca si tu suelo está bajo, normal o alto en cada nutriente (lo dice el análisis de suelo o las señales del campo).','INIA formula for bearing fields: dose (kg/ha) = expected yield (t/ha) × factor. Mark whether your soil is low, normal or high in each nutrient (soil test or field signs).')}</p>
+    <div class="row">${inp('ft',t('Rendimiento esperado (t/ha)','Expected yield (t/ha)'),12)}${inp('fha',t('Hectáreas','Hectares'),1)}${inp('fmul',t('Mulch orgánico (m³ por ha)','Organic mulch (m³ per ha)'),0)}</div>
+    <div class="scroll" style="margin-top:12px"><table class="tbl" id="fTbl"></table></div><div id="fNote"></div></div>`;
+    const lv=k=>cv('fl_'+k,'n');
+    const fCalc=()=>{const T=g('ft',12),ha=g('fha',1),mul=g('fmul',0);
+      $('#fTbl').innerHTML=`<tr><th>${t('Nutriente','Nutrient')}</th><th>${t('Mi suelo','My soil')}</th><th>${t('Factor kg/t','Factor kg/t')}</th><th>kg/ha</th><th>${t('Total','Total')} kg</th></tr>`+NUTF.map(n=>{const l=lv(n[0]);let f=l==='b'?n[2]:l==='a'?n[1]:(n[1]+n[2])/2;let d=T*f;if(n[0]==='N'&&mul>0)d+=mul*4.5;
+        return `<tr><td><b>${n[0]}</b></td><td><select data-fl="${n[0]}" style="padding:6px">${[['b',t('Bajo','Low')],['n',t('Normal','Normal')],['a',t('Alto','High')]].map(o=>`<option value="${o[0]}" ${l===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></td><td>${nf(f,3)}</td><td><b>${nf(d,d<1?2:0)}</b></td><td>${nf(d*ha,d*ha<1?2:0)}</td></tr>`}).join('');
+      $$('#fTbl select').forEach(s=>s.onchange=()=>{C['fl_'+s.dataset.fl]=s.value;S.set('calc',C);fCalc()});
+      $('#fNote').innerHTML=`<p class="note">${t('Son kilos de nutriente puro, no de producto: por ejemplo, la urea trae 46% de N. Suelo bajo = factor alto; suelo alto = factor bajo. ','These are kilos of pure nutrient, not product: e.g. urea is 46% N. Low soil = high factor; high soil = low factor. ')}${mul>0?t('Se sumaron '+nf(mul*4.5)+' kg de N por el mulch orgánico (4 a 5 kg de N por m³, porque el mulch se “come” el nitrógeno). ','Added '+nf(mul*4.5)+' kg N for organic mulch (4–5 kg N per m³, since mulch “eats” nitrogen). '):''}${t('Ejemplo de INIA: 12 t/ha en suelo rico en N y pobre en P y K → N 48, P 30, K 84 kg/ha. Con análisis foliar anual se afina mejor. En bolsa con sustrato, como en Soatá, la planta pide poco y es sensible al exceso.','INIA example: 12 t/ha on N‑rich, P‑ and K‑poor soil → N 48, P 30, K 84 kg/ha. A yearly leaf test fine‑tunes it. In substrate bags, as in Soatá, plants need little and are sensitive to excess.')}</p>`};
+    $$('#calcOut input[data-c]').forEach(e=>e.oninput=()=>{C[e.dataset.c]=e.value===''?'':parseFloat(e.value);S.set('calc',C);fCalc()});fCalc();
+  }
+  if(calcTab==='poda'){
+    o.innerHTML=`<div class="card"><h3>${t('¿Cuántas yemas dejo al podar?','How many buds do I leave when pruning?')}</h3>
+    <p class="muted">${t('Pauta de INIA: según la cosecha que quieres, calcula cuántas yemas florales y ramillas dejar por planta. Cada yema floral da unos 6 frutos y se deja 20% de margen.','INIA method: from your target yield, work out flower buds and shoots to leave per plant. Each flower bud gives about 6 berries, with a 20% margin.')}</p>
+    <div class="row">${inp('pr_kg',t('Cosecha esperada (kg/ha)','Target yield (kg/ha)'),12500)}${inp('pr_e',t('Entre hileras (m)','Row spacing (m)'),3)}${inp('pr_s',t('Entre plantas (m)','Between plants (m)'),0.8)}</div>
+    <div class="row" style="margin-top:10px">${inp('pr_m',t('Plantas muertas %','Dead plants %'),2)}${inp('pr_g',t('Peso de un fruto (g)','Berry weight (g)'),2)}${inp('pr_f',t('Frutos por yema','Berries per bud'),6)}</div><div id="prOut"></div></div>`;
+    bindCalc(()=>{const kg=g('pr_kg',12500),e=g('pr_e',3),s=g('pr_s',0.8),m=g('pr_m',2),gr=g('pr_g',2),f=g('pr_f',6);
+      const pl=10000/(e*s)*(1-m/100),kgp=kg/pl,fr=kgp*1000/gr,ye=fr/f/0.8;
+      $('#prOut').innerHTML=`<div class="kv"><div><span>${t('Plantas vivas por ha','Live plants per ha')}</span><b>${nf(pl)}</b></div><div><span>${t('Kilos por planta','Kilos per plant')}</span><b>${nf(kgp,2)}</b></div><div><span>${t('Frutos por planta','Berries per plant')}</span><b>${nf(fr)}</b></div><div><span>${t('Yemas florales a dejar','Flower buds to leave')}</span><b>${nf(ye)}</b></div><div><span>${t('Ramillas de 6 yemas','Shoots with 6 buds')}</span><b>${nf(Math.ceil(ye/6))}</b></div><div><span>${t('o ramillas de 8 yemas','or shoots with 8 buds')}</span><b>${nf(Math.ceil(ye/8))}</b></div></div><p class="note">${t('Deja ramillas de más de 20 cm (mejor de 30 cm: más cuaja y calibre), con buena compañía de yemas de hoja. Cuenta las yemas antes y después de podar. Pesos de fruto de referencia: Legacy 2 g, Brigitta y Elliot 1,8 g, Duke 1,6 g.','Keep shoots over 20 cm (30 cm is better: more set and size), with enough leaf buds. Count buds before and after pruning. Reference berry weights: Legacy 2 g, Brigitta and Elliot 1.8 g, Duke 1.6 g.')}</p>`});
+  }
+  if(calcTab==='chiza'){
+    o.innerHTML=`<div class="card"><h3>${t('Conteo de chiza (gusano blanco)','White grub count')}</h3>
+    <p class="muted">${t('Saca cubos de suelo de 20 × 20 cm (y 30 cm de hondo) sobre la hilera, cuenta las larvas y te digo si pasaste el umbral de INIA.','Dig 20 × 20 cm soil cubes (30 cm deep) on the row, count the larvae and see if you passed the INIA threshold.')}</p>
+    <div class="row">${inp('ch_n',t('Cubos revisados','Cubes checked'),20)}${inp('ch_l',t('Larvas encontradas','Larvae found'),'')}<div><label>${t('Edad de las plantas','Plant age')}</label><select data-c="ch_a"><option value="p" ${cv('ch_a','p')==='p'?'selected':''}>${t('En producción','Bearing')}</option><option value="j" ${cv('ch_a','p')==='j'?'selected':''}>${t('De 0 a 1 año','0–1 year')}</option></select></div></div><div id="chOut"></div></div>`;
+    $('#calcOut select[data-c]').onchange=e=>{C.ch_a=e.target.value;S.set('calc',C);chCalc()};
+    const chCalc=()=>{const n=g('ch_n',20),l=g('ch_l',NaN),u=cv('ch_a','p')==='j'?1:10;if(isNaN(l)){$('#chOut').innerHTML='';return}
+      const d=l/(n*0.04),over=d>u;
+      $('#chOut').innerHTML=`<div class="kv"><div><span>${t('Larvas por m²','Larvae per m²')}</span><b>${nf(d,1)}</b></div><div><span>${t('Umbral','Threshold')}</span><b>${u} /m²</b></div></div><div class="alert ${over?'d':''}" style="margin-top:12px"><b>${over?t('Pasaste el umbral: hay que actuar','Over threshold: act now'):t('Por debajo del umbral','Below threshold')}</b>${over?t('Consulta con tu agrónomo el control biológico con hongos entomopatógenos; el químico contra larvas es poco eficaz. En Soatá la chiza causó el 30% de las plantas muertas.','Ask your agronomist about biological control with entomopathogenic fungi; chemicals work poorly on larvae. In Soatá grubs caused 30% of dead plants.'):t('Sigue con el monitoreo. Anótalo en la bitácora como Monitoreo de plagas.','Keep scouting. Log it as Pest scouting.')}</div>`};
+    $$('#calcOut input[data-c]').forEach(e=>e.oninput=()=>{C[e.dataset.c]=e.value===''?'':parseFloat(e.value);S.set('calc',C);chCalc()});chCalc();
+  }
+  if(calcTab==='foliar'){
+    o.innerHTML=`<div class="card"><h3>${t('Revisa tu análisis foliar','Check your leaf analysis')}</h3><p class="muted">${t('Escribe los valores que te dio el laboratorio. Deja en blanco los que no tengas.','Enter your lab values. Leave blank what you don’t have.')}</p>
+    <div class="grid g2">${NUT.map((n,i)=>`<div class="row" style="align-items:center"><div style="flex:1 1 120px"><label>${t(n[0],n[1])} ${n[2]}</label><input type="number" step="any" data-c="nut${i}" value="${cv('nut'+i,'')}"></div><div style="flex:1 1 120px" id="nr${i}" class="muted">${nf(n[4],2)} – ${nf(n[5],2)}</div></div>`).join('')}</div><div id="fOut"></div></div>`;
+    bindCalc(()=>{let bad=0,ok=0;NUT.forEach((n,i)=>{const v=g('nut'+i,NaN),el=$('#nr'+i);if(isNaN(v)){el.innerHTML=`${t('Óptimo','Optimum')} ${nf(n[4],2)} – ${nf(n[5],2)}`;return}
+      let s,c;if(v<n[4]){s=t('Bajo','Low');c='var(--amber)';bad++}else if(v>n[5]&&(n[6]==null||v<=n[6])){s=t('Alto','High');c='var(--amber)';bad++}else if(n[6]!=null&&v>n[6]){s=t('Exceso','Excess');c='var(--red)';bad++}else{s=t('Óptimo','Optimum');c='var(--leaf)';ok++}
+      if(n[3]!=null&&v<n[3]){s=t('Deficiencia','Deficient');c='var(--red)'}
+      el.innerHTML=`<b style="color:${c}">${s}</b>`});
+      $('#fOut').innerHTML=(ok+bad)?`<div class="alert ${bad?'r':''}" style="margin-top:14px"><b>${ok} ${t('en óptimo','optimum')} · ${bad} ${t('por corregir','to fix')}</b>${t('Lleva este resultado a tu agrónomo para ajustar el fertirriego.','Take this to your agronomist to adjust fertigation.')}</div>`:''});
+  }
+}
+function irr(cf){let lo=-.99,hi=5;const npv=r=>cf.reduce((a,c,i)=>a+c/Math.pow(1+r,i),0);if(npv(lo)*npv(hi)>0)return NaN;for(let k=0;k<200;k++){const m=(lo+hi)/2;npv(lo)*npv(m)<=0?hi=m:lo=m}return(lo+hi)/2}
+function calcMoney(){
+  const ha=g('ha',1),kg=g('kg',15000),pr=g('pr',1182),inv=g('inv',10000000),cost=g('cost',6661008),r=g('tasa',10)/100;
+  const PROD=[0,0,0,.13,.3,.6,.88,1,1,1,1,1,1],COST=[0,.24,.21,.33,.47,.7,.91,1,1,1,1,1,1];
+  if([kg,pr,inv,cost].some(isNaN)){$('#pOut').innerHTML=`<p class="muted" style="margin-top:12px">${t('Llena los cuatro datos para ver la proyección.','Fill the four values to see the projection.')}</p>`;return}
+  const cf=[],inc=[],cs=[],acc=[];let a=0,pay=null;
+  for(let y=0;y<=12;y++){const I=y?PROD[y]*kg*pr*ha:0,Cc=y?COST[y]*cost*ha:inv*ha,f=I-Cc;inc.push(I);cs.push(Cc);cf.push(f);a+=f;acc.push(a);if(pay===null&&y>0&&a>=0)pay=y}
+  const npv=cf.reduce((s,c,i)=>s+c/Math.pow(1+r,i),0),ti=irr(cf);
+  const full=kg*pr*ha-cost*ha;
+  const W=640,H=230,pad=34,max=Math.max(...acc.map(Math.abs),...inc)||1,bw=(W-pad*2)/13;
+  const y0=H/2;const sc=v=>v/max*(H/2-18);
+  let bars='';for(let y=0;y<=12;y++){const x=pad+y*bw;bars+=`<rect x="${x+bw*.15}" y="${y0-Math.max(0,sc(inc[y]))}" width="${bw*.32}" height="${Math.abs(sc(inc[y]))}" fill="var(--bloom)" rx="3"><animate attributeName="height" from="0" to="${Math.abs(sc(inc[y]))}" dur=".8s"/></rect><rect x="${x+bw*.5}" y="${y0}" width="${bw*.32}" height="${Math.abs(sc(cs[y]))}" fill="var(--amber)" opacity=".75" rx="3"/><text x="${x+bw/2}" y="${H-2}" font-size="11" text-anchor="middle" fill="currentColor">${y}</text>`}
+  const line=acc.map((v,i)=>`${pad+i*bw+bw/2},${y0-sc(v)}`).join(' ');
+  $('#pOut').innerHTML=`<div class="kv"><div><span>${t('Utilidad al año en plena producción','Yearly profit at full production')}</span><b>${money(full)}</b></div><div><span>VAN / NPV ${nf(r*100)}%</span><b>${money(npv)}</b></div><div><span>TIR / IRR</span><b>${isFinite(ti)?nf(ti*100,1)+'%':'—'}</b></div><div><span>${t('Recuperas la inversión','Payback')}</span><b>${pay?t('año ','year ')+pay:t('después de 12 años','after 12 years')}</b></div></div>
+  <svg viewBox="0 0 ${W} ${H}" style="width:100%;margin-top:14px;color:var(--mute)"><line x1="${pad}" x2="${W-pad}" y1="${y0}" y2="${y0}" stroke="currentColor" stroke-width="1"/>${bars}<polyline points="${line}" fill="none" stroke="var(--berry)" stroke-width="3"/>${acc.map((v,i)=>`<circle cx="${pad+i*bw+bw/2}" cy="${y0-sc(v)}" r="3.5" fill="var(--berry)"/>`).join('')}</svg>
+  <div class="chips"><span class="tag" style="background:var(--bloom);color:#fff">${t('Ingresos','Income')}</span><span class="tag a">${t('Costos e inversión','Costs & investment')}</span><span class="tag" style="background:var(--berry);color:#fff">${t('Plata acumulada','Cumulative cash')}</span></div>
+  <p class="note">${t('Con el ejemplo de la guía (1 ha, 15.000 kg/ha, $1.182/kg, inversión $10 millones, costo $6,66 millones) CIREN reporta VAN de $23 millones, TIR 27,4% y recuperación al año 6. En Colombia, Asocolblue habla de inversiones de 50 a 60 mil dólares por hectárea (2020) y productores tecnificados que buscan superar 30 toneladas por hectárea: pon tus cifras reales.','With the guide example (1 ha, 15,000 kg/ha, $1,182/kg, $10M investment, $6.66M cost) CIREN reports NPV $23M, IRR 27.4% and payback in year 6. In Colombia, investments of US$50–60k per hectare (2020) are cited and technified growers aim above 30 t/ha: enter your real numbers.')}</p>`;
+}
+
+/* ============ FINCA ============ */
+const FIN_TABS=[['bit',['Bitácora','Log']],['bpa',['Lista BPA','GAP checklist']],['datos',['Mi finca y respaldo','My farm & backup']]];
+let finTab='bit';
+const LABORS=[['riego','Riego','Irrigation'],['fert','Fertirriego','Fertigation'],['cosecha','Cosecha','Harvest'],['venta','Venta','Sale'],['poda','Poda','Pruning'],['monitoreo','Monitoreo de plagas','Pest scouting'],['aplica','Aplicación','Spray'],['helada','Helada observada','Frost seen'],['otro','Otra labor','Other']];
+const BPA=[
+ ['Análisis de suelo y del agua del reservorio hechos y archivados','Soil and reservoir water tests done and filed'],
+ ['pH del agua de riego verificado (5,5 a 6)','Irrigation water pH checked (5.5–6)'],
+ ['Plántulas certificadas de vivero registrado','Certified plantlets from a registered nursery'],
+ ['Agroquímicos en bodega aparte, en estante metálico, lejos del empaque','Agrochemicals in a separate store on metal shelves, away from packing'],
+ ['Antes de aplicar: fecha de vencimiento, periodo de carencia y registro verificados','Before spraying: expiry, pre‑harvest interval and registration checked'],
+ ['Mezclas preparadas lejos del cultivo y del sitio de empaque','Mixes prepared away from the crop and packing area'],
+ ['Envases con triple lavado, perforados y devueltos al proveedor','Containers triple‑rinsed, punctured and returned to supplier'],
+ ['Restos de poda compostados y devueltos como abono','Prunings composted and returned as fertiliser'],
+ ['Monitoreo semanal de plagas y enfermedades (chiza, cochinilla, roya)','Weekly scouting for pests and diseases (grubs, mealybugs, rust)'],
+ ['Rotación de productos para evitar resistencia','Product rotation to avoid resistance'],
+ ['Motobomba y fumigadora con mantenimiento cada 6 meses','Pump and sprayer serviced every 6 months'],
+ ['Herramientas limpias con cloro y alcohol cada mes','Tools cleaned with chlorine and alcohol monthly'],
+ ['Trabajadores con elementos de protección personal','Workers with personal protective equipment'],
+ ['Tina para desinfectar el calzado al entrar al cultivo','Footbath to disinfect boots at the field entrance'],
+ ['Poscosecha en área separada del cultivo','Post‑harvest in an area separate from the field'],
+ ['Empaque etiquetado: fecha de cosecha, de empaque, vida útil y tabla nutricional','Packs labelled: harvest date, pack date, shelf life and nutrition facts'],
+ ['Registro de producción en planilla','Production recorded on a log sheet'],
+ ['Capacitaciones (UMATA, ICA, AGROSAVIA) con acta y fotos','Trainings (UMATA, ICA, AGROSAVIA) with minutes and photos'],
+ ['Malla antipájaros y polisombra instaladas','Bird netting and ground cover installed'],
+ ['Reunión mensual de evaluación (ciclo PHVA)','Monthly review meeting (PDCA cycle)']
+];
+function getLog(){return S.get('log',[])}
+function renderFin(){
+  $('#segFin').innerHTML=FIN_TABS.map(x=>`<button class="${finTab===x[0]?'on':''}" data-k="${x[0]}">${x[1][L==='en'?1:0]}</button>`).join('');
+  $$('#segFin button').forEach(b=>b.onclick=()=>{finTab=b.dataset.k;renderFin()});
+  const o=$('#finOut');
+  if(finTab==='bit'){
+    o.innerHTML=`<div class="card"><h3>${t('Nueva anotación','New entry')}</h3>
+    <div class="row"><div><label>${t('Fecha','Date')}</label><input type="date" id="lf" value="${todayISO()}"></div><div><label>${t('Labor','Task')}</label><select id="ll">${LABORS.map(x=>`<option value="${x[0]}">${t(x[1],x[2])}</option>`).join('')}</select></div><div><label>${t('Lote','Block')}</label><input id="llo" placeholder="${t('Lote 1','Block 1')}" value="${S.get('lastLote','')}"></div></div>
+    <div class="row" style="margin-top:10px"><div><label>${t('Kilos (cosecha o venta)','Kilos (harvest or sale)')}</label><input type="number" step="any" id="lk"></div><div><label>${t('Valor $ (venta o gasto)','Amount $ (sale or cost)')}</label><input type="number" step="any" id="lv"></div></div>
+    <div style="margin-top:10px"><label>${t('Nota','Note')}</label><textarea id="ln" rows="2" placeholder="${t('Qué se hizo, producto, dosis, observaciones…','What was done, product, dose, notes…')}"></textarea></div>
+    <button class="btn" style="margin-top:12px;width:100%" id="ladd">${t('Guardar en la bitácora','Save to log')}</button></div>
+    <div class="card"><div class="row" style="align-items:center"><h3 style="margin:0">${t('Historial','History')}</h3><select id="lfil" style="flex:0 0 170px"><option value="">${t('Todas las labores','All tasks')}</option>${LABORS.map(x=>`<option value="${x[0]}">${t(x[1],x[2])}</option>`).join('')}</select></div><div id="lsum"></div><div id="llist"></div></div>`;
+    $('#ladd').onclick=()=>{const e={id:Date.now(),f:$('#lf').value,l:$('#ll').value,lo:$('#llo').value.trim(),k:parseFloat($('#lk').value)||0,v:parseFloat($('#lv').value)||0,n:$('#ln').value.trim()};
+      const lg=getLog();lg.push(e);S.set('log',lg);S.set('lastLote',e.lo);toast(t('Guardado','Saved'));renderFin();renderFarm()};
+    $('#lfil').onchange=drawLog;drawLog();
+  }
+  if(finTab==='bpa'){
+    const st=S.get('bpa',{});const done=BPA.filter((_,i)=>st[i]).length;
+    o.innerHTML=`<div class="card"><div class="row" style="align-items:center"><div><div class="big">${Math.round(done/BPA.length*100)}%</div><div class="muted">${done} ${t('de','of')} ${BPA.length} ${t('prácticas cumplidas','practices met')}</div></div><div style="flex:2 1 200px"><div class="bar"><i style="width:${done/BPA.length*100}%"></i></div></div></div>
+    <p class="muted" style="margin-top:10px">${t('Basada en la finca de Soatá: las BPA y BPM son el primer paso hacia la Resolución 2674 de 2013 del Ministerio de Salud, ISO 22000:2018 y los clientes grandes (Éxito, Makro, D1, Ara…) y la exportación.','Based on the Soatá farm: GAP and GMP are the first step toward Health Ministry Resolution 2674 of 2013, ISO 22000:2018, big retail buyers and exports.')}</p>
+    ${BPA.map((b,i)=>`<div class="chk ${st[i]?'on':''}" data-i="${i}"><div class="box"></div><div class="t">${t(b[0],b[1])}</div></div>`).join('')}</div>`;
+    $$('.chk').forEach(c=>c.onclick=()=>{const s=S.get('bpa',{});s[c.dataset.i]=!s[c.dataset.i];S.set('bpa',s);renderFin();renderFarm()});
+  }
+  if(finTab==='datos'){
+    o.innerHTML=`<div class="card"><h3>${t('Nombre de la finca','Farm name')}</h3><div class="row"><div><input id="fn" value="${S.get('finca','')}" placeholder="${t('Ej: Finca Los Arándanos','e.g. Blueberry Hill Farm')}"></div><div style="flex:0 0 auto"><button class="btn" id="fns">${t('Guardar','Save')}</button></div></div></div>
+    <div class="card"><h3>${t('Respaldo de los datos','Data backup')}</h3><p class="muted">${t('Los datos viven en este celular. Descarga el respaldo de vez en cuando y guárdalo en WhatsApp o Drive.','Data lives on this phone. Download a backup now and then and keep it in WhatsApp or Drive.')}</p>
+    <div class="row"><button class="btn" id="bkJ">${t('Descargar respaldo (.json)','Download backup (.json)')}</button><button class="btn ghost" id="bkC">${t('Bitácora en Excel (.csv)','Log for Excel (.csv)')}</button></div>
+    <div style="margin-top:12px"><label>${t('Restaurar respaldo','Restore backup')}</label><input type="file" id="bkI" accept=".json,application/json"></div></div>`;
+    $('#fns').onclick=()=>{S.set('finca',$('#fn').value.trim());renderHero();toast(t('Listo','Done'))};
+    $('#bkJ').onclick=()=>dl('arandano-pro-respaldo-'+todayISO()+'.json',JSON.stringify({finca:S.get('finca',''),log:getLog(),bpa:S.get('bpa',{}),calc:C,place:S.get('place',0),gps:S.get('gps',null),stages:selStages},null,1),'application/json');
+    $('#bkC').onclick=()=>{const rows=[['fecha','labor','lote','kilos','valor','nota']].concat(getLog().map(e=>[e.f,labName(e.l),e.lo,e.k,e.v,e.n]));dl('bitacora-'+todayISO()+'.csv','﻿'+rows.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\n'),'text/csv')};
+    $('#bkI').onchange=ev=>{const f=ev.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);['finca','log','bpa','calc','place','gps','stages'].forEach(k=>{if(d[k]!==undefined)S.set(k,d[k])});toast(t('Respaldo restaurado','Backup restored'));setTimeout(()=>location.reload(),700)}catch(e){toast(t('Archivo no válido','Invalid file'))}};rd.readAsText(f)};
+  }
+}
+function labName(id){const x=LABORS.find(l=>l[0]===id);return x?t(x[1],x[2]):id}
+function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function drawLog(){
+  const f=$('#lfil')?$('#lfil').value:'';const lg=getLog().filter(e=>!f||e.l===f).sort((a,b)=>b.f.localeCompare(a.f)||b.id-a.id);
+  const kgC=lg.filter(e=>e.l==='cosecha').reduce((s,e)=>s+e.k,0),vV=lg.filter(e=>e.l==='venta').reduce((s,e)=>s+e.v,0);
+  $('#lsum').innerHTML=lg.length?`<div class="kv"><div><span>${t('Anotaciones','Entries')}</span><b>${nf(lg.length)}</b></div><div><span>${t('Kilos cosechados','Kilos picked')}</span><b>${nf(kgC,1)}</b></div><div><span>${t('Ventas','Sales')}</span><b>${money(vV)}</b></div></div>`:'';
+  $('#llist').innerHTML=lg.length?lg.map(e=>{const d=new Date(e.f+'T12:00:00');return `<div class="log"><div class="d"><b>${d.getDate()}</b>${d.toLocaleDateString(L==='en'?'en-US':'es-CO',{month:'short'})}</div><div><b>${labName(e.l)}</b>${e.lo?' · '+e.lo:''}<div class="muted">${[e.k?nf(e.k,1)+' kg':'',e.v?money(e.v):''].filter(Boolean).join(' · ')}</div>${e.n?`<div>${e.n.replace(/</g,'&lt;')}</div>`:''}</div><button class="x" data-id="${e.id}" aria-label="${t('Borrar','Delete')}">${t('Borrar','Delete')}</button></div>`}).join(''):`<p class="muted" style="margin-top:10px">${t('Todavía no hay anotaciones. La primera puede ser la cosecha de hoy.','No entries yet. Start with today’s harvest.')}</p>`;
+  $$('#llist .x').forEach(b=>b.onclick=()=>{if(!confirm(t('¿Borrar esta anotación?','Delete this entry?')))return;S.set('log',getLog().filter(e=>e.id!=b.dataset.id));drawLog();renderFarm()});
+}
+function renderFarm(){
+  const lg=getLog();const m=todayISO().slice(0,7);
+  const kgM=lg.filter(e=>e.l==='cosecha'&&e.f.startsWith(m)).reduce((s,e)=>s+e.k,0);
+  const last=lg.slice().sort((a,b)=>b.f.localeCompare(a.f)||b.id-a.id)[0];
+  const st=S.get('bpa',{});const done=BPA.filter((_,i)=>st[i]).length;
+  $('#farmSummary').innerHTML=`<div class="kv"><div><span>${t('Kilos este mes','Kilos this month')}</span><b>${nf(kgM,1)}</b></div><div><span>${t('Lista BPA','GAP list')}</span><b>${Math.round(done/BPA.length*100)}%</b></div></div><p class="muted" style="margin-top:10px">${last?t('Última labor: ','Last task: ')+labName(last.l)+' ('+last.f+')':t('Empieza tu bitácora en Mi finca.','Start your log in My farm.')}</p><button class="btn sm" onclick="go('finca')">${t('Abrir mi finca','Open my farm')}</button>`;
+}
+
+/* ============ MERCADO ============ */
+const MKT_TABS=[['col',['Colombia hoy','Colombia today']],['mundo',['El mundo','The world']],['otros',['Otros 9 cultivos','Other 9 crops']]];
+let mktTab='col';
+const WORLD=[[2009,794],[2010,806],[2011,899],[2012,998],[2013,1063],[2014,1201],[2015,1209],[2016,1247],[2017,1399],[2018,1405]];
+const CROPS=[
+ {k:'papa',es:'Papa',en:'Potato',img:'papa',clima:['Óptimo 18–22 °C; máx. 30 °C; resistencia media a baja a heladas','Optimum 18–22 °C; max 30 °C; medium‑low frost resistance'],suelo:['pH 5,5–7,4; más de 55 cm de suelo','pH 5.5–7.4; over 55 cm soil'],eco:['30 t/ha a $150/kg = $4,5 millones/ha de ingreso; costo directo $2,63 millones (Patagonia, riego por surco)','30 t/ha at $150/kg = $4.5M/ha income; direct cost $2.63M (Patagonia, furrow)'],tir:null,col:1},
+ {k:'cebolla',es:'Cebolla',en:'Onion',img:'cebolla',clima:['Óptimo 20–25 °C; daño a -1 °C en hojas; día largo (más de 14 h) o día neutro (10–14 h)','Optimum 20–25 °C; leaf damage at -1 °C; long‑day (>14 h) or day‑neutral (10–14 h)'],suelo:['pH 6,4–7,4; más de 50 cm','pH 6.4–7.4; over 50 cm'],eco:['50 t/ha a $148/kg = $7,4 millones; beneficio $2,98 millones/ha','50 t/ha at $148/kg = $7.4M; profit $2.98M/ha'],tir:null,col:1},
+ {k:'quinoa',es:'Quinua',en:'Quinoa',img:'quinoa',clima:['Óptimo 15–25 °C; daño a -4 °C en floración y llenado de grano','Optimum 15–25 °C; damage at -4 °C during bloom and grain fill'],suelo:['pH óptimo 6 (aguanta de 4,5 a 9); muy tolerante a la sal','Optimum pH 6 (tolerates 4.5–9); very salt tolerant'],eco:['2 t/ha a $700/kg = $1,4 millones; margen $395 mil/ha','2 t/ha at $700/kg = $1.4M; margin $395k/ha'],tir:null,col:1},
+ {k:'ciruelo',es:'Ciruelo europeo',en:'European plum',img:'ciruelo',clima:['Óptimo 18–27 °C; daño a -2 °C en fruto pequeño; 500–1.000 horas frío','Optimum 18–27 °C; damage at -2 °C on small fruit; 500–1,000 chill hours'],suelo:['pH 5,5–6,5; más de 80 cm','pH 5.5–6.5; over 80 cm'],eco:['Fresco: VAN $43,4 millones, recupera en 5 años. Deshidratado: TIR 19%','Fresh: NPV $43.4M, payback 5 years. Dried: IRR 19%'],tir:45},
+ {k:'pistacho',es:'Pistacho',en:'Pistachio',img:'pistacho',clima:['Óptimo 10–25 °C; 700–1.000 horas frío; aguanta hasta 42 °C','Optimum 10–25 °C; 700–1,000 chill hours; tolerates up to 42 °C'],suelo:['pH 8–9; más de 1,2 m','pH 8–9; over 1.2 m'],eco:['4.000 kg/ha; VAN $41,8 millones; recupera en 7 años','4,000 kg/ha; NPV $41.8M; payback 7 years'],tir:38},
+ {k:'cerezo',es:'Cerezo',en:'Cherry',img:'cerezo',clima:['Óptimo 18–24 °C; daño a -1,5 °C en fruto recién cuajado; 400–1.500 horas frío','Optimum 18–24 °C; damage at -1.5 °C on new fruit; 400–1,500 chill hours'],suelo:['pH 6,0–6,5; 1,2–1,5 m','pH 6.0–6.5; 1.2–1.5 m'],eco:['Lapins, 1.111 plantas/ha; VAN $29 millones; recupera en 6 años','Lapins, 1,111 plants/ha; NPV $29M; payback 6 years'],tir:29},
+ {k:'arandano',es:'Arándano',en:'Blueberry',img:'bayas',clima:['Óptimo cerca de 15 °C; flor se daña a -2,3 °C','Optimum around 15 °C; bloom damaged at -2.3 °C'],suelo:['pH 4,5–5,0','pH 4.5–5.0'],eco:['15.000 kg/ha; VAN $23 millones; recupera en 6 años','15,000 kg/ha; NPV $23M; payback 6 years'],tir:27.4},
+ {k:'avellano',es:'Avellano europeo',en:'Hazelnut',img:'avellano',clima:['Óptimo 10–20 °C; 700–1.200 horas frío; brotes se dañan a -1 °C','Optimum 10–20 °C; 700–1,200 chill hours; shoots damaged at -1 °C'],suelo:['pH 6,2–7,6','pH 6.2–7.6'],eco:['Barcelona, 500 plantas/ha; VAN $7,6 millones; recupera en 5 años','Barcelona, 500 plants/ha; NPV $7.6M; payback 5 years'],tir:27},
+ {k:'nogal',es:'Nogal',en:'Walnut',img:'nogal',clima:['Óptimo 21–28 °C; flor se daña a -2 °C; 700–1.000 horas frío','Optimum 21–28 °C; bloom damaged at -2 °C; 700–1,000 chill hours'],suelo:['pH 5,4–8; más de 1 m','pH 5.4–8; over 1 m'],eco:['Chandler, 225 plantas/ha; VAN $2,2 millones; recupera en 8 años','Chandler, 225 plants/ha; NPV $2.2M; payback 8 years'],tir:14},
+ {k:'esparrago',es:'Espárrago',en:'Asparagus',img:'esparrago',clima:['Óptimo 16–24 °C; turión se daña a -1 °C','Optimum 16–24 °C; spears damaged at -1 °C'],suelo:['pH 6,5–7,5; 1–1,5 m; franco arenoso','pH 6.5–7.5; 1–1.5 m; sandy loam'],eco:['6.000 kg/ha a $729/kg; VAN $774 mil; recupera en 6 años','6,000 kg/ha at $729/kg; NPV $774k; payback 6 years'],tir:13}
+];
+function renderMkt(){
+  $('#segMkt').innerHTML=MKT_TABS.map(x=>`<button class="${mktTab===x[0]?'on':''}" data-k="${x[0]}">${x[1][L==='en'?1:0]}</button>`).join('');
+  $$('#segMkt button').forEach(b=>b.onclick=()=>{mktTab=b.dataset.k;renderMkt()});
+  const o=$('#mktOut');
+  if(mktTab==='col'){
+    o.innerHTML=`${photo('img/cosecha-hileras.jpg',t('Arándano colombiano: casi todo se queda en el país','Colombian blueberries: nearly all stay at home'))}
+    <div class="card reveal" style="margin-top:16px"><h3>${t('Las cifras de 2025–2026','2025–2026 figures')}</h3>
+    <div class="kv"><div><span>${t('Área sembrada','Planted area')}</span><b>≈ 1.000 ha</b></div><div><span>${t('Producción 2025','2025 output')}</span><b>12.000 t</b></div><div><span>${t('Consumo nacional','Domestic use')}</span><b>95%</b></div><div><span>${t('Exportación 2025','2025 exports')}</span><b>≈ US$3,1 M</b></div><div><span>${t('A Estados Unidos','To the U.S.')}</span><b>≈ 90%</b></div><div><span>${t('Meta 2027','2027 target')}</span><b>≈ 1.500 ha</b></div></div>
+    <ul style="margin-top:14px">
+    <li>${t('Asocolblue proyecta crecer 20% en 2026 y otro 20% en 2027. Hay quienes hablan de 5.000 a 6.000 hectáreas en 2030.','Asocolblue projects 20% growth in 2026 and another 20% in 2027. Some talk of 5,000–6,000 ha by 2030.')}</li>
+    <li>${t('Colombia todavía importa arándano de Chile y Perú: más de US$10 millones entre enero y septiembre de 2025.','Colombia still imports blueberries from Chile and Peru: over US$10M between January and September 2025.')}</li>
+    <li>${t('Planta empacadora en Tocancipá (Cundinamarca) prevista para agosto de 2026, con capacidad para la fruta de hasta 500 hectáreas.','A packing plant in Tocancipá (Cundinamarca) slated for August 2026, sized for up to 500 hectares of fruit.')}</li>
+    <li>${t('Productores tecnificados dicen que Colombia puede superar las 30 a 35 toneladas por hectárea.','Technified growers say Colombia can top 30–35 tonnes per hectare.')}</li>
+    <li>${t('Mercados que se buscan abrir: Brasil, Argentina, México y China. Ya se envía a Canadá, Emiratos y Arabia Saudita.','Markets being opened: Brazil, Argentina, Mexico and China. Already shipping to Canada, the UAE and Saudi Arabia.')}</li>
+    <li>${t('Para vender a grandes superficies y exportar se piden BPA, BPM e ISO 22000 (UNAD, 2021).','Big retailers and exporters ask for GAP, GMP and ISO 22000 (UNAD, 2021).')}</li></ul>
+    <p class="note">${t('Fuentes: Asocolblue en Portal Frutícola (23 feb. y 21 abr. 2026); Forbes Colombia (4 may. 2026); UNAD (2021).','Sources: Asocolblue in Portal Frutícola (23 Feb & 21 Apr 2026); Forbes Colombia (4 May 2026); UNAD (2021).')}</p></div>
+    <div class="card reveal"><h3>${t('Cómo arrancó','How it started')}</h3><p>${t('En 2019 Colombia exportó 145 toneladas por cerca de US$500 mil, con precios FOB de 7 a 9 dólares por kilo, y cada hectárea genera hasta 7 empleos directos (Afanador, 2020, citado por UNAD).','In 2019 Colombia exported 145 tonnes worth about US$500k, at FOB prices of US$7–9 per kilo, and each hectare creates up to 7 direct jobs (Afanador, 2020, cited by UNAD).')}</p></div>`;
+  }
+  if(mktTab==='mundo'){
+    const W=640,H=240,p=34,mx=1600,bw=(W-p*2)/WORLD.length;
+    const bars=WORLD.map((w,i)=>{const h=w[1]/mx*(H-60);return `<rect x="${p+i*bw+6}" y="${H-28-h}" width="${bw-12}" height="${h}" rx="5" fill="${i===WORLD.length-1?'var(--berry)':'var(--bloom)'}"><animate attributeName="height" from="0" to="${h}" dur=".9s"/><animate attributeName="y" from="${H-28}" to="${H-28-h}" dur=".9s"/></rect><text x="${p+i*bw+bw/2}" y="${H-32-h}" font-size="11" text-anchor="middle" fill="currentColor" font-weight="700">${nf(w[1])}</text><text x="${p+i*bw+bw/2}" y="${H-10}" font-size="11" text-anchor="middle" fill="currentColor">${w[0]}</text>`}).join('');
+    const share=(arr)=>arr.map(a=>`<div style="margin:8px 0"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><b style="flex:1">${a[0]}</b><span style="flex:0 0 auto">${nf(a[1],1)}%</span></div><div class="bar"><i style="width:${a[1]/50*100}%"></i></div></div>`).join('');
+    o.innerHTML=`<div class="card reveal"><h3>${t('Producción mundial (miles de toneladas)','World production (thousand tonnes)')}</h3><svg viewBox="0 0 ${W} ${H}" style="width:100%;color:var(--mute)">${bars}</svg><p class="note">FAOSTAT 2020, ${t('en CIREN (2020)','in CIREN (2020)')}.</p></div>
+    <div class="grid g2"><div class="card reveal"><h3>${t('Quién produce (2018)','Who grows it (2018)')}</h3>${share([[t('Estados Unidos','United States'),47],['Canadá',25.6],['Chile',7.6],['Perú',6.7],[t('España','Spain'),3.1],[t('Otros','Others'),10.1]])}</div>
+    <div class="card reveal"><h3>${t('Quién exporta (2017)','Who exports (2017)')}</h3>${share([['Chile',27],['Canadá',26],[t('Estados Unidos','United States'),12],[t('Países Bajos','Netherlands'),10],[t('España','Spain'),8],[t('Marruecos','Morocco'),5]])}</div></div>
+    <div class="card reveal"><h3>${t('Lección de Chile','Lesson from Chile')}</h3><p>${t('En la temporada 2019/2020 el kilo bajó de unos 8 a 4 dólares por la guerra comercial y la competencia de Perú y México. Estados Unidos recibe el 52% de lo que exporta Chile y Europa el 32%. Moraleja: no depender de un solo comprador ni de un solo mercado.','In 2019/2020 the price fell from about US$8 to US$4 per kilo due to the trade war and competition from Peru and Mexico. The U.S. takes 52% of Chile’s exports and Europe 32%. Moral: don’t rely on one buyer or market.')}</p></div>`;
+  }
+  if(mktTab==='otros'){
+    const mx=50;
+    o.innerHTML=`<div class="card reveal"><h3>${t('Rentabilidad comparada (TIR a 12 años)','Compared returns (12‑year IRR)')}</h3>${CROPS.filter(c=>c.tir).map(c=>`<div style="margin:9px 0"><div class="row" style="flex-wrap:nowrap;justify-content:space-between"><b style="flex:1">${c[L]}</b><span style="flex:0 0 auto">${nf(c.tir,1)}%</span></div><div class="bar"><i style="width:${c.tir/mx*100}%;${c.k==='arandano'?'background:var(--berry)':''}"></i></div></div>`).join('')}
+    <p class="note">${t('Valores de la guía CIREN para el Maule (Chile), en pesos chilenos de 2020, nivel tecnológico medio. Los frutales de mucho frío (nogal, cerezo, pistacho, avellano, ciruelo) piden horas frío que en el trópico casi no se dan; papa, cebolla y quinua sí se siembran en tierra fría colombiana.','CIREN guide values for Maule (Chile), in 2020 Chilean pesos, medium technology. High‑chill fruit (walnut, cherry, pistachio, hazelnut, plum) need chill hours the tropics rarely give; potato, onion and quinoa are grown in Colombia’s cool highlands.')}</p></div>
+    <div class="grid g2">${CROPS.filter(c=>c.k!=='arandano').map(c=>`<div class="card reveal"><div class="crop"><img src="img/${c.img}.jpg" alt="${c[L]}" loading="lazy"><div><h3>${c[L]}</h3>${c.col?`<span class="tag g">${t('Tierra fría colombiana','Colombian highlands')}</span>`:`<span class="tag a">${t('Necesita horas frío','Needs chill hours')}</span>`}${c.tir?`<span class="tag">TIR ${nf(c.tir,1)}%</span>`:''}
+    <p style="font-size:.88rem;margin-top:6px"><b>${t('Clima','Climate')}:</b> ${t(c.clima[0],c.clima[1])}<br><b>${t('Suelo','Soil')}:</b> ${t(c.suelo[0],c.suelo[1])}<br><b>${t('Plata','Money')}:</b> ${t(c.eco[0],c.eco[1])}</p></div></div></div>`).join('')}</div>`;
+  }
+  observe();
+}
+
+/* ============ NAV / misc ============ */
+function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav.bot button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));window.scrollTo({top:0,behavior:'smooth'});S.set('view',v);observe()}
+$$('nav.bot button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+let io;function observe(){if(!('IntersectionObserver'in window)){$$('.reveal').forEach(e=>e.classList.add('in'));return}io=io||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});$$('.reveal:not(.in)').forEach(e=>io.observe(e))}
+function renderAll(){applyUI();renderHero();setCap();renderStages();renderPlaces();renderWx();renderTip();renderFarm();renderCrop();renderCalc();renderFin();renderMkt();manualCheck();observe()}
+$('#btnEs').onclick=()=>{L='es';S.set('lang',L);renderAll()};
+$('#btnEn').onclick=()=>{L='en';S.set('lang',L);renderAll()};
+$('#btnRefresh').onclick=()=>{loadWx(true);renderHero();toast(t('Actualizando…','Refreshing…'))};
+$('#btnTip').onclick=()=>{tipI=(tipI+1)%TIPS.length;renderTip()};
+$('#place').onchange=e=>{S.set('place',e.target.value);loadWx(true)};
+$('#btnGeo').onclick=()=>{if(!navigator.geolocation){toast(t('Tu celular no da la ubicación','Location not available'));return}
+  navigator.geolocation.getCurrentPosition(p=>{S.set('gps',{lat:p.coords.latitude,lon:p.coords.longitude});S.set('place','gps');renderPlaces();loadWx(true)},()=>toast(t('No se pudo leer la ubicación','Could not read location')),{enableHighAccuracy:true,timeout:15000})};
+['#mMin','#mMax','#mRain'].forEach(s=>$(s).oninput=manualCheck);
+setInterval(renderHero,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){const j=S.get('wx',null);if(!j||Date.now()-j._at>30*60000)loadWx()}});
+
+/* install */
+let dp;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!S.get('noInstall',false))$('#install').classList.add('show')});
+$('#btnInstall').onclick=async()=>{$('#install').classList.remove('show');if(dp){dp.prompt();await dp.userChoice;dp=null}};
+$('#btnNoInstall').onclick=()=>{$('#install').classList.remove('show');S.set('noInstall',true)};
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+buildHero();renderAll();go(S.get('view','hoy'));loadWx();
+</script>
+</body>
+</html>
