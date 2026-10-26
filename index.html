@@ -172,6 +172,18 @@ nav.bot button{flex:1;border:0;background:none;padding:12px 2px 13px;font-weight
 nav.bot button.on{color:var(--berry)}
 nav.bot button.on:before{content:"";position:absolute;top:0;left:22%;right:22%;height:3px;border-radius:0 0 4px 4px;background:var(--berry)}
 
+.avc-promo{position:relative;margin-top:4px;border-radius:var(--r);overflow:hidden;min-height:260px;cursor:pointer;color:#fff;background:var(--night);box-shadow:var(--shadow)}
+.avc-promo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 16s ease-in-out infinite alternate}
+.avc-promo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(21,26,63,.95) 0%,rgba(21,26,63,.75) 55%,rgba(21,26,63,.25) 100%)}
+.avc-promo-t{position:relative;z-index:2;padding:22px;max-width:560px}
+.avc-promo-t .kicker{color:var(--bloom)}
+.avc-promo-t h3{font-size:1.45rem;margin:.3em 0}
+.avc-promo-t p{color:#dfe3ff}
+.avc-promo-t .btn{display:inline-block;background:#fff;color:var(--night)}
+.tl{position:relative;padding-left:22px;border-left:3px solid var(--bloom);margin:6px 0 4px 6px}
+.tl div{position:relative;margin-bottom:14px}
+.tl div:before{content:"";position:absolute;left:-30px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--berry);border:3px solid var(--card)}
+.tl b{display:block;color:var(--berry);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
 .install{display:none;position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:45;background:var(--night);color:#fff;border-radius:16px;padding:14px;box-shadow:var(--shadow);align-items:center;gap:10px}
 .install.show{display:flex}
 .install p{margin:0;flex:1;font-size:.9rem}
@@ -237,6 +249,10 @@ footer b{color:var(--ink)}
             <div class="kicker" style="color:var(--berry)" data-t="farmKicker"></div>
             <div id="farmSummary"></div>
           </div>
+        </div>
+        <div class="avc-promo reveal" id="avcPromo" onclick="mktTab='avc';go('mercado');renderMkt()">
+          <img src="img/huerto-otono.jpg" alt="">
+          <div class="avc-promo-t"><div class="kicker" data-t="avcKicker"></div><h3 data-t="avcPromoT"></h3><p data-t="avcPromoP"></p><span class="btn sm" data-t="avcPromoB"></span></div>
         </div>
       </section>
       <section>
@@ -343,6 +359,7 @@ const UI={
  todaySub:['Pronóstico real de 7 días comparado con las temperaturas críticas del arándano. Se actualiza cada vez que entras.','Real 7‑day forecast checked against blueberry critical temperatures. Updates every time you open the app.'],
  lblPlace:['Ubicación de la finca','Farm location'],useGps:['Usar mi ubicación','Use my location'],
  lblStages:['¿En qué etapa están tus plantas? (puedes marcar varias)','What stage are your plants in? (pick several)'],
+ avcKicker:['Inversión y empaque','Investment & packing'],avcPromoT:['Agroventure Capital: la apuesta grande por el arándano colombiano','Agroventure Capital: the big bet on Colombian blueberries'],avcPromoP:['124 hectáreas, meta de 500 en 2030 y una empacadora en Tocancipá que también atenderá a pequeños y medianos productores.','124 hectares, a 500‑ha target for 2030 and a packing plant in Tocancipá that will also serve small and mid‑size growers.'],avcPromoB:['Ver el módulo','Open the module'],
  tipKicker:['Dato del día','Tip of the day'],nextTip:['Otro dato','Another tip'],farmKicker:['Tu finca en números','Your farm in numbers'],
  manualTitle:['¿Sin señal? Revisa a mano','No signal? Check by hand'],
  manualSub:['Escribe la mínima y máxima que anuncian (o que mide tu termómetro) y te digo el riesgo.','Type the forecast (or your thermometer’s) low and high and get the risk.'],
@@ -354,7 +371,7 @@ const UI={
  finKicker:['Mi finca','My farm'],finTitle:['Registro y buenas prácticas','Records and good practices'],
  finSub:['Lleva la bitácora de labores y cosechas, y la lista de chequeo BPA. Todo queda guardado en este celular.','Keep the work and harvest log plus the GAP checklist. Everything is saved on this phone.'],
  mktKicker:['Mercado y otros cultivos','Market and other crops'],mktTitle:['El negocio del arándano','The blueberry business'],
- mktSub:['Colombia hoy, el mundo, y los otros 9 cultivos que trae la guía.','Colombia today, the world, and the other 9 crops in the guide.'],
+ mktSub:['Colombia hoy, Agroventure Capital, el mundo y los otros 9 cultivos que trae la guía.','Colombia today, Agroventure Capital, the world and the other 9 crops in the guide.'],
  installMsg:['Instala Arándano Pro en tu celular y úsalo en la finca sin internet.','Install Arándano Pro and use it on the farm offline.'],install:['Instalar','Install'],
  sourcesFoot:['Fuentes: INIA‑INDAP (2017) Manual de manejo agronómico del arándano, Boletín INIA 371; CIREN (2020) Guía productiva para el cultivo de especies hortofrutícolas en la región del Maule; López, Guevara y Bogoya (2021) Producción del cultivo de arándanos bajo BPA en famiempresa de Soatá, Boyacá (UNAD); Asocolblue, Portal Frutícola y Forbes Colombia (2026). Clima: Open‑Meteo.','Sources: INIA‑INDAP (2017) Blueberry agronomic management manual, INIA Bulletin 371; CIREN (2020) Production guide for horticultural species in Maule; López, Guevara & Bogoya (2021) Blueberry production under GAP in a family farm in Soatá, Boyacá (UNAD); Asocolblue, Portal Frutícola and Forbes Colombia (2026). Weather: Open‑Meteo.']
 };
@@ -901,7 +918,7 @@ function renderFarm(){
 }
 
 /* ============ MERCADO ============ */
-const MKT_TABS=[['col',['Colombia hoy','Colombia today']],['mundo',['El mundo','The world']],['otros',['Otros 9 cultivos','Other 9 crops']]];
+const MKT_TABS=[['col',['Colombia hoy','Colombia today']],['avc',['Agroventure Capital','Agroventure Capital']],['mundo',['El mundo','The world']],['otros',['Otros 9 cultivos','Other 9 crops']]];
 let mktTab='col';
 const WORLD=[[2009,794],[2010,806],[2011,899],[2012,998],[2013,1063],[2014,1201],[2015,1209],[2016,1247],[2017,1399],[2018,1405]];
 const CROPS=[
@@ -933,6 +950,36 @@ function renderMkt(){
     <li>${t('Para vender a grandes superficies y exportar se piden BPA, BPM e ISO 22000 (UNAD, 2021).','Big retailers and exporters ask for GAP, GMP and ISO 22000 (UNAD, 2021).')}</li></ul>
     <p class="note">${t('Fuentes: Asocolblue en Portal Frutícola (23 feb. y 21 abr. 2026); Forbes Colombia (4 may. 2026); UNAD (2021).','Sources: Asocolblue in Portal Frutícola (23 Feb & 21 Apr 2026); Forbes Colombia (4 May 2026); UNAD (2021).')}</p></div>
     <div class="card reveal"><h3>${t('Cómo arrancó','How it started')}</h3><p>${t('En 2019 Colombia exportó 145 toneladas por cerca de US$500 mil, con precios FOB de 7 a 9 dólares por kilo, y cada hectárea genera hasta 7 empleos directos (Afanador, 2020, citado por UNAD).','In 2019 Colombia exported 145 tonnes worth about US$500k, at FOB prices of US$7–9 per kilo, and each hectare creates up to 7 direct jobs (Afanador, 2020, cited by UNAD).')}</p></div>`;
+  }
+  if(mktTab==='avc'){
+    const HA=[['2025',26,t('Proyecto propio (ene.)','Own project (Jan)')],['2026',124,t('Cierre del año','Year end')],['2027',281,t('+157 ha nuevas','+157 new ha')],['2030',500,t('Meta','Target')]];
+    const W=640,H=300,p=20,bw=(W-p*2)/HA.length,mx=520;
+    const bars=HA.map((x,i)=>{const h=x[1]/mx*(H-100);return `<rect x="${p+i*bw+14}" y="${H-52-h}" width="${bw-28}" height="${h}" rx="8" fill="${i===1?'var(--berry)':'var(--bloom)'}"><animate attributeName="height" from="0" to="${h}" dur="1s"/><animate attributeName="y" from="${H-52}" to="${H-52-h}" dur="1s"/></rect><text x="${p+i*bw+bw/2}" y="${H-60-h}" font-size="24" font-weight="800" text-anchor="middle" fill="currentColor">${nf(x[1])} ha</text><text x="${p+i*bw+bw/2}" y="${H-28}" font-size="20" font-weight="800" text-anchor="middle" fill="currentColor">${x[0]}</text><text x="${p+i*bw+bw/2}" y="${H-6}" font-size="15" text-anchor="middle" fill="currentColor">${x[2]}</text>`}).join('');
+    o.innerHTML=`<div class="avc-promo" style="cursor:default;min-height:300px"><img src="img/cultivo-cubierto.jpg" alt=""><div class="avc-promo-t"><div class="kicker">${t('Inversión agrícola · Bogotá','Agricultural investment · Bogotá')}</div><h3 style="font-size:1.9rem">Agroventure Capital</h3><p>${t('Firma colombiana que conecta inversionistas de mercados exigentes con los mejores agricultores de la región. Su gerente, Miller Preciado, lidera una de las apuestas más grandes por el arándano de montaña en Colombia.','Colombian firm connecting investors from demanding markets with the region’s best farmers. Its general manager, Miller Preciado, leads one of the biggest bets on Colombian highland blueberries.')}</p></div></div>
+    <div class="card reveal" style="margin-top:16px"><h3>${t('En cifras','By the numbers')}</h3><div class="kv"><div><span>${t('Árboles sembrados','Trees planted')}</span><b>2.000.000</b></div><div><span>${t('Años de experiencia','Years of experience')}</span><b>17</b></div><div><span>${t('Asociaciones de pequeños y medianos productores','Small & mid‑size grower associations')}</span><b>25</b></div><div><span>${t('Hectáreas de arándano a fin de 2026','Blueberry hectares, end of 2026')}</span><b>124</b></div></div><p class="note">${t('Las tres primeras cifras son de su página web (agroventurecapital.com.co); las hectáreas, de Portal Frutícola (abr. 2026).','The first three figures come from their website (agroventurecapital.com.co); hectares from Portal Frutícola (Apr 2026).')}</p></div>
+    <div class="card reveal"><h3>${t('Así crece su arándano','How their blueberry acreage grows')}</h3><svg viewBox="0 0 ${W} ${H}" style="width:100%;color:var(--mute)">${bars}</svg><p class="note">${t('Fuente: declaraciones de Miller Preciado a Portal Frutícola (ene. 2025 y abr. 2026). 2027 suma las 157 ha anunciadas a las 124 de 2026.','Source: Miller Preciado to Portal Frutícola (Jan 2025 and Apr 2026). 2027 adds the announced 157 ha to 2026’s 124.')}</p></div>
+    <div class="card reveal"><h3>${t('La historia en el tiempo','The story over time')}</h3><div class="tl">
+    <div><b>2024</b>${t('Primeros ensayos en Antioquia, con fruta de “óptima calidad y buen calibre”.','First trials in Antioquia, with fruit of “optimal quality and good size”.')}</div>
+    <div><b>${t('Enero 2025','January 2025')}</b>${t('Proyecto propio de 26 ha, con planes de 100 ha pronto y unas 200 ha en tres años. Cierran la licencia de las variedades de Planasa para Colombia. Hablan de producir las 52 semanas del año en el trópico alto y miran Risaralda, el norte del Valle y Nariño por encima de 2.000 m.','Own 26‑ha project, planning 100 ha soon and about 200 ha in three years. They close the license for Planasa varieties in Colombia. They talk of producing 52 weeks a year in the high tropics and eye Risaralda, northern Valle and Nariño above 2,000 m.')}</div>
+    <div><b>${t('Abril 2026','April 2026')}</b>${t('Anuncian 124 ha a fin de año, 157 ha más en 2027 y 500 ha en 2030. Construyen una empacadora en Tocancipá (Cundinamarca) para agosto de 2026, con capacidad para la fruta de hasta 500 ha.','They announce 124 ha by year end, 157 more in 2027 and 500 ha by 2030. They’re building a packing plant in Tocancipá (Cundinamarca) for August 2026, sized for up to 500 ha of fruit.')}</div>
+    <div><b>2030</b>${t('Según Preciado, Colombia podría llegar a 5.000–6.000 ha, impulsada por inversionistas que vienen del banano y la palma.','Per Preciado, Colombia could reach 5,000–6,000 ha, driven by investors coming from banana and palm.')}</div></div></div>
+    <div class="grid g2">
+    <div class="card reveal" style="border:2px solid var(--leaf)"><span class="tag g">${t('Lo que le sirve a tu finca','What helps your farm')}</span><h3 style="margin-top:8px">${t('La empacadora de Tocancipá','The Tocancipá packing plant')}</h3><p>${t('Preciado dijo que la planta también prestará servicios a pequeños y medianos productores. Para quien no tiene cuarto frío, eso puede significar empacar con estándar de exportación y no depender solo del intermediario.','Preciado said the plant will also serve small and mid‑size growers. For growers without a cold room, that can mean export‑standard packing instead of relying only on middlemen.')}</p></div>
+    <div class="card reveal"><h3>${t('Lo que dice Miller Preciado','What Miller Preciado says')}</h3>
+    <p style="font-family:Fraunces,serif;font-size:1.15rem;line-height:1.35">“${t('El desafío no es solo crecer en volumen, sino hacerlo con estándares de calidad, consistencia y productividad.','The challenge isn’t just growing volume, but doing it with quality, consistency and productivity standards.')}”</p>
+    <ul><li>${t('Colombia puede superar 30 a 35 toneladas por hectárea.','Colombia can top 30–35 tonnes per hectare.')}</li><li>${t('La cubierta tipo invernadero sube mucho la inversión (CAPEX).','Greenhouse‑type cover raises capital cost (CAPEX) a lot.')}</li><li>${t('Colombia puede abastecer después de la temporada de Perú, complementando a Chile.','Colombia can supply after Peru’s season, complementing Chile.')}</li></ul></div></div>
+    <div class="card reveal"><h3>${t('Sus servicios','Their services')}</h3><div class="grid g2">
+    ${[[t('Asesoría técnica','Technical advisory'),t('Manejo y desarrollo de proyectos agrícolas con prácticas eficientes y sostenibles.','Managing and developing farm projects with efficient, sustainable practices.')],[t('Financiación','Financing'),t('Buscan y gestionan alternativas de financiación para cada proyecto.','They find and arrange financing options for each project.')],['Due diligence',t('Análisis de la viabilidad técnica, financiera y operativa de proyectos y empresas agrícolas.','Technical, financial and operational viability analysis of farm projects and companies.')],[t('Gestión de capital','Capital management'),t('Administran capital de inversionistas en proyectos agrícolas.','They manage investor capital in farm projects.')],[t('Redes comerciales','Commercial networks'),t('Alianzas para vender la producción.','Alliances to sell the crop.')],['ESG',t('Uso eficiente del agua, menos residuos químicos, empleo digno en el campo y gestión transparente.','Efficient water use, fewer chemical residues, decent rural jobs and transparent management.')]].map(s=>`<div style="background:var(--bg);border-radius:14px;padding:12px 14px"><b>${s[0]}</b><div class="muted" style="font-size:.9rem">${s[1]}</div></div>`).join('')}</div></div>
+    <div class="card reveal"><h3>${t('Equipo directivo','Leadership team')}</h3><div class="kv">${[['Miller Preciado','CEO & Founder'],['Liliana Jiménez Porras',t('Gerente de proyectos','Projects manager')],['Dayra Reina Hernández',t('Directora jurídica','Legal director')],['Diego Cabrejo',t('Gerente financiero y de riesgos','Finance & risk manager')]].map(x=>`<div><span>${x[1]}</span><b style="font-size:1.05rem">${x[0]}</b></div>`).join('')}</div></div>
+    <div class="card reveal"><h3>${t('Antes de hablar con ellos, ten listas estas preguntas','Questions to have ready before you talk')}</h3><ol>
+    <li>${t('¿Qué servicios dará la empacadora a productores pequeños, desde cuándo, con qué tarifas y con qué requisitos de calidad?','What will the plant offer small growers, from when, at what rates and with what quality specs?')}</li>
+    <li>${t('¿Compran la fruta o solo la empacan? ¿A qué precio y con qué plazo de pago?','Do they buy fruit or only pack it? At what price and payment terms?')}</li>
+    <li>${t('¿Sus variedades (Planasa) se pueden sembrar en mi finca? ¿Cuánto se paga de regalía?','Can their (Planasa) varieties be grown on my farm? What royalty is paid?')}</li>
+    <li>${t('¿Qué asistencia técnica incluyen y qué cuesta?','What technical support is included and what does it cost?')}</li>
+    <li>${t('Si es para invertir: pide todo por escrito, el contrato, quién responde y cómo se reportan los resultados. Revisa la empresa en el RUES de las Cámaras de Comercio.','If investing: get everything in writing, the contract, who is accountable and how results are reported. Check the company in the Chambers of Commerce RUES registry.')}</li></ol>
+    <p class="note">${t('Esta sección es informativa, hecha con su página web y entrevistas públicas. No es una recomendación de inversión ni un acuerdo con la empresa.','This section is informational, built from their website and public interviews. It is not investment advice or an agreement with the company.')}</p></div>
+    <div class="card reveal"><h3>${t('Contacto','Contact')}</h3><p>Cra 55 # 152 B‑68, ${t('Oficina','Office')} 603, Bogotá · (+57) 312 596 5839 · info@agroventurecapital.com.co</p>
+    <div class="row" style="margin-top:10px"><a class="btn" style="text-align:center;text-decoration:none" href="https://wa.me/573125965839?text=${encodeURIComponent(t('Hola, soy cultivador de arándanos y quiero información sobre los servicios de la empacadora de Tocancipá.','Hi, I grow blueberries and would like information about the Tocancipá packing plant services.'))}" target="_blank" rel="noopener">WhatsApp</a><a class="btn ghost" style="text-align:center;text-decoration:none" href="mailto:info@agroventurecapital.com.co">${t('Correo','Email')}</a><a class="btn ghost" style="text-align:center;text-decoration:none" href="https://agroventurecapital.com.co/" target="_blank" rel="noopener">${t('Página web','Website')}</a><a class="btn ghost" style="text-align:center;text-decoration:none" href="https://www.instagram.com/agroventure_capital" target="_blank" rel="noopener">Instagram</a></div></div>`;
   }
   if(mktTab==='mundo'){
     const W=640,H=240,p=34,mx=1600,bw=(W-p*2)/WORLD.length;
