@@ -1,14 +1,342 @@
 {
  "bitacora": [
-  {"fecha": "2026-10-27", "titulo": "En Venezuela, ampliando y mirando negocios por seguridad alimentaria", "titulo_en": "In Venezuela, expanding and exploring food‑security business", "texto": "Miller Preciado está hoy en Venezuela buscando ampliar operaciones y mirando negocios ligados a la seguridad alimentaria.", "texto_en": "Miller Preciado is in Venezuela today looking to expand and exploring business tied to food security.", "fuente": "Sus redes sociales (reportado por Harold Marín)", "link": "https://www.instagram.com/millerpreciado_/"},
-  {"fecha": "2026-04-21", "titulo": "124 hectáreas, meta de 500 y empacadora en Tocancipá", "titulo_en": "124 hectares, a 500‑ha target and a packing plant in Tocancipá", "texto": "Anuncia 124 ha de arándano a fin de 2026, 157 ha más en 2027 y 500 ha en 2030, y una empacadora en Tocancipá para agosto de 2026 que también atenderá a pequeños y medianos productores.", "texto_en": "Announces 124 ha of blueberries by end‑2026, 157 more in 2027 and 500 by 2030, plus a Tocancipá packing plant for August 2026 that will also serve small and mid‑size growers.", "fuente": "Portal Frutícola", "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/"},
-  {"fecha": "2025-01-28", "titulo": "La revolución azul: 26 ha y licencia de Planasa", "titulo_en": "The blue revolution: 26 ha and a Planasa licence", "texto": "Proyecto propio de 26 ha con planes de llegar a 200 ha; cierra la licencia de las variedades de Planasa para Colombia y habla de producir las 52 semanas del año.", "texto_en": "Own 26‑ha project aiming for 200 ha; closes the Planasa variety licence for Colombia and talks of producing 52 weeks a year.", "fuente": "Portal Frutícola", "link": "https://www.portalfruticola.com/noticias/2025/01/28/arandanos-en-colombia"}
+  {
+   "fecha": "2026-10-27",
+   "titulo": "En Venezuela, ampliando y mirando negocios por seguridad alimentaria",
+   "titulo_en": "In Venezuela, expanding and exploring food‑security business",
+   "texto": "Miller Preciado está hoy en Venezuela buscando ampliar operaciones y mirando negocios ligados a la seguridad alimentaria.",
+   "texto_en": "Miller Preciado is in Venezuela today looking to expand and exploring business tied to food security.",
+   "fuente": "Sus redes sociales (reportado por Harold Marín)",
+   "link": "https://www.instagram.com/millerpreciado_/"
+  },
+  {
+   "fecha": "2026-04-21",
+   "titulo": "124 hectáreas, meta de 500 y empacadora en Tocancipá",
+   "titulo_en": "124 hectares, a 500‑ha target and a packing plant in Tocancipá",
+   "texto": "Anuncia 124 ha de arándano a fin de 2026, 157 ha más en 2027 y 500 ha en 2030, y una empacadora en Tocancipá para agosto de 2026 que también atenderá a pequeños y medianos productores.",
+   "texto_en": "Announces 124 ha of blueberries by end‑2026, 157 more in 2027 and 500 by 2030, plus a Tocancipá packing plant for August 2026 that will also serve small and mid‑size growers.",
+   "fuente": "Portal Frutícola",
+   "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/"
+  },
+  {
+   "fecha": "2025-01-28",
+   "titulo": "La revolución azul: 26 ha y licencia de Planasa",
+   "titulo_en": "The blue revolution: 26 ha and a Planasa licence",
+   "texto": "Proyecto propio de 26 ha con planes de llegar a 200 ha; cierra la licencia de las variedades de Planasa para Colombia y habla de producir las 52 semanas del año.",
+   "texto_en": "Own 26‑ha project aiming for 200 ha; closes the Planasa variety licence for Colombia and talks of producing 52 weeks a year.",
+   "fuente": "Portal Frutícola",
+   "link": "https://www.portalfruticola.com/noticias/2025/01/28/arandanos-en-colombia"
+  }
  ],
  "noticias": [
-  {"titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora", "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/", "fuente": "Portal Frutícola", "fecha": "2026-04-21T12:00:00.000Z", "tema": "miller"},
-  {"titulo": "Colombia consume el 95% de su producción de arándanos y busca crecer en exportaciones", "link": "https://forbes.co/economia-y-finanzas/colombia-consume-el-95-de-su-produccion-de-arandanos-y-busca-crecer-en-exportaciones", "fuente": "Forbes Colombia", "fecha": "2026-05-04T13:52:00.000Z", "tema": "arandano"},
-  {"titulo": "Industria de arándanos colombianos apuesta por tecnificación y crecimiento exportador", "link": "https://www.portalfruticola.com/noticias/2026/02/23/arandanos-colombianos-tecnificacion-crecimiento-exportador/", "fuente": "Portal Frutícola", "fecha": "2026-02-23T12:00:00.000Z", "tema": "arandano"},
-  {"titulo": "El crecimiento del cultivo de arándanos en Colombia ya es una realidad", "link": "https://www.portalfruticola.com/noticias/2025/01/28/arandanos-en-colombia", "fuente": "Portal Frutícola", "fecha": "2025-01-28T12:00:00.000Z", "tema": "miller"}
+  {
+   "titulo": "COLOMBIA: Estudiantes de la Universidad Nacional convierten arándanos en un vino artesanal",
+   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbXZCUk5oeEs5ejVhU1NTZWFrQm00NThBaTN2dWkycEFSdXZiZEZSQURPNlRycm1KU1FCOVlBdFB0QmVUZ1ljYnR3YU1DSzg3ZVk3Ykh6WFM0R19JV29uaEtXNWRPUUY4RTU0NGtwVjRHWHFiV1FFQkU2U0Rib2ZXNmtvdEViLVdzd3VOVHUzR0VGcmY5cDBpblh3R3Bjbk85bS1jREd3b0RVVWp6ZHozS3hUZnVPb0JkRGVDY0ZwbGJiQ2Y4?oc=5",
+   "fuente": "elproductor.com",
+   "fecha": "2026-10-19T14:42:56.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Los arándanos se convertirán en fruto clave para el reverdecimiento de la economía campesina",
+   "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNTkRlb1ozSW4zOF9Mbk8ycFpOWFNUdVBOcTJBck0ycmZMc05VWmlZUWg2MW1LT0hTTU1nRFJ6TmZEaVhxcTZDRzRUNWt6bGhKSTlDQ0xpVm5iQzBIa25BOS1MYks3eGhOWEtNaVg2elYzVWFVcklRV1pVRkpXOE95Rl9WM0pSUUhUN1lTOTdRLV9BUVZvQ0hTMHo2QS1NeHZZWUx6TTlZVmFjU3o2ZjRTOXpnWjhfdDhl?oc=5",
+   "fuente": "El Frente",
+   "fecha": "2026-10-19T14:34:36.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "María Camila Vélez Echeverri liderará la expansión global de Agroventure Capital",
+   "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNVXpxTkV0cGpTdkJ0VGd3dzJfeVpjbFNTb2N0Q3hsTzlDNVNXckdsSmhjcEVUYjNlbHJNTlVLVXdJYmtOVWZQS0pZWXluM1dONENWWUZ3bUxZc2xGekR6NEZiTjlYcEZRRlU1VDd0Wmx6Y3VUQWxSOTR6eWx4WDBLZTgyWQ?oc=5",
+   "fuente": "ABC Economía",
+   "fecha": "2026-08-26T07:00:00.000Z",
+   "tema": "agroventure"
+  },
+  {
+   "titulo": "Colombia busca atraer inversión extranjera para impulsar su industria de arándanos",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQN3FGQUNOOWV0YVhBcWF5TzQwTG5CeUZCTmZJM3V4ZXBiR0NjZlFvc1RacmRtdmdUTzU3Vkp2dUpGWVRsbWVZLUVHZldHalpmblZ1TmR3S2RrUWpmb3R6ak01ZGMyREw3cHRfSmItd0VMb0RDUUt4Mk4ybHJuOC12cg?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-08-10T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Berries ganan terreno: crecen las exportaciones y el negocio se fortalece en Colombia",
+   "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPVzFvZ1lnYk10SWhuZV9mSW1kb3ZvU2RjVWJoemFyMHd4eFREakVrZWE2N05VdzVWeUw1U0EzRk01aVI1SkFEVTZHSkhtYm5qYmQzNjZhdk1yc2hjcFBkd0NPUzBLZmFzSkxOWkFWVE5wWmZiQmlfSG5VUmRUU1VNN2I5QVpjSXRXN1QzZlFxY2xDdnd4SHBKcnNMbmdIOUcyNGJsNVlZbWNRR2kzekZJWWlUWnlnWThScmdvcXBFamRDSm9ZTURsTQ?oc=5",
+   "fuente": "CONtexto Ganadero",
+   "fecha": "2026-06-16T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Las frutas como fresa, arándano y uchuva aportan vitaminas y minerales clave para el organismo, según experto",
+   "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPNDRyZENLYWdSUDFTQjZpMmVtX0gycGJiZlpCb1drekZlS1Y4MkEyRGV5VjJmSDBFLWRGRFhXS3hoTUNlQ2F5cDNPZG1idC1BTmhpd29kN3p3QkxZUWctVnFOLVR6OWtzbkNmaUgzYUUyTFBLVGtyVGI4czEtalZTVVJfLWRMNUxDWUs4Yy04N1pVdTZkLVZaQnBvSmNTVHAyLTRxZ2hBbzlkMmkxOXlod0N6QzAta3FJT1oyel9MU0FUMmZJa2J0LWI1ZzdtZ19GdW9TVHZFVXFVTWpHRndmV2hWVjFLaFnSAYICQVVfeXFMT2JJTUUySUh5Nm14dHBrUnFoWjAwLWx6MDBKZnJvU2x6V3IwMF9iNXAwLVZrd24zR3ZTaHJ4VDJTR01YYW9LQ2Z2am1XN01yV2wzZ0JRczd2dDBaUHRZdXFqeHQ4WHFzVjYxTmkzeW5obzFvR3I0QkY2ZGIwV3BIa3pmV0JhNkNLOGxCM3JiZE1URTRmY0I5OGxRMGtlWDV5aXRSYnBqQUF1UzYybHkzU1lqbVFta3lQWFIwcVYtUGhuWERneWNqcUp5cEN5dGliVGw2TDZ3Yk9hTGpvb1l5RzhfOWRuQnZRbkZoMUphT3l4QlFPc05HM0VGMnZCb09ESlhn?oc=5",
+   "fuente": "Infobae",
+   "fecha": "2026-06-10T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "‘Arándano Colombiano’, el sello que lanzó el sector para impulsar el consumo y exportación",
+   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOd0Q1LUNMRUJoZGxNVHdheEhHVlNyaGQ2c0x5N1pWQWZxSlJFYUdqWTJHN1hZRW9TYkZNWHhfZkNRZm5hYTlReVp5aEZ1NnpGdXNhQVFlNmp5TWltRlpWOWJzTUtuZURadkJxUUxtZlctWXJVOVNtV2lzMURMcG1uQnZXdURsQ2hhRFdXRDVEWEplQUxkbjFrcFBVU0Q3WEJKNXlublVKeFFGVXNjRUNaWlJISlc4Zm1iYXNidHFkUUQxTDhT?oc=5",
+   "fuente": "Forbes Colombia",
+   "fecha": "2026-05-26T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Más de $553 millones impulsan la producción sostenible de arándanos en 12 municipios de Cundinamarca",
+   "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNaGpHWmY1MWJXUGxqdWt2Q3hYSkhsbmd6b2JFN1JodjQxZUo0M0cyUGNVN3pOb2FhMWgtbWc2QnM2N3lpMmZMamIxT0RNZXZMT3gzeFBGZmFpeWFoUEg3ZFpVeXdZQ2dXX3FuQUQ5NmZEbmZ1eGhqWGJnbngwMF9vczFwak15dmVGLWt6RDNOazRlZ0wta1RnbWgzNEVJV1pXak5xYV9Va1diSEFLSEh4cU1ZWEtSM0p0Z0hsQVlBVEVEaWJUS0tNWEFyUmF5ZHRydng3LVdTQQ?oc=5",
+   "fuente": "Gobernación de Cundinamarca",
+   "fecha": "2026-05-21T15:17:35.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "“Arándano Colombiano”: la apuesta del sector para posicionar la fruta cultivada en el país",
+   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQbko2aEEtcWJOT0dkMlZSeUN0Z0tVVng5eEFLQ2E5TWVEOU1RNHJvaXZTVm0tMUR5OWJiX3RjVExBQmRVZkRhbEtLTU83SWxrMHR2aTdtbWVOZnNzZ01nLUNjMWZDQ2YtTTYwR3FMdjhzUW9IUlE4N1QyOV9BeDM5U21aWmVrNnFndG5ZVFpPOE9WUzZFOW1rTmktTFJPdWlwMmZCUGh1Xy1GalFSenZ5b2k0LXY2RVByVjdwdVMwOExjT2UtSEFOMWZtN2JCVjR1aWZxMmg0WTRad0xFenfSAeMBQVVfeXFMTXJqQ2hnVlA1U0hiX1owa1J6RFVqaW5YTkZBZUt6eUVlVTJWZVB4RFJvRXZZS0pzYW9qTDE0TDlfRXozRTdqNWM5dHotZndzRy1OMU1iXzlidlI1OTZXOUxsRzhpWG9fNzd2Q1loUlo3bnNXN0lxVXhQaTlLTnhfNXdQZEZBTHV3M1FIUklEVXdDOFNVQ0N3XzEwLUFLR05ZZmdSX0hKd043VU5GRFpoRGZQdEFIVGpEc3NUeVAyV1o4bi1wQk9ySmkxMnJFRXhPS04yV1ROTGpHVDNEYlk1MURrS2s?oc=5",
+   "fuente": "Revista Semana",
+   "fecha": "2026-05-21T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Lanzan sello “Arándano Colombiano” para fortalecer la identidad del producto nacional",
+   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOaWdubG5zWFhwYmFhX2tUcnZuN3F6WThaLVZnb3FRUUJreHF4U3FFcXItOFA5RlZ6MWpybEM0Y28zS2x1U1pSQ1FWY01rUWs5MC1reGQ2VTdjazh2aFR0bGUxVnNHcmdYN2hqT3AzMWdqb2lyb0xMeHNLdjRxVC1nYnIxVFNFb2RnODJpQTJqRHAzSHNlR3dEQkg1bmxMQW9tUjlULUIxcVFXQ0hHX3gyT2twZk5heGd6Y2gzZFJXenRSLWNRVTY3NTR0TkZoTjDSAdQBQVVfeXFMTTJveFU5R2NqWGhlTzZhTHl0MHBaTTJ6eVdMZ1pXRmxCVGhhbTdlZUZCVXY4TjgweUF2MzVWQTFVcWEtVmoxWEZXRWtXWlcwbUl1aWJ5STI2YkgwdlFGeTV2R0ItcUxTODFtWk1EaV9lMjZPV3g0MHNHVDZpUW40Y3NTMG1fYmNwN21qRHlGaEZGUkZXRW5NUUlMN09peE9FeGxmUHRMQXk4cGJUMWMybzI1VmZRVDdIS1hXZFQ3OVhVa2dBa0lTUlN5NWN3WHRkYWdyRE4?oc=5",
+   "fuente": "El Tiempo",
+   "fecha": "2026-05-21T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Productos procesados impulsan el mercado internacional del arándano rojo",
+   "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNd0xGN0hISngtMFZhYlpZMTFlbF9JVU93T3VSMzAtX0lLVmYzQmZjWlloeTlncEtBWDBSdy10Y3FjclhSSjJjLXhGYXpKOTZxcVRVVVYxS0hCODBkN3ZZTy1mOVJqd1pBZV9QeXBlUWJJQ2x3aW5OLTg2RFAxV000RUFia2dVNEZxaVlub2s0bWF6TjV2X2NVY2RmWWZyTjRTM1hFYVJrLTdsOUowaHA1T01NOTZvS3c40gG4AUFVX3lxTE05Y0VHN1hDb0ZCTDFpQ2x5R3VQZVlPeHd4V2pKdmMyeGNOTVBma0NEZ3RWb1VzUUpmRmhmb2VKeDNZcVJkTnhQTVBNUHBxczZoSXNRc3JIX3YxQ2FYajRaTkRBMXVIbUk4cXJYQ2gycnUxaVlVeTVEWG1QRms5WWl5TFZSOHQtT0l0RE5HOGJaOUV0cF9jay1WU0FUS0pHYnRqc2NGRkxQZ3NGa1FQZXB2OGtHXzQ1ajM?oc=5",
+   "fuente": "Agronegocios",
+   "fecha": "2026-05-14T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Walmart y expertos mundiales llegan a Colombia por industria de arándanos y uchuvas",
+   "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNUVZjak9Ec3ltcHAzdnkxYllHV2NBcjZWc0cwZ1BSV1RGRDF3d3IyTWZqbWdtUmNlTGVTOUlLLUd5NFoyOFJqSVl6WGJEWWFZc3l2UUlLUGxPYXRIZTVCUmdoYTllenhZd0VaOGxIV0tIeVVsSl9DTDB4MnU5Ni01RUt0YWR2UkNTQm1WLVZxMmtsQllTS1dJTzJVajY1aHNaREgxVzhFLWVpOVJnN1Uxb3B3T01ybFBVRVpsMnVEcGZnVUR1N29YeA?oc=5",
+   "fuente": "CONtexto Ganadero",
+   "fecha": "2026-05-13T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia produce 12.000 toneladas de arándanos en 2025, pero el 95% se queda en el país | El Colombiano",
+   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdUZCTFdMVnpscFFTUV92c29ncEM4UC0yWlFCS21fRXNlajZyaTRFcnd3OVVwTGhwaldJVjZpNFA1SEhBa2NoUWh1Y3RRYlVpTkpaSmVRVUppSEZTczlMLTFiTV9WTjVoMVo4VVN2ZGJ1ZjczcjFDVjRwLWQ2czdvcU1HYjV0WDQ3d1Nvekk0NUlFa2JwaHEycXhMSERSZFoyRVBmd2ZNWHRMSWfSAbABQVVfeXFMTjFpVFJnQXdWOFpKVXJ2OVJRYXpRNnpNb0lndVlEZVJjcnhhUFZlMmhpZlVuT3JsWWxhNGFpVFpLOUNGZHNURVV4U0ttV2FNUkp6b3BiRDNDUUNBanNhRW9yTVZsYndXbUdtT0V6VFNGaWdUXzJIM19mRGYxX0RELVF4bGF5SkkzZ2VFemlLdjg1ejVhVC16amh0TEVQVW85R1lVVkpsOWJCWTBVMXpGLVY?oc=5",
+   "fuente": "El Colombiano",
+   "fecha": "2026-05-12T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia consume el 95% de su producción de arándanos y busca crecer en exportaciones",
+   "link": "https://forbes.co/economia-y-finanzas/colombia-consume-el-95-de-su-produccion-de-arandanos-y-busca-crecer-en-exportaciones",
+   "fuente": "Forbes Colombia",
+   "fecha": "2026-05-04T13:52:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia dispara su producción de arándanos, pero el 95% se queda en casa y frena el salto exportador",
+   "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOcmFrcWpaSlRMZTNRYURtMXVfTFNQbldWSWkwTDQyRmY0NTJsbzVqWTgwOEd0UlJjTGkxSmRfdnFiSmI4X281OE9WaXp3ZmNIOUs2U0pWdWp3UnJQUWlyZlRKSHJDaGR6a0dnRFlrVDVFYm96RmE0XzZiVm5TMk9OeExFd3VOMWFGY3VfRnRUdi0zRXVyN0l4X1FXVlJwUjJOOFB3a3ByQms2ZHpBQmR6RTJxZThqMl9pZUpyNEtEaXB3bHhLT2lSMUMwOV9venpmN0wtNUc5dF9Sdml5TDhOQ1otbjRnUUFQTkRFVU0yNUzSAfYBQVVfeXFMTk5WWk10Tk45a2psTEtPNmVWUXdZNVdrR2ZuWGd2MFpvdUd3QzdaNzN6aWxhZVBYX09hdFp1MV9jdUgyb1FxWkNsdWRObks1WjBPcExxaFRwRUdweGVFWDZ1cllHbHE4SkxZeHoxdUJiOUctWHFDeERPemtqeW84WmQ0aWRRTkdmb2FqY2RNVG80SlRneWp1NFZOWll6RklKT0htVVlEZ0FiMldMTk1ZZnljeTNtNGswY21CVDY4RkluSXpoYlJPbzVLX3BBbkxyRGc5RkVlSE1CQWRpZUpGRDFNbVZKN3B5bDhoRkI1bWN1SkJEWGlR?oc=5",
+   "fuente": "El Tiempo",
+   "fecha": "2026-05-04T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia consume el 95% de su producción de arándanos y busca crecer en exportaciones",
+   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNX0owbTRBMXpjMk5LTk9lSVlzc0U1bUxOd3loREw2U0xkMjE2QThJWGRQbExpb0RKOURXSkxDTVVDLTNKbG1XMHhnNWtOYmJLNm5GdjEtZ0FsdkhJYnRDeG00dkt0bmlXNGE5UHhrNHd4Y2dsdlI3MUpuTjI4VkRuYnBISmZHY0NoSF9yZnk4eXUxUE1oeGZUeVJUOXpIUFRNWDBCSnFFcWxuZzNSNHExcjFoNE5MOEZyRWtDNkZPNXVkek5vcGpWU3hRX1FZX3M?oc=5",
+   "fuente": "Forbes Colombia",
+   "fecha": "2026-05-04T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia se mueve en serio con el arándano: Camilo Lozano habla de crecimiento y el desafío de escalar con orden",
+   "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQSjFXdlhmNjA3Z3dhUlRoVzcwZ0UxMmlFc1l5TE5mNzZNVnlXY0NUNkJhcWdDVVdOMFAtMGVUTjZzVUhEVXUxbXdGTlNLQzRHem1XWW5vcjc2cmNCT2NWVjk0eGpyZElGVHZSZDd0ZERLakRkbHNKMmxBdkFPWHJ5SkZGMGg2dnBRa1Q1S3Y5MDlNemRSLWJ0SzdDNFFiSUZSWGJxN1JKUEpJcjBjNE9oOXY1YkY3Ni04UlRkSHdjNUk0NndGbEJnZlFmcFQxWWVld3VfbmVpbGNiY3ZUV1NqMVlNTG96My0tenZJLW9weXpZTWxyclVOSFprdE9BdlZ5?oc=5",
+   "fuente": "Diario Frutícola",
+   "fecha": "2026-04-23T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Nación Berries 2026: el evento que impulsa la agroindustria de berries en Latinoamérica llega a Bogotá",
+   "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBFSlVTdU5RUUhtNTFQYjJyZ2I3QjExdmI2SHoyMmlUUnhQUlc5WVJaYkFIRlY5WldUbmtoYmFVNS1kamxXLXFqb0owbHZpTW1xczFWUTdqUWdyRHNadEhmSjZnV3NTQmdzZy1DeTA5MDQydw?oc=5",
+   "fuente": "Instituto Colombiano Agropecuario - ICA",
+   "fecha": "2026-04-22T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
+   "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-04-21T12:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPcWRtdnNHLXZQWXZYV2JYR0lSdnlGdXZuTWh0V25mVlFnYUtmN21PN2J0YzJxZ2NZb1lLU1NSb0JGTWxtOThheVBVOWJWdkdJOElodVc3WnVUQTRIZG4yamZPeWpmVlktSXpSNXBha1p4UGhCWFJsTDMzbEJXWXVBVw?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-04-21T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Colombia consume el 95% del arándano y limita su salto exportador pese a su potencial global",
+   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQUG16ZXZHbzJFNk5BQ29VbnJwaUN0STIyNGc0aVZ1WUl5UmhtME9tTjBJT2J3cUg3dVpKZDlTdldyUGg3Y1A4MDc4TWt5cUFkZTMxeUFJR2EtTnpTM05wS0RJa19PNk01ekVxUmR4V3p1VFctNGEyMnhfdHBWVUotV3UwQUFTZEU2S0pjaUNsd3o0ZWlvRWJqZmF2YmJLcUlSQnN1bnBnTHN4ODRFU1o4M2dXYlZGWnMwaUtxMXRXajFocmVneFBYeW9sdW5mNWo2VjIyUNIB2gFBVV95cUxPNE1xX2Vtckw5UjNVeEUtVUdGcE1lNHZYRjRqb1ZUSWZqQzk0MHJCV0htU2lPcGVaM09NWTdnLWRKeGs3b2Y2MTRJcFAwS2VzRFd4VGZTdTI1bzRLblNYTE1DSzU0MjRDQ3ZVd21oVGhJVXlKZEtjSnp3el9tb1IwdGtZTnpMX0RWYVdyTHl3UFVlOVhSaVA3OTlyeEgtaGFPUkV0RjJYdDZkUTVtYzR4SXZTSHRZQ3ZvdWQzcUxtUk9qR3p3UnBYVEF1T0NXY05QWV9WUE53VmV1UQ?oc=5",
+   "fuente": "Portafolio.co",
+   "fecha": "2026-04-09T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Arándanos colombianos buscan conquistar Brasil, China y México: hectáreas cultivadas crecerán 20 % en 2026",
+   "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxONkZsczVlekZKWmtNSTVqNVFRZHVWSkVhT2phQnQzSkh6MG5senI3VjY5QmpqdC1MTFRjZElpVUNKNXlnNGJwSDdKMzJES3dsZHIzTEFFMGJyd1BtRXNmRHNUQm9MUnpfNEdRaHFvdmlkVVRSZDc5Zkxtd04xb2psTTBZRzc5LWhuRkt6QWVGNzdMU0JGYnpLN0lwNklQNHQwYUlGV1kyLUttcUk3WGJFcFlMeUFoZk5BallkZ2NpUV9KcDMtY1NSSVlldXkzNEhSX1p4dzZsTW1ITWkyTHExRFln0gHnAUFVX3lxTE5ETk16MFFVb3JwMEpHMUdVaGRfQmI4REhDOG54YndmR2kwUVpma0loT0VmNEtsSThCNlNjempnY01tYklMbzc1bkhZV1FSeTN1bG55QXVxNTEtbUlWeDhXWkV6OW9xX1JOVmZyWDhNVUdLTnBfZHA3eGpVTW92cXNBNWlLdk9Zejc5U1V1MGdQa1NjSUJDT01mYWFiWTh1azFWY0wxNXpWY0otTU9yTldVNXJEVnhZazk3VXZnMlJxR1lLSWhPOXVycS1CeWhhbkQ1Y1NnTE5MSUpKQUh4UDd3c0lmTHVybw?oc=5",
+   "fuente": "El Tiempo",
+   "fecha": "2026-04-08T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Colombia consume el 95% de su producción de arándanos, mientras impulsa su exportación",
+   "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9jQm5neVpPV1hJMTVleG1DcTlheldjbE05ZnRrQjZGREtaTllacTR3WlZnUUtGQjdhZ24ySUp3SU43ZTBaVEdVdWVQX29MdkVsUDFCQnhJb1FESUJRVjlrS1NWSXJIdWdVRzhZOGhCaGFLSXZBeWJtelhYcUE?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-04-06T07:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Alternativas a los cultivos tradicionales en el agro colombiano",
+   "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQS2IzczF2UjFWTUt2dDFlcnZmNnRQbTRTZldFUmRtNlZXSGJTSjhKODIzMnNHaHJqNUlmRF82aHA1a0JtdS0zQ1V5ck1SNnRaRFpVYXk2RzJOUXB2OHNSbmNFM25IYW9MQy1idmtHSTd3aGMwSEhLb0I0a0xZOElPcWNGVDBjREhYaW9ZSDl5ekt6TllYUXEzeGNxMW5jZ1NsZ2hscDJxTV83Nlo0ZE5PUnBES2U1Rk90Ym0yRHNMaEMzVmVSQ2E3WGZCNG4wVUhuZDNR?oc=5",
+   "fuente": "Bancolombia",
+   "fecha": "2026-03-06T08:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Alerta sanitaria en Estados Unidos: FDA retira lote de arándanos congelados por riesgo grave para la salud, que incluso podría causar la muerte",
+   "link": "https://news.google.com/rss/articles/CBMinwJBVV95cUxNQ3RWaE9JemR3bEtLYXVadG1oVXc2N2tCdFUybVZXWWVMTW1JNVd1eGpJQ21JejBPclM5QUFCbEIwUExJbWpCak9tY2hXSVJzWVdMZlFtRGFORUtLaTFvVDBtMXhfNGxEZTFuYk5QS0xSQ0NZTnBCWmI4bVhZcW5IblFlY2RVLVNZbzJYV3A4Q1FNdUdGNjVCLXAtbkZHR1NQZnRrQk1jTkJ6X0Jlc1NObkJveFZCM1BvanNyOUhvQ2RGdG9rQUFYZ0RKUGJwWW9jMVh1N0R2ZEdPWkl2VWVQNWdpcHgtaDhMaUFqZFljUndBYTVKaXd0OGxjQWtQWGhZWmU5MnlwWHhtSFNhSlhZTUVtNGVXS3FTbm16cHpxRdIBpAJBVV95cUxOajh5R2VjX2lhZXFPSUMtRy1VN1FYYkphRXdWcHRDaE12Ry02V0NxbmlQMHB3UV82dG5rUVBrTGpWalM2V1RQTGtNNEFCSmZTdDJoa1FJWnc2ZDJUaW00a25rNFNtS0duLXcxdHdEYWY2RkVaSUdTdGlxTHFGSFZFQ190YXNjMTFLWE5BX1ZwbDNaS09DSmRZalNNMHQtZXdLRE1maDJ6dW52bU5QOVZDcUd1cjRQNVNRcy1iMk9oZXBuWm9vOWhOdnFOM3doMFRGVkRlNllDcjVUeEtKSi1xZ0ZqdDMtQzdDRHJ2NG5CNm5HSTBMWlJtbG5QYkhWOU9wNU1ncWdDTjBOd0s4b3dxdjc4eUF5aHVUQTI2MlFmZF9FblpV?oc=5",
+   "fuente": "El Tiempo",
+   "fecha": "2026-03-03T08:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Industria de arándanos colombianos apuesta por tecnificación y crecimiento exportador",
+   "link": "https://www.portalfruticola.com/noticias/2026/02/23/arandanos-colombianos-tecnificacion-crecimiento-exportador/",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-02-23T12:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "Industria de arándanos colombianos apuesta por tecnificación y crecimiento exportador",
+   "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdnFFVjUzeHkyS1pDaGhURGZsWTNPNmxaUGFSWjRneXViX1ZHWFQ0b3Zrc3ZDMnJuZWhNVFpzaXZYa1RmSlYxdFVfbk51VWxRa3FtVHlXVmlWUml3VmhCT3RHd21QNTZXYjc2RU01QVJQckVUMXhaek9EeXlDOUN6VnhsNmdFemJNTDJhcDFKRVAybm11b3lHRHBVWnJYelM5XzgwWlFmTUEzMVpWTHdnUQ?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2026-02-23T08:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "El arándano crece, pero lejos de su potencial exportador",
+   "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNYTEzU09La0VuYzU3cy1FSF9Nc0RUeUIyaGFwR1g1dEFESE4xVnVKQTd5b2U1WnFTWUs2MjRiRlYtUVZvYmpkVW1iLVFPUUxFNlhrWUJXcHZsWkdObi1nNHJLS1JlbWVJMlVjbnh0MlJiRjE3eUxzbEVnNTNxaktoMUR6T2VNazVLQS1CMG1JU05sTGNiaWxfTmRSR05iYTVyWFFwaFZ30gGmAUFVX3lxTFBpeklVb0pKVTRzVS1kRUctYTNFT3dmV1d5SkpwMzl3MVF1MmV5RDlHbERHdjBhNlhqLWxiS0hZTEQxd0xYNkxTc3VvbXlzUmY1UGRJYTRWRDFrcDd5bXFGY3REVFhJTzYwdjZXUm13T3ZDbW5WblpONkI4T3prc0lXVGt0WUZTdGtsTnE5RGlXcW1JaG5oUzFad0pvcXhHOHVzb0d0UlE?oc=5",
+   "fuente": "Agronegocios",
+   "fecha": "2026-02-11T08:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "“Este año podrían haber unas 200 hectáreas de arándanos más\"",
+   "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPWjZsT2p0dmpra0tTWUpONUI4SFdObGd0SWFEbWY2cXBTMHBNZ3VSODBBNENiRnNneDVWaFpZVjZBTXM4OGhwV1FTa2FuaEJyb2ZBU185b21LWEVwUldJalhISTI5T3VucmxvWms4aVpCelhkQjdrMlY3S05OOEZBYnl0SVFoRk0yN2VsdjNoXzUtaDlxUFZkTUg1XzJkTlVDSFExWjVwZG0tdll3VWpBelNDNHhPdlI5TVhJSkNIVmdsMV81SUZIaTJ1NFNfd1hfczd4ZFVLcmRnLU8xS0o0cURXa3psT0ptQmQzMGcwWFhici0wanRrNDRGMXFxREcxVVHSAYICQVVfeXFMT1MyNHI0MWZZWmNGSldsZ3pTUE52T3JadGZTSFJ2X3hiSnRheElDdUFuRjQwUDlGbm5BZ0pWU0QyeTNNSzFBWnRub1VpbVpSX2JmV3JlSUVPNWc0cm1zRFVVQmhPTlpJZ3Z0MEZZY0VOTE8zUTRIYkN0bG56cS1uQXdUZ3lpWVZqNnZ3U3lRQlBmZTVZNVdTYjhfdU8yTEQyMWYxOXFYZGVMQXluWjdhTTF0N01PU29veGFKUmNhLUFCMEU2OHE1bFRHd3lqVzB6TVBsQkxrNWJPUlA5ck1paDJZMjIxY0J5UVo2QW0tVEZtdXNQTnpPODBPX3FIcGhoU1Zn?oc=5",
+   "fuente": "Agronegocios",
+   "fecha": "2026-02-11T08:00:00.000Z",
+   "tema": "arandano"
+  },
+  {
+   "titulo": "A RED+TV llega 'Agroapasionados', dedicado a los apasionados por el campo",
+   "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNSkQ5ZGlOUURWMW43eDg0WGZMS2ZsOEFOYlpWd3NSQUU0MnJpVnIzbzdkTVlfbll5VzYwWXNQUlMzYnR2ZjlQdzhVaEV3LVNRcHk1WFJUYW1yNG1uRDJuNTg3SDIteVF2OEIxcENwaWVKZkd4VWdOaElxU0FzQXNyMi1aeWRxNHVWN2VRbjNKMGhxZmZIemVqNFNsQUw2d0drS2MwRUptbUJaOUszVzhIZzMzY2hJYUxPZnBxNA?oc=5",
+   "fuente": "RED+ Noticias",
+   "fecha": "2025-09-23T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Arándanos; más de 600% crecerá su superficie cultivada en Colombia en 2026",
+   "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxORE56QnZRdlRucVRVR1VNdUpZVlZvbUJqVFd0RVpTbTNwbmJJOTBLemRBTFlJcTBkY01SZXRuVnlEZUpMVlZva3JJaW1fRWtVZ2hMX1NpYVFsaUdyMGNnSDJfbkRuSXVTOVU3dVVGZmxpcTliUTdzY2diX1hjMzVrR3kyUEI4dnpyaHc4cVJxdlluVV8xTDkwWE1tN3U0SWJRLUdDUlVESzEzTGhLSnJqaDQzTVllQ1BUYmg4N1l30gHDAUFVX3lxTE15ZUdxN1hvbmc0OW9Fa0l0blpCNGluN0xJal95ZFZ4ck1fbkxfX1pFM0d4b3E1NXdqZHVvNjlhRnVlUHV6R3NqVGZQNnIyWlhDTlAwRDFleW9jQmdBRUhUcFB6UWFrQUlOOVEycThtODNLZGhZamU1eTdvbnNJTGh3QVBfSW9rSnFuMTVQRmVTVlQyNm04d2pPOVJBQ2NRMENNc1NfTlRrb3BMX3NSa1pITEVXUFVxbWxiVFBIWFU1M0NYSQ?oc=5",
+   "fuente": "Revista Semana",
+   "fecha": "2025-03-25T07:00:00.000Z",
+   "tema": "agroventure"
+  },
+  {
+   "titulo": "El boom del arándano en Colombia: el cultivo que crece un 669% y apunta al mercado global",
+   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPRWE5Rkc3V0dWb0FNYUg4WVB5Q3NadjV0enBkbEN6bWIwaWdGN2J6NlVlT05GMlJ2RDVuNXFfNDlweFh1M2d3LXhJYTBlTGZ6UWtzSDdiWTdCbzIzVVlMN0ZRdnRBT1Q3OXZHZjNKVThoQzk4STEtTEFxMUFvblhuTzJjY3huYkNFck5KcUVOdGFHYTI0dWJ6dmlYSlJGZ3hvNHlVOGJpWmQzM1hIRWRXdmdEaVlZWTlXMTYwZGtzcDFWYVBpa3YzcEY0QUjSAecBQVVfeXFMTnhmMENJZUI1SDExc1duLUUyZGJXQkhRWFlRQWRIbFFxeDRaQVBpYW9YUkdJSUNjS3IxRjBhcEFxazd1T2RyTm5fQUNYRDF3bHFTVm1kaWFJM0l2RmRiODExQTRlR0ItWFBsaFYtajI3SjAwQ1hndk5ybXFuUDJvWWlOVndveFB5THNnM0RRMjVzWkRFT2hZb0dfMjc0ZUZtZXd3WUxFNVFRUXJWaVNCa0VHNVdDaklvR0NlY1FOOG5mNzRYeTd5dm5iSWM4eEVVaXNVVlBqekNDaExvSWxFdkFfamowaE5V?oc=5",
+   "fuente": "Infobae",
+   "fecha": "2025-03-25T07:00:00.000Z",
+   "tema": "agroventure"
+  },
+  {
+   "titulo": "Proyectan crecimiento de 669% en las hectáreas cultivadas de arándanos para 2026",
+   "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPNEFvU0d2aE1FTzJtbzJZUEkwVlEtYWE2dFJwUHVhazRIVUxfMzRPeGt2LTF5aW1YTEpFS3diZ2szTEZRSUVyZnIxWVNPUVhQUmd5ek9WY1pXQ3ppU2YtdWprODFQWE4xRDM0ek1yRThIbExzZmRzM3ctaXpGYnFwaHQ0YU5ESGtxSHdsbU5nd1l1TlpxeGpVYk43bW01WTd4RlRGcmxVdUJoZ1lPNWYyWng1OFhOQzRUQk1aTnYyT3VXQ0E00gHKAUFVX3lxTE42RS1kbmlVWjB3Y3dmbzRjYlo1VWVUdnhxMVZhS0ltX0lzSFlKNHFFbE5SRjJicDF0ejc2dWktNlo3TzhFTllnb01HWk5YRUd0U0lJLTVRLVNDTlhLS1NZT3h0UlhvZmMxOWY2RnpVbnJSWEJ0aFp2Um90UXRWMEQ1X1dKVWtYcnRBSl9EQlkzS25UNXdrWFhPVExpdVBmcWtrU3ZKVWdOYVhDbUNYLUN6OFd2bVZWTGFBQ1dUcGlSQ0gwRWdmWHl2QlE?oc=5",
+   "fuente": "Portafolio.co",
+   "fecha": "2025-03-22T07:00:00.000Z",
+   "tema": "agroventure"
+  },
+  {
+   "titulo": "El crecimiento del cultivo de arándanos en Colombia ya es una realidad",
+   "link": "https://www.portalfruticola.com/noticias/2025/01/28/arandanos-en-colombia",
+   "fuente": "Portal Frutícola",
+   "fecha": "2025-01-28T12:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "El crecimiento del cultivo de arándanos en Colombia ya es una realidad",
+   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1BVEZWcDJrYkNVS3g2LVJpSFlxdUo5YlNSMXUzcU1jdVBoNTJVNGkwSElTUGQ1bDJGT3dtcXM1N215R1dpeThxX2pCWV9DTFVqYkRKbHZMTHNTMmVURzRFN2dQSGFqQUZ1X1FPd0VJMm50Z0trREk3OWZfWi13Wlk?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2025-01-28T08:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "‘Del Mundial de Qatar a Aldosivi’, así anuncia la prensa argentina la llegada de Ayrton Preciado",
+   "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOVXk0OFEyZzFjUVZuN0dSbC1yeTBIVTJrLTdlRnM0Ry1McGl2UkNEMXFNWWVzRXJmZjdYa0V2ZGd2S25ETl9GV0xkVXA1N1V6NTJCZG5HWTdqUWV2WjB0MjNxY2pyQWJSdmdwQklEYS1iQzZrTllCc2lKb2k2RXoweEdHSWJWd3BNRUJBMEFzeFlPdXVJamV2N1JaX2hJMWo0TWl5ak0wR0RhYkQtMXJfNXhTQm5LX003MGgwVWhMcGg5N0dwODBfT05OMW9lSmZnemZoV3gzVk9NZ9IB7gFBVV95cUxOQVZiUmJLZ25sTWVGa3docktKNFljaHhweFJEaTgycmxLZl8tTjhmbTU1ZVdoOTlXRHpoQnFvU0o1YW52OXNkaWVmSTZ3WXA2cGd4elhIQ1V6aG9ucVd0eENVZWo1OEx1RnFzYVVHRzlfYVF6emVyYW5sbUR1OTdmNndPdWxPZ3pSM0JhZGU5SnBHbXJZSFNJbFV6Z2d6ZFoxX25pZktQQXFTaU90a0NYMDN0ckppS0FSNjFyRjlCb0M4UGV2VWJYbjF6NThrTmRjUi1uQk9qaHNyZGt4bjR0SmdtR1J1b3JzaXJDZXZB?oc=5",
+   "fuente": "El Universo",
+   "fecha": "2025-01-20T08:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "La \"revolución azul\" que llegó a Colombia",
+   "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQVppdUlXS3RyOWs0TWJ6X0lBd3ZEQ0dNRGt4Y0lsSzNiTDI1Z05EZ1dIWWJJbFNMXzFlNE5XUXNEM2hXbXF1MWZOUFkwdVE5aXllVkk5ZWpCUDQ5VlZZbUVRRzhmQTBVZXZhQ1h5dW5xMklGRFFMbVNGV2YxR1ctMGdmd1ZSSHQ5RWhPWUw0R1RSbU96RGNn?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2024-08-13T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Arándanos colombianos con interesante proyección de crecimiento",
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQRTlxWkJ1YmJqYm9hX1IwT0xJWEJDRGlZMEtUNXFhZUNJdnMtZEJ3MDdwcTM2ZjNuN28xamZra0N4UnI0dmhMeDMzT2ZEZGlPYTNNd3FkN2dMXzZFUDdsNG1HWExPTmJFekVCdU56R09FbzV3a1JWUWJuNU92TFFlLXpKcEZPaTQwUV9TS1lqMEVhdkM0Nk0zZUx5S2tSYzRRVWJqU0xzSXBFVkFnN2dURXNlUW94aWs?oc=5",
+   "fuente": "Portal Frutícola",
+   "fecha": "2024-08-08T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Crecer a base de genética ‘premium’ y alianzas comerciales",
+   "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOSjkyc2lIalBxcWZWSzFyZ1N6dWprSGJJNlNVMUxqVGFYUTkwdHByMjVCaUpiUWFkeDNSZUp2YnYxckpPVG1uWUVyaEZTUUtfRk9oSWVBOVVCb290OUo2YWpSNmNNaE1mTm5MMTRhcGp2UXZLTHNORHllZ2tMdTJQNmMwMzJkZ1pu?oc=5",
+   "fuente": "Redagrícola",
+   "fecha": "2024-04-29T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Exportación de arándanos colombianos está en auge",
+   "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPTHRpV1VpZzdXa0Q4S1pKT1NieU4xT09UamI3NWNYMEtSTGl1aWlmZzZCeWZPZjhzYXNpVmVfOXJWTkhUZDlhTnJlNDVzUFU3TkV4dnVOWjBSaXJTcDFSMXNDWDkyNlVLWTFaTWxpLVd2ZjhzQ3JWalRncnBJbzB3cmt5R0JWSmVBT0JKMDRlZHB6dmstUFJpdlhR?oc=5",
+   "fuente": "CONtexto Ganadero",
+   "fecha": "2024-04-05T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Arándanos boyacenses conquistan los mercados de Estados Unidos y Europa. Se habla de un ‘boom’ como el del aguacate hass",
+   "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPN1RqcHA4dDhiLUxRcVZicmtfcHdGUnVfcm1hR1RTbDVmMG4wejlGUXVETEhaQ05tSm10NmI5TXNUMGVfWktNS3A2b1NOOWJkNmIxQTc3bHNNYkhtTVBObzNzNFJWU09TTTVVNWJyUEVhYS1qemVHcEJFcWVWNHZvVmVtalJYYVR5ajRwekZoSXlUVzd4OGpUM2ZobVRMVVhqR1hCRjkyaGlxVHdvMHh2dFA5Njdyd3RwOE9fSEFiWF9yUzhhOWFmR2I3eGY4M2w1SlhHOXdCZHBKSk1IVVVkZjU5ZzRWN0tIbVVUdEVqOG9VdHlLQ2thXzhxTlQtUnRpSUHSAYcCQVVfeXFMTXV3VmkxekxIOVk2djYxNVFvNFd6NHZUamJraVFnc0Jid190ZUpWUDY3bEJ0LXByWm04WmpQYW1vUGcyRnZ2NHl1bWhTRzV6YXhmVXRyRTV3X1BFTGFBb3J2RGJDc3lIbE9KVm5jSTRnN3NXbXVtR3ZXQ2R2cWtMeWE1ZmNBWFB1TlRWSFJNdzluMDZSZXNlWXZvTDBfVGV3X0d2S1k1cUREWEY5YTNuNkxrVkJNMlFCRHJyMTBXRWdyQ2ZDa3k5OGJBMm52WE5fMkdaQ1YzM3VXSHNfTVZmVTJzeUNTZGQ5cnJFa0Y1Z0RGcmRtWVluSktGOEl4SUEySkZQSk02cEk?oc=5",
+   "fuente": "Revista Semana",
+   "fecha": "2024-03-06T08:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Delanteros Luis Perea y Carlos Preciado jugarán en Carlos Stein de Perú",
+   "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPTnNKZE05WmlvQ1FLTUFOWFRrZEtELUZoMDlNdkJtT1BnNlc3VHNjaVAtd1UzcDM1M1NWMnRCZFdXeTlDQ29uMUNKb1dBbi10aWwzaFdLWGpLWVNycjhqSDZkV1NScnBmUy02ZVVWaFBuNUw4UUsxWDNQeERKTGUwdUxnaUl2a3ZjXzNnMlJuQnBmSFFRcUNCYXVyR2M2TmNnVVpydFBIT00?oc=5",
+   "fuente": "Eje21",
+   "fecha": "2020-01-05T08:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Ecuador y Omán empatan a 0",
+   "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNU1JIZUw3enktQVR0SkpwdGlhVWpoWl9yWjE3UzlHTmhwNzNKdnBCUWNGc3dvOXJTaE9QOGRHODdNTjhuTnJ3WGoxY0s0TDdLOEZqT3JmYXJBekxGUlpIeGx5a3hHWmNkRFZwOE1WRG1yLUhPRWd4NEEyNWVxZjJaYzdpWXZHV3kyWEdtcWYtWWsyQm9NRDJmdTJmWQ?oc=5",
+   "fuente": "La República EC",
+   "fecha": "2018-10-16T07:00:00.000Z",
+   "tema": "miller"
+  },
+  {
+   "titulo": "Reunión en el VIII Congreso Técnico de Augura en la ciudad de Santa Marta",
+   "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQZ3ljcUZNaHF5Uy1sY0d6VkhJUHpfWkJ2dXBKYUJBZWF1VHN0RlBvbUtnSzBIN0RoQlNReVQ5OTBXUU1RZGcyS192WUdrTHk2Wk9mYWZSemNxY1lQenhYc2R0ZkpScUxiTWE1cklPQmcydnBaZW9vWWFjR2tuTmx0UHQzblpiYjRHa2EtQXpMVzVlQjMwcWhLdERQSHFMS2JoTG1GRllZMW16TjI1eXhlc0tfWdIBswFBVV95cUxPTm1ObzZUZThCWUZYbjk1aV9pQ0dTMzg4V1NzMVhiN2RXTHAtUVdLQ0pMTlBIenNTLWxvVklzd1pMYVFCNDh1TWJtT0EwYUpPVWM3amNFeDh5VmJWN0NlczNYN3JuNlRNdDhyS3dmbG1RU0M2SFVmZEFtNnJEQ2hJVTdweXlXNGNKd0RxR1lzZVNlMklfN1c4QXdhRFhRdU41aWNjMi1Gam1KeGItNnZZQkNCOA?oc=5",
+   "fuente": "LaRepublica.co",
+   "fecha": "2018-08-14T07:00:00.000Z",
+   "tema": "miller"
+  }
  ],
- "actualizado": "2026-10-27T09:40:00.000Z"
+ "actualizado": "2026-10-27T09:32:07.254Z"
 }
