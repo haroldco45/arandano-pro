@@ -12,16 +12,16 @@ jobs:
   noticias:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: app
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: datos
           path: datos
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Buscar noticias reales
         run: node app/.github/scripts/seguimiento.mjs datos/seguimiento.json
       - name: Guardar en la rama datos (no publica en Netlify)
