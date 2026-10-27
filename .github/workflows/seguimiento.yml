@@ -1,0 +1,34 @@
+name: Seguimiento Miller Preciado
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: seguimiento
+  cancel-in-progress: false
+jobs:
+  noticias:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app
+      - uses: actions/checkout@v4
+        with:
+          ref: datos
+          path: datos
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Buscar noticias reales
+        run: node app/.github/scripts/seguimiento.mjs datos/seguimiento.json
+      - name: Guardar en la rama datos (no publica en Netlify)
+        working-directory: datos
+        run: |
+          git config user.name "robot-vibras"
+          git config user.email "robot@vibraspositivashm.com"
+          git add seguimiento.json
+          git commit -m "Seguimiento $(TZ=America/Bogota date '+%Y-%m-%d %H:%M')" || exit 0
+          git push

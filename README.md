@@ -19,7 +19,7 @@ App (PWA) bilingüe español / inglés para el cultivador de arándanos. Desarro
 
 **Mi finca**: bitácora de labores, cosechas y ventas · lista BPA de 23 puntos · nombre de la finca · respaldo `.json` y bitácora en `.csv` para Excel.
 
-**Mercado**: Colombia 2025–2026, Agroventure Capital, producción y comercio mundial, y los otros 9 cultivos de la guía CIREN.
+**Mercado**: Colombia 2025–2026, Agroventure Capital con seguimiento en vivo a Miller Preciado, producción y comercio mundial, y los otros 9 cultivos de la guía CIREN.
 
 ## Fuentes
 - INIA‑INDAP (2017). *Manual de manejo agronómico del arándano*. Boletín INIA N.º 371.
@@ -47,3 +47,9 @@ README.md
 3. En Netlify, nombre del sitio: `arandano-pro`, conectado al repo. Si se usa otro nombre, cambiar la URL de `og:image` y `og:url` en `index.html`.
 
 Los datos de la bitácora, la lista BPA y las calculadoras quedan guardados en el celular (localStorage).
+
+## Seguimiento en vivo a Miller Preciado
+- El robot `.github/workflows/seguimiento.yml` corre cada 30 minutos, busca noticias reales en Google Noticias ("Miller Preciado", "Agroventure Capital", arándanos en Colombia) y las guarda en `seguimiento.json` de la rama **datos**.
+- La app lee ese archivo cada vez que se abre y con el botón Actualizar.
+- Los datos van en la rama `datos` para que Netlify no publique una versión nueva cada 30 minutos (eso gastaría créditos).
+- Lo que Miller publica en sus redes se agrega a mano en `bitacora` de `seguimiento.json`, con la fuente.

@@ -1,5 +1,5 @@
 // Arándano Pro — service worker (Vibras Positivas HM)
-const CACHE='arandano-pro-v3';
+const CACHE='arandano-pro-v4';
 const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png','./og-image.jpg',
   "./img/arbusto.jpg",
   "./img/avellano.jpg",
@@ -52,7 +52,7 @@ self.addEventListener('fetch',e=>{
   const u=new URL(e.request.url);
   if(e.request.method!=='GET')return;
   // El clima siempre se busca en vivo; la app guarda el último pronóstico por su cuenta
-  if(u.hostname.includes('open-meteo.com'))return;
+  if(u.hostname.includes('open-meteo.com')||u.hostname.includes('raw.githubusercontent.com'))return;
   if(u.origin===location.origin&&(e.request.mode==='navigate'||u.pathname.endsWith('.html'))){
     e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));return;
   }

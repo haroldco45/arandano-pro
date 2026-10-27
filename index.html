@@ -180,6 +180,15 @@ nav.bot button.on:before{content:"";position:absolute;top:0;left:22%;right:22%;h
 .avc-promo-t h3{font-size:1.45rem;margin:.3em 0}
 .avc-promo-t p{color:#dfe3ff}
 .avc-promo-t .btn{display:inline-block;background:#fff;color:var(--night)}
+.live-line{margin:4px 0 12px;font-weight:800;font-size:.92rem;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 12px}
+.live-line:empty{display:none}
+.seg-hoy{border-radius:16px;padding:16px;background:linear-gradient(135deg,var(--night),var(--berry));color:#fff;margin:10px 0 14px}
+.seg-hoy .k{font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bloom)}
+.seg-hoy h3{color:#fff;font-size:1.35rem;margin:.25em 0}
+.seg-hoy a{color:#dfe3ff}
+.news{display:block;text-decoration:none;color:inherit;padding:11px 0;border-bottom:1px solid var(--line)}
+.news b{display:block;line-height:1.3}
+.news span{font-size:.78rem;color:var(--mute)}
 .tl{position:relative;padding-left:22px;border-left:3px solid var(--bloom);margin:6px 0 4px 6px}
 .tl div{position:relative;margin-bottom:14px}
 .tl div:before{content:"";position:absolute;left:-30px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--berry);border:3px solid var(--card)}
@@ -252,7 +261,7 @@ footer b{color:var(--ink)}
         </div>
         <div class="avc-promo reveal" id="avcPromo" onclick="mktTab='avc';go('mercado');renderMkt()">
           <img src="img/huerto-otono.jpg" alt="">
-          <div class="avc-promo-t"><div class="kicker" data-t="avcKicker"></div><h3 data-t="avcPromoT"></h3><p data-t="avcPromoP"></p><span class="btn sm" data-t="avcPromoB"></span></div>
+          <div class="avc-promo-t"><div class="kicker" data-t="avcKicker"></div><h3 data-t="avcPromoT"></h3><p data-t="avcPromoP"></p><div id="avcLive" class="live-line"></div><span class="btn sm" data-t="avcPromoB"></span></div>
         </div>
       </section>
       <section>
@@ -1045,7 +1054,7 @@ function renderMkt(){
     const HA=[['2025',26,t('Proyecto propio (ene.)','Own project (Jan)')],['2026',124,t('Cierre del año','Year end')],['2027',281,t('+157 ha nuevas','+157 new ha')],['2030',500,t('Meta','Target')]];
     const W=640,H=300,p=20,bw=(W-p*2)/HA.length,mx=520;
     const bars=HA.map((x,i)=>{const h=x[1]/mx*(H-100);return `<rect x="${p+i*bw+14}" y="${H-52-h}" width="${bw-28}" height="${h}" rx="8" fill="${i===1?'var(--berry)':'var(--bloom)'}"><animate attributeName="height" from="0" to="${h}" dur="1s"/><animate attributeName="y" from="${H-52}" to="${H-52-h}" dur="1s"/></rect><text x="${p+i*bw+bw/2}" y="${H-60-h}" font-size="24" font-weight="800" text-anchor="middle" fill="currentColor">${nf(x[1])} ha</text><text x="${p+i*bw+bw/2}" y="${H-28}" font-size="20" font-weight="800" text-anchor="middle" fill="currentColor">${x[0]}</text><text x="${p+i*bw+bw/2}" y="${H-6}" font-size="15" text-anchor="middle" fill="currentColor">${x[2]}</text>`}).join('');
-    o.innerHTML=`<div class="avc-promo" style="cursor:default;min-height:300px"><img src="img/cultivo-cubierto.jpg" alt=""><div class="avc-promo-t"><div class="kicker">${t('Inversión agrícola · Bogotá','Agricultural investment · Bogotá')}</div><h3 style="font-size:1.9rem">Agroventure Capital</h3><p>${t('Firma colombiana que conecta inversionistas de mercados exigentes con los mejores agricultores de la región. Su gerente, Miller Preciado, lidera una de las apuestas más grandes por el arándano de montaña en Colombia.','Colombian firm connecting investors from demanding markets with the region’s best farmers. Its general manager, Miller Preciado, leads one of the biggest bets on Colombian highland blueberries.')}</p></div></div>
+    o.innerHTML=segHTML()+`<div class="avc-promo" style="cursor:default;min-height:300px"><img src="img/cultivo-cubierto.jpg" alt=""><div class="avc-promo-t"><div class="kicker">${t('Inversión agrícola · Bogotá','Agricultural investment · Bogotá')}</div><h3 style="font-size:1.9rem">Agroventure Capital</h3><p>${t('Firma colombiana que conecta inversionistas de mercados exigentes con los mejores agricultores de la región. Su gerente, Miller Preciado, lidera una de las apuestas más grandes por el arándano de montaña en Colombia.','Colombian firm connecting investors from demanding markets with the region’s best farmers. Its general manager, Miller Preciado, leads one of the biggest bets on Colombian highland blueberries.')}</p></div></div>
     <div class="card reveal" style="margin-top:16px"><h3>${t('En cifras','By the numbers')}</h3><div class="kv"><div><span>${t('Árboles sembrados','Trees planted')}</span><b>2.000.000</b></div><div><span>${t('Años de experiencia','Years of experience')}</span><b>17</b></div><div><span>${t('Asociaciones de pequeños y medianos productores','Small & mid‑size grower associations')}</span><b>25</b></div><div><span>${t('Hectáreas de arándano a fin de 2026','Blueberry hectares, end of 2026')}</span><b>124</b></div></div><p class="note">${t('Las tres primeras cifras son de su página web (agroventurecapital.com.co); las hectáreas, de Portal Frutícola (abr. 2026).','The first three figures come from their website (agroventurecapital.com.co); hectares from Portal Frutícola (Apr 2026).')}</p></div>
     <div class="card reveal"><h3>${t('Así crece su arándano','How their blueberry acreage grows')}</h3><svg viewBox="0 0 ${W} ${H}" style="width:100%;color:var(--mute)">${bars}</svg><p class="note">${t('Fuente: declaraciones de Miller Preciado a Portal Frutícola (ene. 2025 y abr. 2026). 2027 suma las 157 ha anunciadas a las 124 de 2026.','Source: Miller Preciado to Portal Frutícola (Jan 2025 and Apr 2026). 2027 adds the announced 157 ha to 2026’s 124.')}</p></div>
     <div class="card reveal"><h3>${t('La historia en el tiempo','The story over time')}</h3><div class="tl">
@@ -1094,17 +1103,48 @@ function renderMkt(){
 function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav.bot button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));window.scrollTo({top:0,behavior:'smooth'});S.set('view',v);observe()}
 $$('nav.bot button').forEach(b=>b.onclick=()=>go(b.dataset.v));
 let io;function observe(){if(!('IntersectionObserver'in window)){$$('.reveal').forEach(e=>e.classList.add('in'));return}io=io||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});$$('.reveal:not(.in)').forEach(e=>io.observe(e))}
-function renderAll(){applyUI();renderHero();setCap();renderStages();renderPlaces();renderWx();renderTip();renderFarm();renderCrop();renderCalc();renderFin();renderMkt();manualCheck();observe()}
+/* ============ SEGUIMIENTO EN VIVO: MILLER PRECIADO ============ */
+const SEG_URL='https://raw.githubusercontent.com/haroldco45/arandano-pro/datos/seguimiento.json';
+let segFil=S.get('segFil','miller');
+function hace(iso){const m=Math.round((Date.now()-new Date(iso))/60000);if(!isFinite(m))return '—';if(m<1)return t('hace un momento','just now');if(m<60)return t('hace '+m+' min',m+' min ago');const h=Math.round(m/60);if(h<48)return t('hace '+h+' h',h+' h ago');return t('hace '+Math.round(h/24)+' días',Math.round(h/24)+' days ago')}
+function fecha(iso){const d=new Date(iso.length===10?iso+'T12:00:00-05:00':iso);return d.toLocaleDateString(L==='en'?'en-US':'es-CO',{day:'numeric',month:'short',year:'numeric',timeZone:'America/Bogota'})}
+async function loadSeg(){
+  try{const r=await fetch(SEG_URL+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();j._at=Date.now();S.set('seg',j);}catch(e){}
+  renderSegLive();
+}
+function renderSegLive(){
+  const j=S.get('seg',null);const el=$('#avcLive');
+  if(el){const b=j&&j.bitacora&&j.bitacora[0];el.textContent=b?t('En vivo · ','Live · ')+fecha(b.fecha)+': '+(L==='en'&&b.titulo_en?b.titulo_en:b.titulo):''}
+  if(mktTab==='avc'&&$('#segBox'))$('#segBox').outerHTML=segHTML();
+}
+function segHTML(){
+  const j=S.get('seg',null);
+  if(!j)return `<div class="card" id="segBox"><div class="kicker" style="color:var(--berry)"><span class="pulse"></span>${t('En vivo · Miller Preciado hoy','Live · Miller Preciado today')}</div><p class="muted">${t('Cargando el seguimiento…','Loading the tracker…')}</p></div>`;
+  const B=j.bitacora||[],h=B[0];
+  const N=(j.noticias||[]).filter(n=>segFil==='todo'||(segFil==='miller'?n.tema!=='arandano':n.tema==='arandano')).slice(0,12);
+  return `<div class="card" id="segBox" style="border:2px solid var(--berry)">
+  <div class="row" style="align-items:center;flex-wrap:nowrap"><div class="kicker" style="color:var(--berry);flex:1"><span class="pulse"></span>${t('En vivo · Miller Preciado hoy','Live · Miller Preciado today')}</div><button class="btn sm ghost" style="flex:0 0 auto" onclick="toast(t('Buscando novedades…','Checking for updates…'));loadSeg()">${t('Actualizar','Refresh')}</button></div>
+  <p class="muted" style="margin:4px 0 0">${t('El robot revisa las noticias cada 30 minutos. Última revisión: ','The robot checks the news every 30 minutes. Last check: ')}<b>${j.actualizado?hace(j.actualizado):'—'}</b></p>
+  ${h?`<div class="seg-hoy"><div class="k">${t('Lo último','Latest')} · ${fecha(h.fecha)}</div><h3>${L==='en'&&h.titulo_en?h.titulo_en:h.titulo}</h3><p style="margin:0 0 8px;color:#e3e6ff">${L==='en'&&h.texto_en?h.texto_en:h.texto}</p><div style="font-size:.8rem">${t('Fuente','Source')}: ${h.link?`<a href="${h.link}" target="_blank" rel="noopener">${h.fuente}</a>`:h.fuente}</div></div>`:''}
+  ${B.length>1?`<h3 style="font-size:1.05rem;margin-top:6px">${t('Bitácora de sus movimientos','Log of his moves')}</h3><div class="tl">${B.slice(1).map(b=>`<div><b>${fecha(b.fecha)}</b>${L==='en'&&b.titulo_en?b.titulo_en:b.titulo}<div class="muted" style="font-size:.85rem">${L==='en'&&b.texto_en?b.texto_en:b.texto} · ${b.link?`<a href="${b.link}" target="_blank" rel="noopener">${b.fuente}</a>`:b.fuente}</div></div>`).join('')}</div>`:''}
+  <h3 style="font-size:1.05rem;margin-top:10px">${t('Noticias en línea','Online news')}</h3>
+  <div class="chips">${[['miller',t('Miller y Agroventure','Miller & Agroventure')],['arandano',t('Sector arándano','Blueberry sector')],['todo',t('Todo','All')]].map(c=>`<button class="chip ${segFil===c[0]?'on':''}" onclick="segFil='${c[0]}';S.set('segFil',segFil);renderSegLive()">${c[1]}</button>`).join('')}</div>
+  ${N.length?N.map(n=>`<a class="news" href="${n.link}" target="_blank" rel="noopener"><b>${n.titulo.replace(/</g,'&lt;')}</b><span>${n.fuente||''} · ${fecha(n.fecha)}</span></a>`).join(''):`<p class="muted">${t('Todavía no hay noticias nuevas en este tema.','No new stories on this topic yet.')}</p>`}
+  <h3 style="font-size:1.05rem;margin-top:14px">${t('Buscar ahora en vivo','Search live now')}</h3>
+  <div class="row"><a class="btn sm" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://news.google.com/search?q=%22Miller%20Preciado%22&hl=es-419&gl=CO&ceid=CO:es-419">Google ${t('Noticias','News')}</a><a class="btn sm ghost" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://www.instagram.com/millerpreciado_/">Instagram Miller</a><a class="btn sm ghost" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://www.instagram.com/agroventure_capital">Instagram Agroventure</a><a class="btn sm ghost" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://www.linkedin.com/company/agroventure-capital/">LinkedIn</a></div>
+  <p class="note">${t('Las noticias salen de Google Noticias. Lo que publica en sus redes (como el viaje a Venezuela) se agrega a la bitácora con la fuente indicada.','News comes from Google News. What he posts on social media (like the Venezuela trip) is added to the log with its source.')}</p></div>`;
+}
+function renderAll(){applyUI();renderHero();setCap();renderStages();renderPlaces();renderWx();renderTip();renderFarm();renderCrop();renderCalc();renderFin();renderMkt();renderSegLive();manualCheck();observe()}
 $('#btnEs').onclick=()=>{L='es';S.set('lang',L);renderAll()};
 $('#btnEn').onclick=()=>{L='en';S.set('lang',L);renderAll()};
-$('#btnRefresh').onclick=()=>{loadWx(true);renderHero();toast(t('Actualizando…','Refreshing…'))};
+$('#btnRefresh').onclick=()=>{loadWx(true);loadSeg();renderHero();toast(t('Actualizando…','Refreshing…'))};
 $('#btnTip').onclick=()=>{tipI=(tipI+1)%TIPS.length;renderTip()};
 $('#place').onchange=e=>{S.set('place',e.target.value);loadWx(true)};
 $('#btnGeo').onclick=()=>{if(!navigator.geolocation){toast(t('Tu celular no da la ubicación','Location not available'));return}
   navigator.geolocation.getCurrentPosition(p=>{S.set('gps',{lat:p.coords.latitude,lon:p.coords.longitude});S.set('place','gps');renderPlaces();loadWx(true)},()=>toast(t('No se pudo leer la ubicación','Could not read location')),{enableHighAccuracy:true,timeout:15000})};
 ['#mMin','#mMax','#mRain'].forEach(s=>$(s).oninput=manualCheck);
 setInterval(renderHero,60000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){const j=S.get('wx',null);if(!j||Date.now()-j._at>30*60000)loadWx()}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadSeg();const j=S.get('wx',null);if(!j||Date.now()-j._at>30*60000)loadWx()}});
 
 /* install */
 let dp;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!S.get('noInstall',false))$('#install').classList.add('show')});
@@ -1112,7 +1152,7 @@ $('#btnInstall').onclick=async()=>{$('#install').classList.remove('show');if(dp)
 $('#btnNoInstall').onclick=()=>{$('#install').classList.remove('show');S.set('noInstall',true)};
 if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 
-buildHero();renderAll();go(S.get('view','hoy'));loadWx();
+buildHero();renderAll();go(S.get('view','hoy'));loadWx();loadSeg();
 </script>
 </body>
 </html>
