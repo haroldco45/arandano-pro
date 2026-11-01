@@ -30,6 +30,13 @@
  ],
  "noticias": [
   {
+   "titulo": "Primer taller de arándanos con práctica incluida, en Paipa y Duitama",
+   "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOSWZzUUdSWlhpWTBSeV9mVUZwODI0aGdOOUgtNUQxdU1MNG96dlVqSG1nRUdQMUNUREdpeENvWjZGN1RXcU1ORWtFcjlTQVZYTjVYUXJXZGdRVjhxb2RxZS1Ec3hOUHpEU1hWTTZCbmRLbmtwbmIwOXkxUm85NVpuM015LWRQT05odUJXalB5Ql8xajdYNnk2SVVJUkltS2dMdWRrQXY0ejZMdw?oc=5",
+   "fuente": "Boyacá 7 Días",
+   "fecha": "2026-11-01T19:02:01.000Z",
+   "tema": "arandano"
+  },
+  {
    "titulo": "COLOMBIA: Estudiantes de la Universidad Nacional convierten arándanos en un vino artesanal",
    "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPbXZCUk5oeEs5ejVhU1NTZWFrQm00NThBaTN2dWkycEFSdXZiZEZSQURPNlRycm1KU1FCOVlBdFB0QmVUZ1ljYnR3YU1DSzg3ZVk3Ykh6WFM0R19JV29uaEtXNWRPUUY4RTU0NGtwVjRHWHFiV1FFQkU2U0Rib2ZXNmtvdEViLVdzd3VOVHUzR0VGcmY5cDBpblh3R3Bjbk85bS1jREd3b0RVVWp6ZHozS3hUZnVPb0JkRGVDY0ZwbGJiQ2Y4?oc=5",
    "fuente": "elproductor.com",
@@ -212,13 +219,6 @@
    "tema": "arandano"
   },
   {
-   "titulo": "Industria de frutos rojos en Colombia consolida crecimiento sostenido con expansión de cultivos y demanda interna",
-   "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQQXBGSG0yakdmYks4YV91N0xXMUlJSWktREhyWVl4UlBXYlFxSDZzX1RnckJjd0FSYW5GWmN4S3FneThyYUpyeVY4MjIteXhUMkg1SHlLb3h3a05hSjZXbkdsTkYwbjhSaU5nZmJySnQ1Z0EtZmdKNVpvQVExSE9JcElZWUJINGNaTG8wRzBSZXdyZndNX3FzX09tSVNpR1JybVc2Q285eElWZm1IY2p6TG5vdnpmUXdlWWlMZlZ6RUtZRElNZDFlNzhrZDNKQl9kQnJTc20tRUlBWFl6SkxsOTJQcE9YMGY2RWl0VG83Y0xDZ9IB9wFBVV95cUxOWVhNYVdnNktieVhHZThhcW11cWh5MEdxVzA3ZGl5UFQ4eGRyTlVCeHp4NHNpVXRvT2NkZWh2Wi05alloRXhjaWh3TEZvbWFFWGctRmE4azdUenQ1VkVKa2ZOQ3NOY3VYaW42RDdjTl9Pb1JweGFUZlZYdjhSY2dEVm0tTmNtNmg0NnBaNW1DUDNUN3BCMFhETVkybWMxa09MdmJ1ZVdrS3lNZnRNMDNVX3U0YVN5WHBHaFIyUW1hMWhwT0UxdjBxZzdqajZDdXRNbVNnYWZmdWw5aFF4ajBSVkxyLVBBRXBraEwwdkZUajRfSjJ1R2Rr?oc=5",
-   "fuente": "Portafolio.co",
-   "fecha": "2026-05-04T07:00:00.000Z",
-   "tema": "arandano"
-  },
-  {
    "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
    "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/",
    "fuente": "Portal Frutícola",
@@ -345,5 +345,5 @@
    "tema": "miller"
   }
  ],
- "actualizado": "2026-11-01T14:39:55.121Z"
+ "actualizado": "2026-11-01T19:19:35.301Z"
 }
