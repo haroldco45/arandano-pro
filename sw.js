@@ -1,5 +1,5 @@
 // Arándano Pro — service worker (Vibras Positivas HM)
-const CACHE='arandano-pro-v4';
+const CACHE='arandano-pro-v5';
 const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png','./og-image.jpg',
   "./img/arbusto.jpg",
   "./img/avellano.jpg",
