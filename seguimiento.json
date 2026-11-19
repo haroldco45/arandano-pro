@@ -30,6 +30,13 @@
  ],
  "noticias": [
   {
+   "titulo": "Fusagasugá destina más de $80 millones a productoras de arándanos",
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOaWxRRllrelZVdWI0LWxfWWt6Sm9JWENFb2NFQUVsMnkxUi1oTGNVajhuYUdVM1JPNEhLZWxheFZYLW5selZmRW1pMnRrUkhSZmZBVl91bm5DU0tkMWx1RWE3c1FYSEFKZEpZbks0TjNaYnQxVGVWTWJzRW1ZNFZzeWttN1lDMUl5QTdDZVpfc3FGaGxzd0ViNjVtdVl1MVNEU3BRRWduN3FuTHNPanNNY09EWkF3U0E?oc=5",
+   "fuente": "El dorado radio",
+   "fecha": "2026-11-18T16:48:05.000Z",
+   "tema": "arandano"
+  },
+  {
    "titulo": "Milagro Week: Cundinamarca busca millonaria inversión con 7 proyectos que podrían transformar el departamento",
    "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNdE9obWU3NjJ5UXNINmpINDIzZVlTRjVEZXBCSzVIZUpIaklNSzVXRzg1bVlKTFEzUFNrQW13ZjQxU2U1VGtmTXJqZzdtM3pnZFRBNENIZG8zSUVpbzdLRHBSb0I3UlFsV1hxUjY0bHBZR3RpNDRmb1dFS3RuQ1h1SURCREhwaUE?oc=5",
    "fuente": "PortalNews \"Noticias & Actualidad 7/24\"",
@@ -254,13 +261,6 @@
    "tema": "arandano"
   },
   {
-   "titulo": "Colombia consume el 95% de su producción de arándanos y busca crecer en exportaciones",
-   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNX0owbTRBMXpjMk5LTk9lSVlzc0U1bUxOd3loREw2U0xkMjE2QThJWGRQbExpb0RKOURXSkxDTVVDLTNKbG1XMHhnNWtOYmJLNm5GdjEtZ0FsdkhJYnRDeG00dkt0bmlXNGE5UHhrNHd4Y2dsdlI3MUpuTjI4VkRuYnBISmZHY0NoSF9yZnk4eXUxUE1oeGZUeVJUOXpIUFRNWDBCSnFFcWxuZzNSNHExcjFoNE5MOEZyRWtDNkZPNXVkek5vcGpWU3hRX1FZX3M?oc=5",
-   "fuente": "Forbes Colombia",
-   "fecha": "2026-05-04T07:00:00.000Z",
-   "tema": "arandano"
-  },
-  {
    "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
    "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/",
    "fuente": "Portal Frutícola",
@@ -401,5 +401,5 @@
    "tema": "miller"
   }
  ],
- "actualizado": "2026-11-18T21:02:33.620Z"
+ "actualizado": "2026-11-19T02:42:09.416Z"
 }
