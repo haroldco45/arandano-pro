@@ -30,6 +30,13 @@
  ],
  "noticias": [
   {
+   "titulo": "¿Qué tan saludables son los arándanos rojos?",
+   "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPOVNpYTE1VWhIMnlBWkpJUDdranJYbzJuZ0gxaUlMS0RfZHpmdVVDa0NFaF9GM0xSSVZZcThJWXZ6UV80MWVSbUR4SF95d2xLYTZKbVZQdGFZalB5eU1HekJpVi1sQ2xuUVlGdTdJZlZrY0F4cC1BOGNMRzBINGFBZGlVSTMtTHVlSkxjZGFZYXNwMFl6ZEQwMDln0gGuAUFVX3lxTE54X1NHM2Nybndrb3l2OWZobnJXWWxoZXRRRjdFb0VKcGdVcHpWb1dMWFhHWVRSU1pWdFFPNEIzeGt0cmdLYVNLb00wZXE3TXFTOUZUMGNqeGZVWGk2ZFFra3MzUWlpS0MzM1MzS1dUOU9HODMwRl9SMXhNaGRWaFlQZlhyeXVFTWQ2M0hreVZuNlRNWFJJWFdCeVdMeXR3YWVqcUVJRzBmX0tmWmNwdw?oc=5",
+   "fuente": "El Espectador",
+   "fecha": "2026-11-19T00:26:34.000Z",
+   "tema": "arandano"
+  },
+  {
    "titulo": "Fusagasugá destina más de $80 millones a productoras de arándanos",
    "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOaWxRRllrelZVdWI0LWxfWWt6Sm9JWENFb2NFQUVsMnkxUi1oTGNVajhuYUdVM1JPNEhLZWxheFZYLW5selZmRW1pMnRrUkhSZmZBVl91bm5DU0tkMWx1RWE3c1FYSEFKZEpZbks0TjNaYnQxVGVWTWJzRW1ZNFZzeWttN1lDMUl5QTdDZVpfc3FGaGxzd0ViNjVtdVl1MVNEU3BRRWduN3FuTHNPanNNY09EWkF3U0E?oc=5",
    "fuente": "El dorado radio",
@@ -268,13 +275,6 @@
    "tema": "arandano"
   },
   {
-   "titulo": "Colombia dispara su producción de arándanos, pero el 95% se queda en casa y frena el salto exportador",
-   "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOcmFrcWpaSlRMZTNRYURtMXVfTFNQbldWSWkwTDQyRmY0NTJsbzVqWTgwOEd0UlJjTGkxSmRfdnFiSmI4X281OE9WaXp3ZmNIOUs2U0pWdWp3UnJQUWlyZlRKSHJDaGR6a0dnRFlrVDVFYm96RmE0XzZiVm5TMk9OeExFd3VOMWFGY3VfRnRUdi0zRXVyN0l4X1FXVlJwUjJOOFB3a3ByQms2ZHpBQmR6RTJxZThqMl9pZUpyNEtEaXB3bHhLT2lSMUMwOV9venpmN0wtNUc5dF9Sdml5TDhOQ1otbjRnUUFQTkRFVU0yNUzSAfYBQVVfeXFMTk5WWk10Tk45a2psTEtPNmVWUXdZNVdrR2ZuWGd2MFpvdUd3QzdaNzN6aWxhZVBYX09hdFp1MV9jdUgyb1FxWkNsdWRObks1WjBPcExxaFRwRUdweGVFWDZ1cllHbHE4SkxZeHoxdUJiOUctWHFDeERPemtqeW84WmQ0aWRRTkdmb2FqY2RNVG80SlRneWp1NFZOWll6RklKT0htVVlEZ0FiMldMTk1ZZnljeTNtNGswY21CVDY4RkluSXpoYlJPbzVLX3BBbkxyRGc5RkVlSE1CQWRpZUpGRDFNbVZKN3B5bDhoRkI1bWN1SkJEWGlR?oc=5",
-   "fuente": "El Tiempo",
-   "fecha": "2026-05-04T07:00:00.000Z",
-   "tema": "arandano"
-  },
-  {
    "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
    "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/",
    "fuente": "Portal Frutícola",
@@ -422,5 +422,5 @@
    "tema": "miller"
   }
  ],
- "actualizado": "2026-11-23T22:08:10.486Z"
+ "actualizado": "2026-11-24T06:13:05.961Z"
 }
