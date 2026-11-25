@@ -30,6 +30,13 @@
  ],
  "noticias": [
   {
+   "titulo": "\"La parte comercial y el trabajo asociativo son fundamentales; unidos, nuestra fruta vale más\"",
+   "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOaXkzbmRwTERMVlpyYXBhR0hOSEwtVzZuS0lkdUhoYzh6NTRMNTVRaWFDbzNHSmI4YlVMQmhjNHZLcHpWQl92cndpNHNWR2wxeVBRVGNOOXE4aFRyUGJ1TEVNRzN0NVEyOTFxMlFXckx3YmY0bW05cS12NkJWYWF0cG1UaGtuQkpMRmpKRm4xa3QtQ3owX2pDalVaRnNHM3M4YXJibDFlSmtEZ0JWTDRic2VuUnd6QlNtcFpjVFpmT2FjWmRhZXZvUDNwdFRrZlJPQWNVMDFmalczQ1Nqb2VxeDZISjhoWXNSMDYxN1ptZktUeEZrWXE00gH3AUFVX3lxTE94cTl5bHBQQkhmTTgtMWpvNU16cEJsWWIxdy1IY25JXzFJZVo2VjB2Qks0N3FXUXp0ZGVLYXFfM1VuQnlSRHhPRjBjbUpwc0N2TUNfZ3dZdE9nQXZiQ05mdzVOdEkxNkZRdE9LSTFkMk80a2JYdTc3YXZUVDNidTRyRXB3OTVMcWoyaGdDQV9VOWNZT2JEbVhLamwxZEJHU1g4ZVRVOFJQSGo2TWRqRndETHpmSmJrOG5RckZVTFF4Wkx0MktZMmtsaGh6RlljeFg2aUFSQzBwanJIcExGbmRPUDk3X3RfUXpkVzJkTXZub3FWcEM1Zk0?oc=5",
+   "fuente": "Agronegocios",
+   "fecha": "2026-11-25T05:01:51.000Z",
+   "tema": "arandano"
+  },
+  {
    "titulo": "¿Qué tan saludables son los arándanos rojos?",
    "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPOVNpYTE1VWhIMnlBWkpJUDdranJYbzJuZ0gxaUlMS0RfZHpmdVVDa0NFaF9GM0xSSVZZcThJWXZ6UV80MWVSbUR4SF95d2xLYTZKbVZQdGFZalB5eU1HekJpVi1sQ2xuUVlGdTdJZlZrY0F4cC1BOGNMRzBINGFBZGlVSTMtTHVlSkxjZGFZYXNwMFl6ZEQwMDln0gGuAUFVX3lxTE54X1NHM2Nybndrb3l2OWZobnJXWWxoZXRRRjdFb0VKcGdVcHpWb1dMWFhHWVRSU1pWdFFPNEIzeGt0cmdLYVNLb00wZXE3TXFTOUZUMGNqeGZVWGk2ZFFra3MzUWlpS0MzM1MzS1dUOU9HODMwRl9SMXhNaGRWaFlQZlhyeXVFTWQ2M0hreVZuNlRNWFJJWFdCeVdMeXR3YWVqcUVJRzBmX0tmWmNwdw?oc=5",
    "fuente": "El Espectador",
@@ -268,13 +275,6 @@
    "tema": "arandano"
   },
   {
-   "titulo": "Colombia consume el 95% de su producción de arándanos y busca crecer en exportaciones",
-   "link": "https://forbes.co/economia-y-finanzas/colombia-consume-el-95-de-su-produccion-de-arandanos-y-busca-crecer-en-exportaciones",
-   "fuente": "Forbes Colombia",
-   "fecha": "2026-05-04T13:52:00.000Z",
-   "tema": "arandano"
-  },
-  {
    "titulo": "Arándano colombiano entra en fase de expansión y apuesta exportadora",
    "link": "https://www.portalfruticola.com/noticias/2026/04/21/arandano-colombia-2026/",
    "fuente": "Portal Frutícola",
@@ -422,5 +422,5 @@
    "tema": "miller"
   }
  ],
- "actualizado": "2026-11-25T02:40:33.796Z"
+ "actualizado": "2026-11-25T11:58:46.029Z"
 }
