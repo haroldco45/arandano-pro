@@ -30,6 +30,13 @@
  ],
  "noticias": [
   {
+   "titulo": "En 2050 sobrarán viviendas, pero faltarán alimentos",
+   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPWW1BSmtzR3hfdUZEQk96VlYyVzJNTksyNUhhMVZsRXpGQmIwWV9pcGRvNkRxTWhLYzN1Y2dtV0VWOTQzUU5ZSUdwX1o0YjNSVlRrSlZPSlI5bzAxUklNZ1RoM0otRXNHWlpwY2JQWEJJUlV1ajJ4emlWZHBnUDducDBmREtWdDhOMmFqX2VqazhTLXpxWDFZdnNLakJ0dnRhd1F5NXVhTlhrOEVEa2FkakJMWEJrUF9waTJFN05kZnBna2ZsZnF2S1BoU1TSAc4BQVVfeXFMTTRFR0pWMlJoTlJuVjhPVDFLYmhLSVVQbE1abHJydTBEQzU5NXl3U0gzRFQ2cFlNd3FLZUNiUjRnY1RORTdzOU51OUlEVWJwd1dfaDc0VXR1UnVEZUNPN2tFOUJKLWtpMFNzNXRMMXppUmlFVUtvZmhET2ZCTkk1NW84ZURQZWtaZDdFS1lfU283c2xYN0N2SWJpdUJRejctWVQ2VU41VmV1NzI2OEtBWFdtdU5LLTFnS0lrX09XTzkyREFPSDZOcHVNQksyYkE?oc=5",
+   "fuente": "LaRepublica.co",
+   "fecha": "2026-11-25T20:54:03.000Z",
+   "tema": "agroventure"
+  },
+  {
    "titulo": "María Camila Vélez Echeverri, Comentarios sobre Tendencias y Oportunidades del Sector Agricola",
    "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPNEpVUUZxdExxVDI1QXlpZjc2SnRhRGp4QzFPTGxrZmFwbFFOTDA2UW44RXZQem96dEN0T1B2QWZ2c3VBQndwclJ6NUR6V2g4aldOSGk0Z2dpZjh6RmpZYUlaVnJ3X1ZpeGtCZE9ET0hFX0ZuMHRFdTl2Yk5HbHV6WDdn?oc=5",
    "fuente": "Agronegocios",
@@ -58,11 +65,25 @@
    "tema": "arandano"
   },
   {
+   "titulo": "Confirman presencia del insecto que causa la 'Punta morada' en cultivos de papa de Paipa, Boyacá",
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOY3AzV2pfM1EwX29NSHBwcy1DTUNpb2xMaWpPbW45S1lvSHY5U1JoVWRER19BMUZROHNKNGlaZm9iUVNBaFpvLU83VlhqckxCbi13Y3ljTDF4Snhqblk3S2NEelhfN2FzVjNKUVdod2tmb0U0QjY5UVAwZWNldUxfelBybUw2N3J5T1B3Wi1zcDktODhHeXFqaFd0bWlfRnlFaElHZlVWT1FVWFVWUXEwdjAzOTlYa0RtRkQ5cmFIRVd5NWt3T2lQX1NiZnhGUQ?oc=5",
+   "fuente": "www.boyacadigital.com",
+   "fecha": "2026-11-18T21:05:56.000Z",
+   "tema": "agroventure"
+  },
+  {
    "titulo": "Fusagasugá destina más de $80 millones a productoras de arándanos",
    "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOaWxRRllrelZVdWI0LWxfWWt6Sm9JWENFb2NFQUVsMnkxUi1oTGNVajhuYUdVM1JPNEhLZWxheFZYLW5selZmRW1pMnRrUkhSZmZBVl91bm5DU0tkMWx1RWE3c1FYSEFKZEpZbks0TjNaYnQxVGVWTWJzRW1ZNFZzeWttN1lDMUl5QTdDZVpfc3FGaGxzd0ViNjVtdVl1MVNEU3BRRWduN3FuTHNPanNNY09EWkF3U0E?oc=5",
    "fuente": "El dorado radio",
    "fecha": "2026-11-18T16:48:05.000Z",
    "tema": "arandano"
+  },
+  {
+   "titulo": "Tuta impulsa mercados campesinos para fortalecer la economía rural",
+   "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxONFlDQXMtbkZnb1FwM2MwdkxVZFI0dmc1MWNjRUsyaFFmSENHV1JPb0c0dTMxTWk4ckxPdDNfdXRraEhVczB3SDB3dkNvOWhTRGZLb2hHYkZBbW12NGtNNXpmY2QzU0V3VG52amxyZlh0R0tIcWE3ODczMzVfX3NzUkEyYmJkc2ZSRGh5dEVQWl9nMVo3dUotRnZlaWJ3VTlnejQxTGY4dlo1Sm5Wcy1JeDJwcGtlTUx1ZFg2U2dNVmxDV05PZENvWUhGZVc?oc=5",
+   "fuente": "www.boyacadigital.com",
+   "fecha": "2026-11-15T17:31:58.000Z",
+   "tema": "agroventure"
   },
   {
    "titulo": "Milagro Week: Cundinamarca busca millonaria inversión con 7 proyectos que podrían transformar el departamento",
@@ -140,6 +161,13 @@
    "fuente": "El Frente",
    "fecha": "2026-10-19T14:34:36.000Z",
    "tema": "miller"
+  },
+  {
+   "titulo": "Abren convocatoria para la Gran Feria Apícola Boyacense 2026 en Tunja: hay 10 espacios para productores",
+   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPVkd1NHh4WldZckdwMEdHa1lwM0FCWktFeEpvTVpWUjBoNmxkT3hXamVlODA1dFRaN1I1SzJudW5xckZ2bi1yenZRNVk4dUkyWGswOVB0ZllXdkJSLW9lMTNhTEc3ZHMxRjB4eF9WSjJIYzl3SUxMUlpXZjN5LWNHMEthb2ZydDljNzh0bXJ5eEYyNGxTZFVFaGxWVjVKSTdmMldmM3VQQQ?oc=5",
+   "fuente": "boyacadigital.com",
+   "fecha": "2026-10-19T07:00:00.000Z",
+   "tema": "agroventure"
   },
   {
    "titulo": "María Camila Vélez Echeverri liderará la expansión global de Agroventure Capital",
@@ -436,5 +464,5 @@
    "tema": "miller"
   }
  ],
- "actualizado": "2026-11-26T03:41:02.583Z"
+ "actualizado": "2026-11-26T13:27:56.280Z"
 }
